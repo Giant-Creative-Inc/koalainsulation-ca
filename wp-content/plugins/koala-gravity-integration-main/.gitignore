@@ -1,0 +1,15 @@
+# Composer dependencies (dev-only tooling: phpcs + WPCS). Run `composer install` locally.
+/vendor/
+
+# OS
+.DS_Store
+
+# Editors / IDEs
+.idea/
+.vscode/
+
+# Claude Code local settings (personal, not shared)
+.claude/settings.local.json
+
+# Logs
+*.log
