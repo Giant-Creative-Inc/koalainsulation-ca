@@ -151,6 +151,26 @@ function kgi_register_settings(): void {
 		)
 	);
 
+	register_setting(
+		'kgi_settings',
+		'kgi_default_location_id',
+		array(
+			'type'              => 'integer',
+			'sanitize_callback' => 'absint',
+			'default'           => 0,
+		)
+	);
+
+	register_setting(
+		'kgi_settings',
+		'kgi_notification_email',
+		array(
+			'type'              => 'string',
+			'sanitize_callback' => 'kgi_sanitize_notification_email',
+			'default'           => '',
+		)
+	);
+
 	add_settings_section(
 		'kgi_general_section',
 		__( 'General', 'koala-gravity-integration' ),
@@ -236,6 +256,29 @@ function kgi_register_settings(): void {
 	);
 
 	add_settings_section(
+		'kgi_lead_routing_section',
+		__( 'Lead Routing', 'koala-gravity-integration' ),
+		'kgi_render_lead_routing_section_intro',
+		'koala-gravity-integration'
+	);
+
+	add_settings_field(
+		'kgi_default_location_id',
+		__( 'Default Location', 'koala-gravity-integration' ),
+		'kgi_render_default_location_field',
+		'koala-gravity-integration',
+		'kgi_lead_routing_section'
+	);
+
+	add_settings_field(
+		'kgi_notification_email',
+		__( 'Notification Email', 'koala-gravity-integration' ),
+		'kgi_render_notification_email_field',
+		'koala-gravity-integration',
+		'kgi_lead_routing_section'
+	);
+
+	add_settings_section(
 		'kgi_field_mapping_section',
 		__( 'Field Mapping', 'koala-gravity-integration' ),
 		'__return_false',
@@ -303,23 +346,32 @@ function kgi_register_settings(): void {
  */
 function kgi_get_payload_field_labels(): array {
 	return array(
-		'first_name'               => __( 'First Name', 'koala-gravity-integration' ),
-		'last_name'                => __( 'Last Name', 'koala-gravity-integration' ),
-		'email'                    => __( 'Email', 'koala-gravity-integration' ),
-		'mobile_number'            => __( 'Mobile Number', 'koala-gravity-integration' ),
-		'address1'                 => __( 'Address Line 1', 'koala-gravity-integration' ),
-		'address2'                 => __( 'Address Line 2', 'koala-gravity-integration' ),
-		'city'                     => __( 'City', 'koala-gravity-integration' ),
-		'state'                    => __( 'State / Province', 'koala-gravity-integration' ),
-		'zip'                      => __( 'ZIP / Postal Code', 'koala-gravity-integration' ),
-		'DoNotText'                => __( 'Do Not Text', 'koala-gravity-integration' ),
-		'DoNotEmail'               => __( 'Do Not Email', 'koala-gravity-integration' ),
-		'cust_smsmarketingconsent' => __( 'SMS Marketing Consent', 'koala-gravity-integration' ),
-		'UtmSource'                => __( 'UTM Source', 'koala-gravity-integration' ),
-		'UtmMedium'                => __( 'UTM Medium', 'koala-gravity-integration' ),
-		'UtmCampaign'              => __( 'UTM Campaign', 'koala-gravity-integration' ),
-		'UtmTerm'                  => __( 'UTM Term', 'koala-gravity-integration' ),
-		'UtmContent'               => __( 'UTM Content', 'koala-gravity-integration' ),
+		'first_name'     => __( 'First Name', 'koala-gravity-integration' ),
+		'last_name'      => __( 'Last Name', 'koala-gravity-integration' ),
+		'email'          => __( 'Email', 'koala-gravity-integration' ),
+		'mobile_number'  => __( 'Mobile Number', 'koala-gravity-integration' ),
+		'address1'       => __( 'Address Line 1', 'koala-gravity-integration' ),
+		'address2'       => __( 'Address Line 2', 'koala-gravity-integration' ),
+		'city'           => __( 'City', 'koala-gravity-integration' ),
+		'state'          => __( 'State / Province', 'koala-gravity-integration' ),
+		'zip'            => __( 'ZIP / Postal Code', 'koala-gravity-integration' ),
+		'DoNotText'      => __( 'Do Not Text', 'koala-gravity-integration' ),
+		'DoNotEmail'     => __( 'Do Not Email', 'koala-gravity-integration' ),
+		'UtmSource'      => __( 'UTM Source', 'koala-gravity-integration' ),
+		'UtmMedium'      => __( 'UTM Medium', 'koala-gravity-integration' ),
+		'UtmCampaign'    => __( 'UTM Campaign', 'koala-gravity-integration' ),
+		'UtmTerm'        => __( 'UTM Term', 'koala-gravity-integration' ),
+		'UtmContent'     => __( 'UTM Content', 'koala-gravity-integration' ),
+		'gclid'          => __( 'Google Click ID (gclid)', 'koala-gravity-integration' ),
+		'gbraid'         => __( 'Google gbraid', 'koala-gravity-integration' ),
+		'wbraid'         => __( 'Google wbraid', 'koala-gravity-integration' ),
+		'fbclid'         => __( 'Facebook Click ID (fbclid)', 'koala-gravity-integration' ),
+		'msclkid'        => __( 'Microsoft Click ID (msclkid)', 'koala-gravity-integration' ),
+		'landing_page'   => __( 'Landing Page', 'koala-gravity-integration' ),
+		'referrer'       => __( 'Referrer', 'koala-gravity-integration' ),
+		'form_timestamp' => __( 'Timestamp', 'koala-gravity-integration' ),
+		'service'        => __( 'Service', 'koala-gravity-integration' ),
+		'cta_text'       => __( 'CTA Text', 'koala-gravity-integration' ),
 	);
 }
 
@@ -545,6 +597,30 @@ function kgi_sanitize_letters_dashes_slug( $value ): string {
 	$value = preg_replace( '/[^a-z-]/', '', $value );
 
 	return trim( $value, '-' );
+}
+
+/**
+ * Sanitizes the unresolved-lead notification email address.
+ *
+ * An empty value is preserved (so `kgi_get_notification_email()` falls back to
+ * the site admin email); a non-empty value must be a valid email or it is
+ * discarded.
+ *
+ * @since 0.7.0
+ *
+ * @param mixed $value Raw option value.
+ * @return string Sanitized email, or '' to use the admin-email fallback.
+ */
+function kgi_sanitize_notification_email( $value ): string {
+	$value = is_string( $value ) ? trim( $value ) : '';
+
+	if ( '' === $value ) {
+		return '';
+	}
+
+	$email = sanitize_email( $value );
+
+	return is_email( $email ) ? $email : '';
 }
 
 /**
@@ -801,6 +877,71 @@ function kgi_render_zipcodeapi_key_field(): void {
 	/>
 	<p class="description">
 		<?php esc_html_e( 'API key from zipcodeapi.com, used for the nearest-location fallback. Leave blank to disable the fallback.', 'koala-gravity-integration' ); ?>
+	</p>
+	<?php
+}
+
+/**
+ * Renders the intro text for the Lead Routing section.
+ *
+ * @since 0.7.0
+ */
+function kgi_render_lead_routing_section_intro(): void {
+	?>
+	<p class="description">
+		<?php esc_html_e( 'Submissions are never rejected for a missing location. When a lead\'s location can\'t be resolved from the page URL or its ZIP/postal code, it is routed to the Default Location below so the lead is still received, and the Notification Email is alerted to review it.', 'koala-gravity-integration' ); ?>
+	</p>
+	<?php
+}
+
+/**
+ * Renders the default (overflow) location selector.
+ *
+ * @since 0.7.0
+ */
+function kgi_render_default_location_field(): void {
+	$selected  = (int) get_option( 'kgi_default_location_id', 0 );
+	$locations = get_posts(
+		array(
+			'post_type'      => kgi_get_location_post_type(),
+			'posts_per_page' => -1,
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+		)
+	);
+	?>
+	<select name="kgi_default_location_id" id="kgi_default_location_id">
+		<option value="0"><?php esc_html_e( '— None (hold unresolved leads for manual routing) —', 'koala-gravity-integration' ); ?></option>
+		<?php foreach ( $locations as $location ) : ?>
+			<option value="<?php echo esc_attr( $location->ID ); ?>" <?php selected( $selected, (int) $location->ID ); ?>>
+				<?php echo esc_html( $location->post_title . ' (ID: ' . $location->ID . ')' ); ?>
+			</option>
+		<?php endforeach; ?>
+	</select>
+	<p class="description">
+		<?php esc_html_e( 'Overflow location for leads whose location can\'t be resolved from the page or ZIP. Leave as "None" to keep such leads in Gravity Forms (not sent onward) and only notify.', 'koala-gravity-integration' ); ?>
+	</p>
+	<?php
+}
+
+/**
+ * Renders the notification email input field.
+ *
+ * @since 0.7.0
+ */
+function kgi_render_notification_email_field(): void {
+	$value = get_option( 'kgi_notification_email', '' );
+	?>
+	<input
+		type="email"
+		name="kgi_notification_email"
+		id="kgi_notification_email"
+		value="<?php echo esc_attr( $value ); ?>"
+		class="regular-text"
+		placeholder="<?php echo esc_attr( get_option( 'admin_email' ) ); ?>"
+	/>
+	<p class="description">
+		<?php esc_html_e( 'Where to send an alert when a lead is routed to the default location or can\'t be routed at all. Defaults to the site admin email if left blank.', 'koala-gravity-integration' ); ?>
 	</p>
 	<?php
 }

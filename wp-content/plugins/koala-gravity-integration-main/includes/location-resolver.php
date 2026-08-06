@@ -752,6 +752,42 @@ function kgi_get_location_from_entry( array $entry ): ?WP_Post {
 }
 
 /**
+ * Resolves the location that exactly owns an entry's submitted ZIP/postal code.
+ *
+ * Used as a routing fallback at submission time when the location could not be
+ * resolved from the request URL or the posted location-ID field, so a lead is
+ * captured and routed instead of lost. Deliberately does only the cheap,
+ * in-memory exact-owner lookup against the ownership index — no zipcodeapi.com
+ * call — to keep the submission request fast. The nearest-owner API refinement
+ * still runs later in the background job (see kgi_resolve_location_for_entry_zip()).
+ *
+ * @since 0.7.0
+ *
+ * @param mixed[] $entry Gravity Forms entry array.
+ * @return WP_Post|null The owning location post, or null if none owns the ZIP.
+ */
+function kgi_resolve_location_by_zip_exact( array $entry ): ?WP_Post {
+	$form_id      = (int) ( $entry['form_id'] ?? 0 );
+	$field_map    = kgi_get_field_map_for_form( $form_id );
+	$zip_field_id = $field_map['zip'] ?? '';
+	$zip_code     = '' !== $zip_field_id ? kgi_normalize_zip_code( rgar( $entry, $zip_field_id ) ) : '';
+
+	if ( '' === $zip_code ) {
+		return null;
+	}
+
+	$owners = kgi_get_location_zip_index()[ $zip_code ] ?? array();
+
+	if ( empty( $owners ) ) {
+		return null;
+	}
+
+	$post = get_post( (int) $owners[0] );
+
+	return ( $post instanceof WP_Post && kgi_get_location_post_type() === $post->post_type ) ? $post : null;
+}
+
+/**
  * Resolves the location from stored Gravity Forms entry meta.
  *
  * Use this in background jobs. The request URI in a WP-Cron context is the
