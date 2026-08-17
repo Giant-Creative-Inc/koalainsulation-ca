@@ -2075,10 +2075,11 @@ function output_custom_or_default_gtm_head()
                 document.body
             );
 
-            var recaptcha = document.createElement('script');
-            recaptcha.src = 'https://www.google.com/recaptcha/enterprise.js?render=6LeM0ysrAAAAAKIwt8W-CTQS6KZNq5Mh0NlEhHKt';
-            recaptcha.async = true;
-            document.head.appendChild(recaptcha);
+            // reCAPTCHA Enterprise loading disabled.
+            // var recaptcha = document.createElement('script');
+            // recaptcha.src = 'https://www.google.com/recaptcha/enterprise.js?render=6LeM0ysrAAAAAKIwt8W-CTQS6KZNq5Mh0NlEhHKt';
+            // recaptcha.async = true;
+            // document.head.appendChild(recaptcha);
 
             (function(h, o, t, j, a, r) {
                 h.hj = h.hj || function() { (h.hj.q = h.hj.q || []).push(arguments) };
