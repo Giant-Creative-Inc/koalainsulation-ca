@@ -248,11 +248,6 @@ function get_all_locations_data()
 
 
     foreach ($location_posts as $location) {
-        $zip = get_field('location_zipcode', $location->ID);
-        $additional_zips_raw = get_field('additional_zipcodes', $location->ID);
-        $additional_zips = array_map('trim', explode(',', $additional_zips_raw));
-        $hcp_key = get_field('housecall_pro_api_key', $location->ID);
-        $sm_key = get_field('location_serviceminder_api_key', $location->ID);
         $url = get_permalink($location->ID);
         $title = get_field('location_name', $location->ID);
         $location_address = get_field('location_address', $location->ID);
@@ -260,25 +255,21 @@ function get_all_locations_data()
         $long = get_field('location_logitude', $location->ID);
         $phone = get_field('location_phone_number', $location->ID);
         $location_service = get_field('location_area_serviced', $location->ID);
-        $webhook_url = get_field('webhook_url', $location->ID);
         $location_service = is_array($location_service)
             ? (is_object($location_service[0]) ? $location_service[0]->post_title : $location_service[0])
             : $location_service;
 
 
+        // Positional rows keep the one client-side map payload compact:
+        // [title, latitude, longitude, address, phone, URL, service area].
         $locations_data[] = [
-            'zipcode' => $zip,
-            'additional_zips' => $additional_zips,
-            'hcp_key' => $hcp_key,
-            'sm_key' => $sm_key,
-            'url' => $url ? $url : '',
-            'title' => $title,
-            'location_address' => $location_address,
-            'lat' => $lat,
-            'long' => $long,
-            'phone' => $phone,
-            'location_service' => $location_service ? $location_service : '',
-            'webhook_url' => $webhook_url ? $webhook_url : ''
+            $title,
+            $lat,
+            $long,
+            $location_address,
+            $phone,
+            $url ? $url : '',
+            $location_service ? $location_service : '',
         ];
     }
 
@@ -440,19 +431,11 @@ function enqueue_custom_scripts()
         'ajax_url' => admin_url('admin-ajax.php'),
         'match_location_nonce' => wp_create_nonce('match_location'),
         'zip_code_in_radius_nonce' => wp_create_nonce('zip_code_in_radius_nonce'),
-        'zip_locations' => get_all_locations_data(),
-    ]);
-    wp_localize_script('estimate-js', 'estimateData', [
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'estimate_sm_form_nonce' => wp_create_nonce('estimate_sm_form_nonce'),
-        'estimate_form_nonce' => wp_create_nonce('estimate_form_nonce'),
-        'zip_locations' => get_all_locations_data(),
-        'acf_webhook_url' => get_field('webhook_url', get_the_ID()) ?: 'https://hooks.zapier.com/hooks/catch/512909/ulpdh7i/',
     ]);
     wp_localize_script('all-pages-js', 'koalaData', [
         'ajax_url' => admin_url('admin-ajax.php'),
         'is_location' => $location_page,
-        'zip_locations' => get_all_locations_data(),
+        'locations' => get_all_locations_data(),
         'map_pin' => home_url() . '/wp-content/uploads/2024/09/map-pin.svg',
     ]);
     wp_enqueue_style('custom-service-css', get_template_directory_uri() . '/assets/css/custom-service.css');
