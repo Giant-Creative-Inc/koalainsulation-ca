@@ -2127,8 +2127,10 @@ function output_custom_or_default_gtm_head()
             });
         });
 
-        // Tag Assistant needs the container before a visitor interacts.
-        if (/[?&]gtm_debug=/.test(window.location.search)) {
+        // Load immediately on thank-you URLs and in GTM Preview / Tag Assistant
+        // mode so conversion tags do not depend on a subsequent interaction.
+        var isThankYouUrl = window.location.href.toLowerCase().indexOf('thank-you') !== -1;
+        if (isThankYouUrl || /[?&]gtm_debug=/.test(window.location.search)) {
             loadThirdPartyScripts();
         }
     </script>
