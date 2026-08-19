@@ -2959,15 +2959,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
-
-document.addEventListener("DOMContentLoaded", function () {
-  const interval = setInterval(function () {
-    const njReviewCountEl = document.querySelector('.nj-trust__total');
-    const targetDiv = document.getElementById('review-count');
-
-    if (njReviewCountEl && targetDiv) {
-      targetDiv.textContent = njReviewCountEl.textContent;
-      clearInterval(interval);
-    }
-  }, 200);
-});

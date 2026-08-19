@@ -368,6 +368,24 @@ function enqueue_custom_scripts()
         );
     }
 
+    // Review-count integration (reviews.js) only needs to run where the
+    // #review-count target renders — single locations and landing pages, to
+    // match the US theme. The script self-terminates when the target is absent;
+    // verify on CA staging and widen this condition if a page shows a missing
+    // count. Extracted from all-pages.js.
+    $needs_reviews = $single_location_page || is_singular('landing-pages');
+    if ($needs_reviews) {
+        $reviews_path = get_template_directory() . '/assets/js/custom/reviews.js';
+        $reviews_version = file_exists($reviews_path) ? filemtime($reviews_path) : null;
+        wp_enqueue_script(
+            'koala-reviews',
+            get_template_directory_uri() . '/assets/js/custom/reviews.js',
+            array(),
+            $reviews_version,
+            true
+        );
+    }
+
     // Register the script first
     wp_register_script(
         'google-maps',
@@ -2276,6 +2294,7 @@ function koala_defer_scripts($tag, $handle, $src)
     $defer_scripts = [
         'all-pages-js',
         'koala-sliders',
+        'koala-reviews',
         'custom-service-js',
         'custom-map-init',
         'location-page',
