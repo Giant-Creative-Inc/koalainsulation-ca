@@ -342,12 +342,28 @@ function enqueue_custom_scripts()
     $why_koala_page = ($post && $post->post_name === 'why-koala');
     $why_reinsulate = ($post && $post->post_name === 'why-reinsulate');
 
-    if ($front_page || $single_location_page || $why_koala_page || $why_reinsulate || $single_service_page) {
+    // Swiper library + slider initialisers are only needed where custom slider
+    // markup renders. sliders.js was extracted from all-pages.js so the ~300
+    // lines of Swiper init no longer ship on every page. is_singular('service')
+    // covers national /services/* singles that render the photo slider (parity
+    // with the US theme).
+    $single_service_national = is_singular('service');
+    $needs_swiper = $front_page || $single_location_page || $why_koala_page || $why_reinsulate || $single_service_page || $single_service_national;
+    if ($needs_swiper) {
         wp_enqueue_script(
             'swiper-bundle',
             'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js',
             array(),
             null,
+            true
+        );
+        $sliders_path = get_template_directory() . '/assets/js/custom/sliders.js';
+        $sliders_version = file_exists($sliders_path) ? filemtime($sliders_path) : null;
+        wp_enqueue_script(
+            'koala-sliders',
+            get_template_directory_uri() . '/assets/js/custom/sliders.js',
+            array('jquery', 'swiper-bundle'),
+            $sliders_version,
             true
         );
     }
@@ -2259,6 +2275,7 @@ function koala_defer_scripts($tag, $handle, $src)
 
     $defer_scripts = [
         'all-pages-js',
+        'koala-sliders',
         'custom-service-js',
         'custom-map-init',
         'location-page',
