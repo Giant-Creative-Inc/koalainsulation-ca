@@ -2,6 +2,12 @@
 if (!defined('ABSPATH'))
     exit; // Exit if accessed directly
 
+// Beanstalk owns the lightweight Gutenberg rendering path for area-served
+// resources landing pages. All other requests continue through Bricks. It stays
+// inert until a resources-landing-pa post carries the 'areas-served' term of the
+// 'resources-page-type' taxonomy (see koala_is_beanstalk_area_served_page()).
+require_once __DIR__ . '/beanstalk/bootstrap.php';
+
 /**
  * Define constants
  *
@@ -386,16 +392,21 @@ function enqueue_custom_scripts()
         );
     }
 
-    // Register the script first
-    wp_register_script(
-        'google-maps',
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyBOBCV9KYqqwo8CRYhBbHfjBp5Jea72XQk',
-        array(),
-        null,
-        true
-    );
-
-    if (!$single_location_page) {
+    // Only load Google Maps on pages that actually use it — the front page
+    // (custom-map-init.js) and locations / location-service pages
+    // (location-page.js). Keeps the heavy Maps API off blog, FAQ, why-koala,
+    // etc. Single location pages lazy-load their own map via the
+    // [zip_shape_map] shortcode, so they are intentionally excluded (parity
+    // with the US theme).
+    $needs_maps = $front_page || $location_page || $single_service_page;
+    if ($needs_maps) {
+        wp_register_script(
+            'google-maps',
+            'https://maps.googleapis.com/maps/api/js?key=AIzaSyBOBCV9KYqqwo8CRYhBbHfjBp5Jea72XQk',
+            array(),
+            null,
+            true
+        );
         wp_enqueue_script('google-maps');
     }
 
@@ -1305,7 +1316,8 @@ add_action('template_redirect', 'custom_location_service_template');
  */
 function my_location_service_category_template_map() {
     $map = array(
-        'spray-foam-insulation-services' => 20483
+        'spray-foam-insulation-services' => 20483,
+        'blown-in-insulation-services'   => 20483,
     );
 
     // Let you override in a child theme or plugin
@@ -2098,14 +2110,17 @@ function output_custom_or_default_gtm_head()
             // recaptcha.async = true;
             // document.head.appendChild(recaptcha);
 
-            (function(h, o, t, j, a, r) {
-                h.hj = h.hj || function() { (h.hj.q = h.hj.q || []).push(arguments) };
-                h._hjSettings = { hjid: 6387685, hjsv: 6 };
-                a = o.getElementsByTagName('head')[0];
-                r = o.createElement('script'); r.async = 1;
-                r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-                a.appendChild(r);
-            })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+            // Hotjar (sampled: ~1 in 100 sessions)
+            if (Math.random() < 0.01) {
+                (function(h, o, t, j, a, r) {
+                    h.hj = h.hj || function() { (h.hj.q = h.hj.q || []).push(arguments) };
+                    h._hjSettings = { hjid: 6387685, hjsv: 6 };
+                    a = o.getElementsByTagName('head')[0];
+                    r = o.createElement('script'); r.async = 1;
+                    r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+                    a.appendChild(r);
+                })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+            }
 
             if (!document.querySelector('script[src*="id=GTM-KSNRRFL8"]')) {
                 (function(w, d, s, l, i) {
