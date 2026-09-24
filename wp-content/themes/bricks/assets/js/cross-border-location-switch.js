@@ -35,6 +35,10 @@
     return accepted && isForeignCode(value, country) ? destinations[country] : null;
   }
 
+  function getInputSelectorForTrigger(triggerId) {
+    return triggerId === "search-zip" ? "#zipcode-input" : ".top-zipcode-input";
+  }
+
   function getDialogCopy(country) {
     return country === "CA"
       ? {
@@ -127,8 +131,13 @@
       return null;
     }
 
+    var selector = getInputSelectorForTrigger(trigger.id);
+    if (trigger.id === "search-zip") {
+      return target.ownerDocument.querySelector(selector);
+    }
+
     var container = trigger.closest(".location-container") || target.ownerDocument;
-    return container.querySelector(".top-zipcode-input, #zipcode-input");
+    return container.querySelector(selector);
   }
 
   function attach(browser, config) {
@@ -157,6 +166,7 @@
   return {
     attach: attach,
     getDialogCopy: getDialogCopy,
+    getInputSelectorForTrigger: getInputSelectorForTrigger,
     getSwitchUrl: getSwitchUrl,
     isCanadianPostalCode: isCanadianPostalCode,
     isUsZip: isUsZip,

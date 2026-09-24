@@ -26,3 +26,11 @@ test("Canadian site supplies branded American switch-dialog copy", () => {
     stayLabel: "Stay on Canadian Site",
   });
 });
+
+test("map search targets the map ZIP field instead of a header field", () => {
+  assert.equal(locationSwitch.getInputSelectorForTrigger("search-zip"), "#zipcode-input");
+  assert.equal(
+    locationSwitch.getInputSelectorForTrigger("my-search-zip"),
+    ".top-zipcode-input"
+  );
+});
