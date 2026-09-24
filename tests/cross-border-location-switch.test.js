@@ -17,3 +17,12 @@ test("Canadian site redirects only when the visitor accepts", () => {
   assert.equal(locationSwitch.getSwitchUrl("90210", "CA", false), null);
   assert.equal(locationSwitch.getSwitchUrl("M5V 3A8", "CA", true), null);
 });
+
+test("Canadian site supplies branded American switch-dialog copy", () => {
+  assert.deepEqual(locationSwitch.getDialogCopy("CA"), {
+    title: "Switch to the American site?",
+    message: "It looks like you entered a U.S. ZIP code.",
+    visitLabel: "Visit American Site",
+    stayLabel: "Stay on Canadian Site",
+  });
+});
