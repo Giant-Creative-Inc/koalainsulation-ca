@@ -72,7 +72,7 @@ if ($location) {
 
     $niceJobId = get_field('location_nicejob_id', $location_id);
 
-    $gr_shortCode = get_field('google_review_shortcode', $location_id);
+    $gr_shortCode = koala_get_google_review_shortcode($location_id);
 
     // Query for "Why Koala" posts related to the current location
     $args = array(

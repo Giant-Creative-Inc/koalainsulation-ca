@@ -8,6 +8,25 @@ if (!defined('ABSPATH'))
 // 'resources-page-type' taxonomy (see koala_is_beanstalk_area_served_page()).
 require_once __DIR__ . '/beanstalk/bootstrap.php';
 
+/** Resolve a location Google Reviews shortcode, then the site corporate feed. */
+function koala_get_google_review_shortcode($location_id = 0)
+{
+    $shortcode = $location_id ? (string) get_post_meta((int) $location_id, 'google_review_shortcode', true) : '';
+    if ($shortcode === '') {
+        $shortcode = (string) get_option('koala_corporate_google_review_shortcode', '');
+    }
+
+    $shortcode = trim($shortcode);
+    return preg_match('/^\[grw\s+id=(?:"|\')?[1-9][0-9]*(?:"|\')?\s*\/?\]$/', $shortcode) ? $shortcode : '';
+}
+
+/** Render an allowlisted Google Reviews widget without a NiceJob fallback. */
+function koala_render_google_reviews($location_id = 0)
+{
+    $shortcode = koala_get_google_review_shortcode($location_id);
+    return $shortcode === '' ? '' : '<div class="koala-google-reviews">' . do_shortcode($shortcode) . '</div>';
+}
+
 /**
  * Define constants
  *
@@ -1578,7 +1597,7 @@ function get_location_data($data)
         'nicejobId' => get_post_meta($location_post[0]->ID, 'location_nicejob_id', true),
         'hcpKey' => get_post_meta($location_post[0]->ID, 'housecall_pro_api_key', true),
         'smKey' => get_post_meta($location_post[0]->ID, 'location_serviceminder_api_key', true),
-        'grShortcode' => get_post_meta($location_post[0]->ID, 'google_review_shortcode', true),
+        'grShortcode' => koala_get_google_review_shortcode($location_post[0]->ID),
         'fbLink' => get_post_meta($location_post[0]->ID, 'location_facebook_link', true),
         'instaLink' => get_post_meta($location_post[0]->ID, 'location_instagram_link', true),
         'linkedinLink' => get_post_meta($location_post[0]->ID, 'location_linkedin_link', true),
