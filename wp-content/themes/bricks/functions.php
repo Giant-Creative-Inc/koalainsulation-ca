@@ -14,6 +14,9 @@ function koala_get_google_review_shortcode($location_id = 0)
     $shortcode = $location_id ? (string) get_post_meta((int) $location_id, 'google_review_shortcode', true) : '';
     if ($shortcode === '') {
         $shortcode = (string) get_option('koala_corporate_google_review_shortcode', '');
+        if (trim($shortcode) === '') {
+            $shortcode = '[grw id="13805"]';
+        }
     }
 
     $shortcode = trim($shortcode);
