@@ -143,6 +143,9 @@ Trigger a submission for each routing outcome and inspect the webhook payload in
 
 ## 4. Regression sanity
 - [ ] An existing, normal location-page lead behaves exactly as before (source=url, sent to n8n, correct thank-you redirect).
+- [ ] A Canadian unowned postal code within 60 miles resolves using the high-limit radius response rather than the API's default 250-code subset.
+- [ ] A U.S. radius lookup retains its existing URL and object-based `zip_codes` response behavior.
+- [ ] Simulate transport, HTTP, provider, malformed-response, and rate-limit failures; confirm the original page location is preserved and **ZIP Routing** records the specific `api_error_*_original_preserved` value.
 - [ ] Existing mapped fields (`first_name`, `email`, `zip`, `Utm*`) are unchanged in the payload.
 - [ ] Google Sheet webhook payload is unchanged (tracking-key "always present" applies to n8n only).
 

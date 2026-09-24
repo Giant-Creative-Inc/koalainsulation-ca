@@ -373,13 +373,19 @@ function kgi_process_quote_entry_job( int $entry_id ): void {
 		}
 
 		if ( $location ) {
+			$zip_routing_status = (string) gform_get_meta( $entry_id, 'kgi_zip_routing_status' );
+			$preserved_on_error = str_starts_with( $zip_routing_status, 'api_error_' );
+
 			gform_update_meta( $entry_id, 'kgi_routed_location_id', $routed_location->ID );
 			gform_update_meta( $entry_id, 'kgi_routed_location_name', get_field( 'location_name', $routed_location->ID ) );
-			gform_update_meta(
-				$entry_id,
-				'kgi_zip_routing_status',
-				$routed_location->ID === $location->ID ? 'original_location' : 'reassigned'
-			);
+
+			if ( ! $preserved_on_error ) {
+				gform_update_meta(
+					$entry_id,
+					'kgi_zip_routing_status',
+					$routed_location->ID === $location->ID ? 'original_location' : 'reassigned'
+				);
+			}
 
 			if ( $routed_location->ID !== $location->ID ) {
 				kgi_log(

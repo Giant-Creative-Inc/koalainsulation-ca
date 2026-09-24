@@ -12,6 +12,7 @@
         }
     },
     "scripts": {
+        "test": "php tests/zip-radius-regression.php",
         "lint": [
             "phpcs --standard=WordPress includes/ koala-gravity-integration.php",
             "phpcs --standard=WordPress-Extra includes/ koala-gravity-integration.php",

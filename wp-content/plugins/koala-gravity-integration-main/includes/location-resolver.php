@@ -24,6 +24,43 @@ const KGI_LOCATION_ZIP_INDEX_TRANSIENT = 'kgi_location_zip_index';
 const KGI_ZIP_RADIUS_CACHE_PREFIX = 'kgi_zipdist_';
 
 /**
+ * Stores the most recent zipcodeapi.com failure type for this request.
+ *
+ * @var string
+ */
+$kgi_last_zip_api_error_type = '';
+
+/**
+ * Clears the most recent zipcodeapi.com failure type.
+ *
+ * @return void
+ */
+function kgi_clear_last_zip_api_error_type(): void {
+	$GLOBALS['kgi_last_zip_api_error_type'] = '';
+}
+
+/**
+ * Stores the most recent zipcodeapi.com failure type.
+ *
+ * @param string $error_type Stable failure identifier.
+ * @return void
+ */
+function kgi_set_last_zip_api_error_type( string $error_type ): void {
+	$GLOBALS['kgi_last_zip_api_error_type'] = sanitize_key( $error_type );
+}
+
+/**
+ * Returns the most recent zipcodeapi.com failure type.
+ *
+ * @return string
+ */
+function kgi_get_last_zip_api_error_type(): string {
+	return isset( $GLOBALS['kgi_last_zip_api_error_type'] )
+		? (string) $GLOBALS['kgi_last_zip_api_error_type']
+		: '';
+}
+
+/**
  * Returns the zipcodeapi.com API key used for the nearest-location fallback.
  *
  * Configured on the plugin settings page. An empty value disables the
@@ -246,10 +283,35 @@ function kgi_resolve_location_for_entry_zip( array $entry, WP_Post $original_loc
 
 	if ( empty( $owners ) ) {
 		// No location owns this ZIP. Try the nearest owning location; if that
-		// also fails, leave the submission unassigned for manual review.
+		// also finds no match, leave the submission unassigned for manual review.
+		// Provider and transport failures are different: preserve the valid
+		// page-derived location so an outage cannot turn it into an unresolved lead.
 		$nearest = kgi_find_nearest_location_by_zip( $zip_code, $entry_id );
 
-		return $nearest instanceof WP_Post ? $nearest : null;
+		if ( $nearest instanceof WP_Post ) {
+			return $nearest;
+		}
+
+		$error_type = kgi_get_last_zip_api_error_type();
+
+		if ( '' !== $error_type ) {
+			if ( $entry_id > 0 ) {
+				gform_update_meta( $entry_id, 'kgi_zip_routing_status', 'api_error_' . $error_type . '_original_preserved' );
+			}
+
+			kgi_log(
+				'ZIP radius lookup failed. Original location preserved.',
+				array(
+					'entry_id'             => $entry_id,
+					'original_location_id' => $original_location->ID,
+					'error_type'           => $error_type,
+				)
+			);
+
+			return $original_location;
+		}
+
+		return null;
 	}
 
 	if ( count( $owners ) > 1 ) {
@@ -295,9 +357,12 @@ function kgi_resolve_location_for_entry_zip( array $entry, WP_Post $original_loc
  * @return WP_Post|null Nearest owning location, or null.
  */
 function kgi_find_nearest_location_by_zip( string $normalized_zip, int $entry_id = 0 ): ?WP_Post {
+	kgi_clear_last_zip_api_error_type();
+
 	$api_key = kgi_get_zipcodeapi_key();
 
 	if ( '' === $api_key ) {
+		kgi_set_last_zip_api_error_type( 'missing_api_key' );
 		return null;
 	}
 
@@ -495,13 +560,46 @@ function kgi_get_zip_radius_codes( string $code, string $country, string $api_ke
 		$radius
 	);
 
+	if ( 'ca' === $country ) {
+		// The normal Canadian response is capped at the nearest 250 postal
+		// codes. Dense service areas can therefore omit an owned postal code
+		// that is still inside the radius. The simple response permits up to
+		// 50,000 results and returns postal-code strings plus parallel distances.
+		$url = add_query_arg(
+			array(
+				'simple' => 'true',
+				'limit'  => 50000,
+			),
+			$url
+		);
+	}
+
 	$body = kgi_zipcodeapi_get( $url, 'radius', $country, $entry_id );
 
 	if ( null === $body ) {
 		return array();
 	}
 
-	$list = array();
+	$codes = kgi_extract_zip_radius_codes( $body );
+
+	if ( empty( $codes ) ) {
+		return array();
+	}
+
+	set_transient( $cache_key, $codes, WEEK_IN_SECONDS );
+
+	return $codes;
+}
+
+/**
+ * Extracts normalized codes from full, minimal, or simple radius responses.
+ *
+ * @param array<string, mixed> $body Decoded zipcodeapi.com response.
+ * @return string[] Normalized ZIP or postal codes.
+ */
+function kgi_extract_zip_radius_codes( array $body ): array {
+	$list       = array();
+	$code_field = '';
 
 	if ( ! empty( $body['zip_codes'] ) && is_array( $body['zip_codes'] ) ) {
 		$list       = $body['zip_codes'];
@@ -516,22 +614,20 @@ function kgi_get_zip_radius_codes( string $code, string $country, string $api_ke
 	$codes = array();
 
 	foreach ( $list as $item ) {
-		if ( ! is_array( $item ) || ! isset( $item[ $code_field ] ) ) {
-			continue;
+		$value = is_string( $item ) ? $item : '';
+
+		if ( is_array( $item ) && isset( $item[ $code_field ] ) ) {
+			$value = (string) $item[ $code_field ];
 		}
 
-		$normalized = kgi_normalize_zip_code( $item[ $code_field ] );
+		$normalized = kgi_normalize_zip_code( $value );
 
 		if ( '' !== $normalized ) {
 			$codes[ $normalized ] = true;
 		}
 	}
 
-	$codes = array_keys( $codes );
-
-	set_transient( $cache_key, $codes, WEEK_IN_SECONDS );
-
-	return $codes;
+	return array_keys( $codes );
 }
 
 /**
@@ -598,6 +694,7 @@ function kgi_zipcodeapi_get( string $url, string $endpoint, string $country, int
 	$response = wp_remote_get( $url, array( 'timeout' => 10 ) );
 
 	if ( is_wp_error( $response ) ) {
+		kgi_set_last_zip_api_error_type( 'transport' );
 		kgi_log(
 			'zipcodeapi.com request failed.',
 			array(
@@ -614,15 +711,29 @@ function kgi_zipcodeapi_get( string $url, string $endpoint, string $country, int
 	$status = (int) wp_remote_retrieve_response_code( $response );
 	$body   = json_decode( wp_remote_retrieve_body( $response ), true );
 
-	if ( 200 !== $status || ! is_array( $body ) || isset( $body['error_msg'] ) ) {
+	if ( 429 === $status ) {
+		$error_type = 'rate_limited';
+	} elseif ( 200 !== $status ) {
+		$error_type = 'http_' . $status;
+	} elseif ( ! is_array( $body ) ) {
+		$error_type = 'invalid_response';
+	} elseif ( isset( $body['error_msg'] ) ) {
+		$error_type = 'provider';
+	} else {
+		$error_type = '';
+	}
+
+	if ( '' !== $error_type ) {
+		kgi_set_last_zip_api_error_type( $error_type );
 		kgi_log(
 			'zipcodeapi.com response was not usable.',
 			array(
-				'entry_id'  => $entry_id,
-				'endpoint'  => $endpoint,
-				'country'   => $country,
-				'status'    => $status,
-				'error_msg' => is_array( $body ) && isset( $body['error_msg'] ) ? $body['error_msg'] : null,
+				'entry_id'   => $entry_id,
+				'endpoint'   => $endpoint,
+				'country'    => $country,
+				'status'     => $status,
+				'error_type' => $error_type,
+				'error_msg'  => is_array( $body ) && isset( $body['error_msg'] ) ? $body['error_msg'] : null,
 			)
 		);
 
