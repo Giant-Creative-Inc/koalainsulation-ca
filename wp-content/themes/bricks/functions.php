@@ -1296,10 +1296,23 @@ function custom_location_service_template()
                   echo '<main id="brx-content">';
 
                     if (class_exists('\Bricks\Templates')) {
-                      echo (new \Bricks\Templates())->render_shortcode(array('id' => $template_id));
+                      $service_template_html = (new \Bricks\Templates())->render_shortcode(array('id' => $template_id));
                     } else {
-                      echo do_shortcode('[bricks_template id="' . $template_id . '"]');
+                      $service_template_html = do_shortcode('[bricks_template id="' . $template_id . '"]');
                     }
+
+                    $google_review_shortcode = get_post_meta($location_post_id, 'google_review_shortcode', true);
+
+                    if (!empty($google_review_shortcode)) {
+                      $service_template_html = preg_replace(
+                        '/<div class="nj-badge"><\/div>/',
+                        '<div id="google-review-shortcode-wrapper">' . do_shortcode($google_review_shortcode) . '</div>',
+                        $service_template_html,
+                        1
+                      );
+                    }
+
+                    echo $service_template_html;
                   echo '</main>';
 
                   get_footer();
