@@ -118,7 +118,7 @@ if ($location) {
                                             }
                                             ?>
                                         </div>
-                                        <div id="national_estimate-btn" class="brxe-div btn is-no-icon" data-animi="up"
+                                        <div id="national_estimate-btn" class="brxe-div btn btn-round is-no-icon" data-animi="up"
                                             data-delay="0.4" data-duration="0.6"
                                             data-interactions='[{"id":"arkdpe","trigger":"click","action":"show","target":"popup","templateId":"4865"}]'
                                             data-interaction-id="be5594">
@@ -126,7 +126,7 @@ if ($location) {
                                                 Get a Free Estimate
                                             </div>
                                         </div>
-                                        <div id="get-estimate-btn1" class="brxe-div btn is-no-icon bricks-lazy-hidden"
+                                        <div id="get-estimate-btn1" class="brxe-div btn btn-round is-no-icon bricks-lazy-hidden"
                                             data-animi="up" data-delay="0.4" data-duration="0.6">
                                             <div id="brxe-kggwlx" class="brxe-text-basic">
                                                 Get a Free Estimate
@@ -813,7 +813,7 @@ function render_fallback_content()
                                     Discover why our customers love working with us and how we can make a difference for
                                     you!
                                 </div>
-                                <div id="national_estimate-btn" class="brxe-div btn is-no-icon" data-animi="up"
+                                <div id="national_estimate-btn" class="brxe-div btn btn-round is-no-icon" data-animi="up"
                                     data-delay="0.4" data-duration="0.6"
                                     data-interactions='[{"id":"arkdpe","trigger":"click","action":"show","target":"popup","templateId":"4865"}]'
                                     data-interaction-id="be5594">
@@ -821,7 +821,7 @@ function render_fallback_content()
                                         Get a Free Estimate
                                     </div>
                                 </div>
-                                <div id="get-estimate-btn1" class="brxe-div btn is-no-icon bricks-lazy-hidden"
+                                <div id="get-estimate-btn1" class="brxe-div btn btn-round is-no-icon bricks-lazy-hidden"
                                     data-animi="up" data-delay="0.4" data-duration="0.6">
                                     <div id="brxe-kggwlx" class="brxe-text-basic">
                                         Get a Free Estimate
