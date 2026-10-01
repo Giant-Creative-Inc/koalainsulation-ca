@@ -63,9 +63,13 @@ function zip_shape_map_render_shortcode($atts) {
     $lat = is_numeric($lat) ? (float) $lat : null;
     $lng = is_numeric($lng) ? (float) $lng : null;
 
-    $zipcodes = zip_shape_map_parse_zipcodes($zipcodes_raw);
+    // Canadian postal codes (FSAs) never get a territory outline, so only
+    // U.S. ZIP codes are sent to the boundary endpoint.
+    $split = zip_shape_map_split_boundary_codes(zip_shape_map_parse_zipcodes($zipcodes_raw));
+    $zipcodes = $split['us'];
+    $show_boundary = !empty($zipcodes);
 
-    if ($lat === null || $lng === null || empty($zipcodes)) {
+    if ($lat === null || $lng === null) {
         return '<p>Map data is missing.</p>';
     }
 
@@ -87,12 +91,13 @@ function zip_shape_map_render_shortcode($atts) {
     }
 
     $config = array(
-        'id'       => $map_id,
-        'lat'      => $lat,
-        'lng'      => $lng,
-        'zipcodes' => $zipcodes,
-        'zoom'     => $zoom,
-        'showPin'  => $show_pin,
+        'id'           => $map_id,
+        'lat'          => $lat,
+        'lng'          => $lng,
+        'zipcodes'     => $zipcodes,
+        'zoom'         => $zoom,
+        'showPin'      => $show_pin,
+        'showBoundary' => $show_boundary,
     );
 
     ob_start();
