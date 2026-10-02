@@ -468,12 +468,9 @@ window.addEventListener("load", function () {
     var zipCode = normalizeZip(rawInput);
 
     if (zipCode) {
-      const radius = 60;
-      const apiKey = "KscuTRFvJFCvE0IoDIp1XMtJqYOb3zAGqQuQLr2fouXcaCyHlBcKshJihTn4iBII";
 
       var domLocations = document.querySelectorAll(".info_content"); // Renamed to avoid shadowing global locations array
       var matchedLocationZips = []; 
-      var matchedZipcodesArr = [];
 
       // --- PHASE 1: Check Local HTML for exact match ---
       domLocations.forEach(function (location) {
@@ -509,153 +506,26 @@ window.addEventListener("load", function () {
         // --- PHASE 2: API Request (No local match found) ---
         document.getElementById("loader-wrapper").style.display = "flex";
 
-        // Check if input is a Canadian alphanumeric postal code
-        const isCanadian = /^[A-Z]\d[A-Z]\d[A-Z]\d$/i.test(zipCode);
+        // One cached server lookup (Koala Gravity Integration) returns the
+        // nearby locations, closest first; no zipcodeapi.com key is used in
+        // the browser.
+        koalaFindNearbyLocations(zipCode).then(function (result) {
+          //hide loader
+          document.getElementById("loader-wrapper").style.display = "none";
 
-        if (isCanadian) {
-          console.log("No direct matches. Canadian ZIP detected. Running Canada Distance Logic...");
+          if (!result.locations.length) {
+            alert(result.message);
+            return;
+          }
 
-          // Format store data for get_ca_distances using our global locations array
-          const storeZipsToCheck = locations.map(function (loc) {
-            return {
-              title: loc[0], // Location Title
-              zip: loc[5]    // Primary Zipcode
-            };
-          });
-
-          fetch(koalaData.ajax_url, {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams({
-              action: "get_ca_distances",
-              user_zip: zipCode,
-              store_data: JSON.stringify(storeZipsToCheck),
-              radius: radius,
-              api_key: apiKey
-            }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              document.getElementById("loader-wrapper").style.display = "none";
-
-              if (data.success && data.data && data.data.length > 0) {
-                console.log("Canadian Distance API Results:", data.data);
-
-                var matchedLocationZips = [];
-                var closestZip = null;
-
-                data.data.forEach((match, index) => {
-                  // Find the matching location in our local locations array
-                  const localMatch = locations.find(loc => loc[0] === match.title);
-                  if (localMatch) {
-                    const primaryZip = localMatch[5];
-                    matchedLocationZips.push(primaryZip);
-                    if (index === 0) {
-                      closestZip = primaryZip;
-                    }
-                  }
-                });
-
-                if (matchedLocationZips.length > 0) {
-                  searchByZipCodeAndCreateMarker(matchedLocationZips, closestZip);
-                } else {
-                  alert("Unfortunately we do not service your area at this time");
-                }
-              } else {
-                alert("Unfortunately we do not service your area at this time");
-              }
-            })
-            .catch((error) => {
-              document.getElementById("loader-wrapper").style.display = "none";
-              console.error("Critical Error in Canadian search:", error);
-              alert("An error occurred while searching. Please try again.");
-            });
-
-        } else {
-          // Fallback US Radius logic
-          console.log("No direct matches. US ZIP detected. Fetching nearby ZIP codes...");
-
-          fetch(koalaData.ajax_url, {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams({
-              action: "get_zip_codes_in_radius",
-              zip_code: zipCode, 
-              radius: radius,
-              api_key: apiKey,
-            }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              if (data.success && data.data.response.zip_codes && data.data.response.zip_codes.length > 0) {
-                
-                const nearbyZipsNormalized = data.data.response.zip_codes.map((item) =>
-                  normalizeZip(item.zip_code)
-                );
-                
-                console.log("Nearby Zips (Normalized):", nearbyZipsNormalized);
-
-                domLocations.forEach(function (location) {
-                  var rawDomZip = location.querySelector(".zipcode").textContent.trim();
-                  var domZipNormalized = normalizeZip(rawDomZip);
-
-                  var rawAdditional = location.querySelector(".additional-zipcodes").textContent.replace(/"/g, "");
-                  var additionalZipcodesNormalized = rawAdditional.split(/\s*,\s*/).map((z) => normalizeZip(z));
-
-                  const allLocationZipsNormalized = [domZipNormalized, ...additionalZipcodesNormalized];
-
-                  const matchingZips = allLocationZipsNormalized.filter((z) =>
-                    nearbyZipsNormalized.includes(z)
-                  );
-
-                  if (matchingZips.length > 0) {
-                    matchedZipcodesArr.push(...matchingZips);
-                    matchedLocationZips.push(rawDomZip);
-                  }
-                });
-
-                if (matchedZipcodesArr.length > 0) {
-                  // Get distances
-                  fetch(koalaData.ajax_url, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: new URLSearchParams({
-                      action: "get_zip_codes_distance_in_miles",
-                      input_zip: zipCode,
-                      nearby_zips: JSON.stringify(matchedZipcodesArr),
-                    }),
-                  })
-                    .then((response) => response.json())
-                    .then((distData) => {
-                      document.getElementById("loader-wrapper").style.display = "none";
-                      if (!distData.success) throw new Error(distData.data.message);
-
-                      const sortedZipCodes = distData.data.map((item) => item.zip);
-                      let closestZip = sortedZipCodes[0];
-                      searchByZipCodeAndCreateMarker(matchedLocationZips, closestZip);
-                    })
-                    .catch((err) => {
-                      document.getElementById("loader-wrapper").style.display = "none";
-                      console.error("Error fetching distances:", err);
-                    });
-                } else {
-                  document.getElementById("loader-wrapper").style.display = "none";
-                  alert("Unfortunately we do not service your area at this time");
-                }
-              } else {
-                document.getElementById("loader-wrapper").style.display = "none";
-                alert("No nearby postal codes found.");
-              }
-            })
-            .catch((error) => {
-              document.getElementById("loader-wrapper").style.display = "none";
-              console.error("Network error:", error);
-              alert("Failed to fetch ZIP codes. Please check your network connection.");
-            });
-        }
+          // Main postal codes of the nearby locations; the closest location's
+          // main postal code opens its marker.
+          var nearbyLocationZips = result.locations.map((location) => location.locationzipcode);
+          searchByZipCodeAndCreateMarker(nearbyLocationZips, nearbyLocationZips[0]);
+        });
       }
     } else {
-      alert("Please enter a ZIP code.");
+      alert("Please enter a postal code.");
     }
   }
 });

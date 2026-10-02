@@ -508,7 +508,8 @@ function enqueue_custom_scripts()
             'location-page',
             get_template_directory_uri() . '/assets/js/custom/location-page.js',
             array('google-maps', 'jquery'),
-            null,
+            // Versioned by file time so cached copies are replaced on deploy.
+            filemtime(get_stylesheet_directory() . '/assets/js/custom/location-page.js'),
             true
         );
     }
@@ -549,7 +550,6 @@ function enqueue_custom_scripts()
     wp_localize_script('custom-service-js', 'ajaxData', [
         'ajax_url' => admin_url('admin-ajax.php'),
         'match_location_nonce' => wp_create_nonce('match_location'),
-        'zip_code_in_radius_nonce' => wp_create_nonce('zip_code_in_radius_nonce'),
     ]);
     wp_localize_script('all-pages-js', 'koalaData', [
         'ajax_url' => admin_url('admin-ajax.php'),
@@ -1846,106 +1846,12 @@ function load_blogs_query($args)
     }
 }
 
-function handle_get_zip_codes_in_radius()
-{
-    // Check nonce if needed (recommended for security)
-    // if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'get_zip_codes_in_radius_nonce')) {
-    //     wp_send_json_error(['message' => 'Invalid security token.']);
-    //     wp_die();
-    // }
-
-    $rawZip = sanitize_text_field($_POST['zip_code']);
-    $cleanZip = strtoupper(preg_replace('/\s+/', '', $rawZip));
-
-    if (strlen($cleanZip) === 6) {
-        $formattedZip = substr($cleanZip, 0, 3) . ' ' . substr($cleanZip, 3);
-    } else {
-        // Fallback for non-standard inputs
-        $formattedZip = $cleanZip;
-    }
-
-    $encodedZip = urlencode($formattedZip);
-
-    $radius = sanitize_text_field($_POST['radius']);
-    $apiKey = sanitize_text_field($_POST['api_key']);
-
-    $url = "https://www.zipcodeapi.com/rest/v2/CA/{$apiKey}/radius.json/{$encodedZip}/{$radius}/mile";
-
-    $response = wp_remote_get($url, [
-        'method' => 'GET',
-        'headers' => [
-            'Content-Type' => 'application/json',
-        ],
-    ]);
-
-    if (is_wp_error($response)) {
-        wp_send_json_error(['message' => 'There was an error fetching the ZIP codes.']);
-    } else {
-        $response_body = wp_remote_retrieve_body($response);
-        $decoded_response = json_decode($response_body, true);
-
-        // Check for API-specific error messages inside the successful HTTP response
-        if (isset($decoded_response['error_msg'])) {
-            wp_send_json_error(['message' => $decoded_response['error_msg']]);
-        } 
-        elseif (json_last_error() === JSON_ERROR_NONE) {
-            wp_send_json_success(['message' => 'ZIP codes fetched successfully.', 'response' => $decoded_response]);
-        } else {
-            wp_send_json_error(['message' => 'Invalid JSON response received from the API.', 'raw_response' => $response_body]);
-        }
-    }
-
-    wp_die();
-}
-// Register the AJAX actions for logged-in and non-logged-in users
-add_action('wp_ajax_get_zip_codes_in_radius', 'handle_get_zip_codes_in_radius');
-add_action('wp_ajax_nopriv_get_zip_codes_in_radius', 'handle_get_zip_codes_in_radius');
-
-function handle_get_zip_codes_distance_in_miles() {
-    // Get the input ZIP code
-    $input_zip = isset($_POST['input_zip']) ? sanitize_text_field($_POST['input_zip']) : '';
-    $nearby_zips_raw = isset($_POST['nearby_zips']) ? $_POST['nearby_zips'] : '';
-
-    // Decode JSON string received from JavaScript
-    $nearby_zips = json_decode(stripslashes($nearby_zips_raw), true);
-
-    if (empty($input_zip) || empty($nearby_zips) || !is_array($nearby_zips)) {
-        wp_send_json_error(['message' => 'Missing or invalid input ZIP or nearby ZIPs.']);
-    }
-
-    $api_key = "KscuTRFvJFCvE0IoDIp1XMtJqYOb3zAGqQuQLr2fouXcaCyHlBcKshJihTn4iBII"; // Ideally, store this securely
-    $base_url = "https://www.zipcodeapi.com/rest/v2/CA/$api_key/distance.json";
-    $distances = [];
-
-    foreach ($nearby_zips as $zip) {
-        $zip = sanitize_text_field($zip);
-        $api_url = "$base_url/$input_zip/$zip/mile";
-
-        $response = wp_remote_get($api_url);
-        if (is_wp_error($response)) {
-            error_log("ZIP API error: " . $response->get_error_message()); // Log errors
-            continue;
-        }
-
-        $body = wp_remote_retrieve_body($response);
-        $data = json_decode($body, true);
-
-        if (isset($data['distance'])) {
-            $distances[] = ['zip' => $zip, 'distance' => $data['distance']];
-        }
-    }
-
-    // Sort ZIP codes by distance (ascending order)
-    usort($distances, function ($a, $b) {
-        return $a['distance'] <=> $b['distance'];
-    });
-
-    wp_send_json_success($distances);
-}
-
-// Register AJAX actions
-add_action('wp_ajax_get_zip_codes_distance_in_miles', 'handle_get_zip_codes_distance_in_miles');
-add_action('wp_ajax_nopriv_get_zip_codes_distance_in_miles', 'handle_get_zip_codes_distance_in_miles');
+// The postal code search bars now call Koala Gravity Integration's
+// kgi_find_location action (one cached zipcodeapi.com request with the
+// server-side key). The old get_zip_codes_in_radius,
+// get_zip_codes_distance_in_miles and get_ca_distances handlers, which made
+// a request per postal code or location and accepted a key from the
+// browser, were removed.
 
 function remove_trailing_slash_on_pages($string, $type)
 {
@@ -2597,38 +2503,6 @@ add_filter( 'bricks/dynamic_data/render_content', 'my_custom_bricks_placeholder_
 add_filter( 'the_content', 'my_custom_bricks_placeholder_replace', 20 );
 
 
-add_action('wp_ajax_get_ca_distances', 'handle_get_ca_distances');
-add_action('wp_ajax_nopriv_get_ca_distances', 'handle_get_ca_distances');
-
-function handle_get_ca_distances() {
-    $user_zip = strtoupper(preg_replace('/\s+/', '', $_POST['user_zip']));
-    $store_data = json_decode(stripslashes($_POST['store_data']), true);
-    $radius = (int)$_POST['radius'];
-    $api_key = sanitize_text_field($_POST['api_key']);
-    
-    $matches = [];
-
-    foreach ($store_data as $store) {
-        $store_zip = strtoupper(preg_replace('/\s+/', '', $store['zip']));
-        
-        // Use the Distance API endpoint
-        $url = "https://www.zipcodeapi.com/rest/v2/CA/{$api_key}/distance.json/{$user_zip}/{$store_zip}/mile";
-        
-        $response = wp_remote_get($url);
-        if (!is_wp_error($response)) {
-            $body = json_decode(wp_remote_retrieve_body($response), true);
-            if (isset($body['distance']) && $body['distance'] <= $radius) {
-                $matches[] = [
-                    'title' => $store['title'],
-                    'distance' => $body['distance']
-                ];
-            }
-        }
-    }
-
-    usort($matches, function($a, $b) { return $a['distance'] <=> $b['distance']; });
-    wp_send_json_success($matches);
-}
 
 /**
  * Add a dedicated 48x48 favicon tag for Google Search/Ads.
