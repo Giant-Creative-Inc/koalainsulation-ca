@@ -287,6 +287,20 @@ function kgi_notify_unresolved_lead( int $entry_id, array $entry, string $source
 		return;
 	}
 
+	$routing_status       = (string) gform_get_meta( $entry_id, 'kgi_zip_routing_status' );
+	$original_location_id = absint( gform_get_meta( $entry_id, 'kgi_original_location_id' ) );
+	$reason_html          = '<p><strong>' . esc_html__( 'Reason:', 'koala-gravity-integration' ) . '</strong> '
+		. esc_html( '' !== $routing_status ? kgi_describe_zip_routing_status( $routing_status ) : __( 'Could not be matched to a location', 'koala-gravity-integration' ) ) . '</p>';
+
+	if ( $original_location_id > 0 ) {
+		$reason_html .= '<p><strong>' . esc_html__( 'Submitted from location page:', 'koala-gravity-integration' ) . '</strong> '
+			. esc_html( (string) get_field( 'location_name', $original_location_id ) ) . '</p>';
+	}
+
+	if ( str_starts_with( $routing_status, 'lookup_failed_' ) ) {
+		$reason_html .= '<p>' . esc_html__( 'The postal code lookup service was unavailable, so this lead most likely belongs to the location page it was submitted from.', 'koala-gravity-integration' ) . '</p>';
+	}
+
 	if ( 'unresolved' === $source ) {
 		$intro = __( 'A quote submission could not be routed to any location. It was saved and queued for downstream processing, but still needs to be routed manually.', 'koala-gravity-integration' );
 	} else {
@@ -300,6 +314,7 @@ function kgi_notify_unresolved_lead( int $entry_id, array $entry, string $source
 	);
 	$message_template = '<p>' . esc_html( $intro ) . '</p>'
 		. '<p><strong>' . esc_html__( 'Routing fallback:', 'koala-gravity-integration' ) . '</strong> ' . esc_html( $source ) . '</p>'
+		. $reason_html
 		. '{all_fields}'
 		. '<p><a href="{entry_url}">' . esc_html__( 'Review this entry in Gravity Forms', 'koala-gravity-integration' ) . '</a></p>';
 

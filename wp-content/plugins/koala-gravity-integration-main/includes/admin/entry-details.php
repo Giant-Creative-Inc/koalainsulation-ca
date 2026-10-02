@@ -62,6 +62,9 @@ function kgi_show_location_entry_details( array $form, array $entry ): void {
 	$zip_routing_status   = gform_get_meta( $entry_id, 'kgi_zip_routing_status' );
 	$location_source      = gform_get_meta( $entry_id, 'kgi_location_source' );
 	$needs_review         = (int) gform_get_meta( $entry_id, 'kgi_needs_review' );
+	$original_location_id = absint( gform_get_meta( $entry_id, 'kgi_original_location_id' ) );
+	$original_location    = (string) gform_get_meta( $entry_id, 'kgi_original_location_name' );
+	$lookup_failed        = str_starts_with( (string) $zip_routing_status, 'lookup_failed_' );
 
 	$has_failed  = in_array( $submission_status, array( 'failed', 'schedule_failed' ), true );
 	$is_retrying = 'retrying' === $submission_status;
@@ -105,8 +108,26 @@ function kgi_show_location_entry_details( array $form, array $entry ): void {
 			<?php if ( $needs_review ) : ?>
 				<div style="background: #fff8e5; border-left: 4px solid #ffb900; padding: 8px 10px; margin-bottom: 10px;">
 					<strong><?php esc_html_e( 'Needs routing review.', 'koala-gravity-integration' ); ?></strong>
-					<?php esc_html_e( 'This lead could not be matched to a location from its page or ZIP and used a fallback. Confirm it reached the right franchise.', 'koala-gravity-integration' ); ?>
+					<?php if ( $lookup_failed ) : ?>
+						<?php esc_html_e( 'The postal code lookup service was unavailable, so this lead could not be routed by postal code. It most likely belongs to the location page it was submitted from. Once the service is back, "Resend to n8n" re-runs the routing.', 'koala-gravity-integration' ); ?>
+					<?php else : ?>
+						<?php esc_html_e( 'This lead could not be matched to a location from its page or postal code and used a fallback. Confirm it reached the right franchise.', 'koala-gravity-integration' ); ?>
+					<?php endif; ?>
 				</div>
+			<?php endif; ?>
+
+			<?php if ( ! $routed_location_id && $zip_routing_status ) : ?>
+				<p>
+					<strong><?php esc_html_e( 'Postal Code Routing:', 'koala-gravity-integration' ); ?></strong>
+					<?php echo esc_html( kgi_describe_zip_routing_status( (string) $zip_routing_status ) ); ?>
+				</p>
+			<?php endif; ?>
+
+			<?php if ( $original_location_id ) : ?>
+				<p>
+					<strong><?php esc_html_e( 'Submitted from location page:', 'koala-gravity-integration' ); ?></strong>
+					<?php echo esc_html( ( $original_location ? $original_location : __( 'Unknown', 'koala-gravity-integration' ) ) . ' (#' . $original_location_id . ')' ); ?>
+				</p>
 			<?php endif; ?>
 
 			<p>
@@ -144,8 +165,8 @@ function kgi_show_location_entry_details( array $form, array $entry ): void {
 				</p>
 
 				<p>
-					<strong><?php esc_html_e( 'ZIP Routing:', 'koala-gravity-integration' ); ?></strong>
-					<?php echo esc_html( $zip_routing_status ? $zip_routing_status : __( 'Not set', 'koala-gravity-integration' ) ); ?>
+					<strong><?php esc_html_e( 'Postal Code Routing:', 'koala-gravity-integration' ); ?></strong>
+					<?php echo esc_html( $zip_routing_status ? kgi_describe_zip_routing_status( (string) $zip_routing_status ) : __( 'Not set', 'koala-gravity-integration' ) ); ?>
 				</p>
 			<?php endif; ?>
 

@@ -334,17 +334,25 @@ function kgi_process_quote_entry_job( int $entry_id ): void {
 				gform_update_meta( $entry_id, 'kgi_needs_review', 1 );
 				gform_update_meta( $entry_id, 'kgi_routed_location_id', '' );
 				gform_update_meta( $entry_id, 'kgi_routed_location_name', '' );
-				gform_update_meta( $entry_id, 'kgi_zip_routing_status', 'unresolved' );
+				gform_update_meta( $entry_id, 'kgi_original_location_id', $original_location_id );
+				gform_update_meta( $entry_id, 'kgi_original_location_name', get_field( 'location_name', $original_location_id ) );
+
+				// kgi_resolve_location_for_entry_zip() records why the lead could
+				// not be routed (e.g. lookup_failed_rate_limited); keep that reason.
+				if ( '' === (string) gform_get_meta( $entry_id, 'kgi_zip_routing_status' ) ) {
+					gform_update_meta( $entry_id, 'kgi_zip_routing_status', 'unresolved' );
+				}
 
 				if ( ! $needs_review ) {
 					kgi_notify_unresolved_lead( $entry_id, $entry, 'unresolved' );
 				}
 
 				kgi_log(
-					'Submitted ZIP had no exact owner or owner within the fallback radius. Location unassigned for review.',
+					'Submitted ZIP could not be routed. Lead sent to unmatched lead routing for review.',
 					array(
 						'entry_id'             => $entry_id,
 						'original_location_id' => $original_location_id,
+						'reason'               => gform_get_meta( $entry_id, 'kgi_zip_routing_status' ),
 					)
 				);
 
@@ -373,19 +381,13 @@ function kgi_process_quote_entry_job( int $entry_id ): void {
 		}
 
 		if ( $location ) {
-			$zip_routing_status = (string) gform_get_meta( $entry_id, 'kgi_zip_routing_status' );
-			$preserved_on_error = str_starts_with( $zip_routing_status, 'api_error_' );
-
 			gform_update_meta( $entry_id, 'kgi_routed_location_id', $routed_location->ID );
 			gform_update_meta( $entry_id, 'kgi_routed_location_name', get_field( 'location_name', $routed_location->ID ) );
-
-			if ( ! $preserved_on_error ) {
-				gform_update_meta(
-					$entry_id,
-					'kgi_zip_routing_status',
-					$routed_location->ID === $location->ID ? 'original_location' : 'reassigned'
-				);
-			}
+			gform_update_meta(
+				$entry_id,
+				'kgi_zip_routing_status',
+				$routed_location->ID === $location->ID ? 'original_location' : 'reassigned'
+			);
 
 			if ( $routed_location->ID !== $location->ID ) {
 				kgi_log(
