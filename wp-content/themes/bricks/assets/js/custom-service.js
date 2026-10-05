@@ -424,7 +424,6 @@ document.querySelectorAll(".top-zipcode-input").forEach(function (input) {
                     );
 
                     locationPopup.style.display = "none";
-                    estimateCustomPopup.style.display = "flex";
 
                     populateCanadaGravityLocationFields(
                       clickedItemObj.locationZipcode,
@@ -434,14 +433,18 @@ document.querySelectorAll(".top-zipcode-input").forEach(function (input) {
                       }
                     );
                     setPopupPhoneLink(
-                      "est-phone-number-custom",
+                      "est-phone-number",
                       clickedItemObj.mobileNumber
                     );
-                    document.getElementById(
-                      "tel-href-custom"
-                    ).href = `tel:${clickedItemObj.mobileNumber}`;
+                    const telHref = document.getElementById("tel-href");
+                    if (telHref) telHref.href = `tel:${clickedItemObj.mobileNumber}`;
 
+                    // Open the Bricks estimate form popup (templateId 4865)
+                    // through its existing trigger, like the exact-match
+                    // location button. estimate-popup-custom has no form, so
+                    // showing it left visitors with an empty popup.
                     showCanadaGravityForm();
+                    document.getElementById("national-nav-quote")?.click();
                   }
                 });
               });
@@ -617,7 +620,6 @@ document.querySelectorAll(".find-location-btn").forEach(function (button) {
         if (close2) close2.style.display = "flex";
 
         // 7. Attach Click Events to the newly created "Get Estimate" buttons
-        const estimateCustomPopup = document.getElementById("estimate-popup-custom");
         
         popupContainer.querySelectorAll(".quote-btn-custom").forEach((btn) => {
           btn.addEventListener("click", function (e) {
@@ -640,13 +642,17 @@ document.querySelectorAll(".find-location-btn").forEach(function (button) {
             // document.getElementById("key-custom-sm").value = storeSmKey;
             const legacyCustomUrlInput = document.getElementById("url-custom");
             if (legacyCustomUrlInput) legacyCustomUrlInput.value = storeUrl;
-            setPopupPhoneLink("est-phone-number-custom", storePhone);
-            document.getElementById("tel-href-custom").href = "tel:" + storePhone;
+            setPopupPhoneLink("est-phone-number", storePhone);
+            const telHref = document.getElementById("tel-href");
+            if (telHref) telHref.href = "tel:" + storePhone;
 
-            // Switch Popups
+            // Open the Bricks estimate form popup (templateId 4865) through
+            // its existing trigger, like the exact-match location button.
+            // estimate-popup-custom has no form, so showing it left visitors
+            // with an empty popup.
             locationPopup.style.display = "none";
-            estimateCustomPopup.style.display = "flex";
             showCanadaGravityForm();
+            document.getElementById("national-nav-quote")?.click();
             
             console.log("Opening estimate form for: " + container.querySelector(".locationitem_title").textContent);
           });
