@@ -319,7 +319,8 @@ document.querySelectorAll(".top-zipcode-input").forEach(function (input) {
               return;
             }
 
-            nearbyLocationFinalArr = result.locations;
+            // Results are closest-first; the popup shows only the closest.
+            nearbyLocationFinalArr = result.locations.slice(0, 1);
 
             // Now proceed with displaying the sorted locations
             document.getElementById(
@@ -333,7 +334,7 @@ document.querySelectorAll(".top-zipcode-input").forEach(function (input) {
             // Clear existing content before adding new locations
             popupContainer.innerHTML = "";
 
-            // Add new content for each sorted location
+            // Add the closest location
             nearbyLocationFinalArr.forEach((item) => {
               const locationDiv = document.createElement("div");
               locationDiv.classList.add("location-item");
@@ -564,7 +565,8 @@ document.querySelectorAll(".find-location-btn").forEach(function (button) {
         nearbyLocationFinalArr = []; // Reset the global array
 
         // 5. Loop through results and build the UI
-        result.locations.forEach((match) => {
+        // Results are closest-first; the popup shows only the closest.
+        result.locations.slice(0, 1).forEach((match) => {
           const loc = {
             id: match.locationId,
             slug: match.locationSlug,
