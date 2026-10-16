@@ -239,17 +239,17 @@ composer lint:fix   # auto-fixes what phpcbf can safely fix, then re-run lint
 ```
 
 
-## Postal-code routing priority (0.8.1)
+## Postal-code routing priority (0.8.2)
 
 1. An exact postal-code owner wins. If ownership is shared, prefer the original location when it is one of the owners.
-2. For an unowned postal code submitted on a location page, keep that office if it is within 60 straight-line miles (approximately 96.6 km) of the submitted postal-code centre.
+2. For an unowned postal code submitted on a location page, keep that location if any postal code it owns is within 60 straight-line miles (approximately 96.6 km) of the submitted postal code.
 3. Otherwise, choose the franchise with the closest owned postal code within 60 miles.
 4. If none qualifies, preserve the Canadian unmatched/overflow workflow and review notifications.
 
-Postal codes accept spaces and lowercase letters, and normalize to uppercase without spaces for ownership matching. The office check reads `location_latitude` and `location_logitude`, falling back to `location_longitude`. It obtains the postal-code centre from the Canadian `v2/CA` information endpoint and caches it for 30 days. Missing office coordinates or unavailable postal-code information skip page preference and continue to the nearest-owned-postal-code lookup. The existing Canadian radius lookup keeps its simple response format and 50,000-code limit.
+Postal codes accept spaces and lowercase letters, and normalize to uppercase without spaces for ownership matching. The radius lookup checks all owned postal codes; office coordinates and coordinate lookups are not used. The existing Canadian radius lookup keeps its simple response format and 50,000-code limit.
 
-Entry routing reasons identify exact ownership, page-office priority, and nearest-owned-postal-code fallback. Delivery retries reuse saved destinations. Google Sheet destination logic and Canadian overflow configuration are unchanged.
+Entry routing reasons identify exact ownership, page-location owned-code priority, and nearest-owned-postal-code fallback. Delivery retries reuse saved destinations. Google Sheet destination logic and Canadian overflow configuration are unchanged.
 
 ### Routing tests
 
-From this plugin directory, run `composer test` and `composer lint`. The regression suite uses mocked WordPress/Gravity Forms and HTTP calls, including Canadian postal normalization, Canadian endpoint selection, exact ownership, page preference at the inclusive 60-mile boundary, nearest fallback, no-page background delivery, caching, invalid coordinates and API failures. Tests do not submit real leads or contact a CRM.
+From this plugin directory, run `composer test` and `composer lint`. The regression suite uses mocked WordPress/Gravity Forms and HTTP calls, including Canadian postal normalization, Canadian endpoint selection, exact ownership, owned-code preference at the inclusive 60-mile boundary, nearest fallback, no-page background delivery, caching, API failures. Tests do not submit real leads or contact a CRM.
