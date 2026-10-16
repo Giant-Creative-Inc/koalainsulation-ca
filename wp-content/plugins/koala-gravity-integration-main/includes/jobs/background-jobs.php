@@ -316,7 +316,7 @@ function kgi_process_quote_entry_job( int $entry_id ): void {
 			return;
 		}
 
-		if ( $location ) {
+		if ( $location || 'unresolved' === $location_source ) {
 			$routed_location_id = absint( gform_get_meta( $entry_id, 'kgi_routed_location_id' ) );
 			$routed_location    = $routed_location_id > 0 ? get_post( $routed_location_id ) : null;
 
@@ -325,7 +325,7 @@ function kgi_process_quote_entry_job( int $entry_id ): void {
 			}
 
 			if ( ! $routed_location ) {
-				$original_location_id = $location->ID;
+				$original_location_id = $location->ID ?? absint( gform_get_meta( $entry_id, 'kgi_original_location_id' ) );
 
 				gform_update_meta( $entry_id, 'kgi_location_status', 'missing_location' );
 				gform_update_meta( $entry_id, 'kgi_location_id', '' );
@@ -362,6 +362,17 @@ function kgi_process_quote_entry_job( int $entry_id ): void {
 			}
 		}
 
+		if ( ! $location && $routed_location ) {
+			$location        = $routed_location;
+			$location_source = 'zip';
+			$needs_review    = false;
+			gform_update_meta( $entry_id, 'kgi_location_status', 'resolved' );
+			gform_update_meta( $entry_id, 'kgi_location_id', $location->ID );
+			gform_update_meta( $entry_id, 'kgi_location_name', get_field( 'location_name', $location->ID ) );
+			gform_update_meta( $entry_id, 'kgi_location_source', 'zip' );
+			gform_update_meta( $entry_id, 'kgi_needs_review', 0 );
+		}
+
 		if ( $location ) {
 			kgi_maybe_send_to_google_sheet( $entry_id, $entry, $location );
 		}
@@ -383,11 +394,6 @@ function kgi_process_quote_entry_job( int $entry_id ): void {
 		if ( $location ) {
 			gform_update_meta( $entry_id, 'kgi_routed_location_id', $routed_location->ID );
 			gform_update_meta( $entry_id, 'kgi_routed_location_name', get_field( 'location_name', $routed_location->ID ) );
-			gform_update_meta(
-				$entry_id,
-				'kgi_zip_routing_status',
-				$routed_location->ID === $location->ID ? 'original_location' : 'reassigned'
-			);
 
 			if ( $routed_location->ID !== $location->ID ) {
 				kgi_log(

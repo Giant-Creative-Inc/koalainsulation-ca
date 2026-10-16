@@ -150,7 +150,7 @@ function get_field( string $name, $post_id ) {
 		'location_zipcode'      => 48215 === $post->ID ? '89123' : '',
 	);
 
-	return $fields[ $name ] ?? null;
+	return $GLOBALS['kgi_test_fields'][ $post_id ][ $name ] ?? ( $fields[ $name ] ?? null );
 }
 
 function get_permalink( $post ): string {
@@ -199,6 +199,7 @@ require_once dirname( __DIR__ ) . '/includes/location-search.php';
  */
 
 $kgi_test_failures = 0;
+$kgi_test_assertions = 0;
 
 /**
  * Records a failure when two values differ.
@@ -209,6 +210,7 @@ $kgi_test_failures = 0;
  * @return void
  */
 function kgi_test_assert_same( $expected, $actual, string $message ): void {
+	++$GLOBALS['kgi_test_assertions'];
 	if ( $expected !== $actual ) {
 		++$GLOBALS['kgi_test_failures'];
 		fwrite( STDERR, 'FAIL: ' . $message . PHP_EOL . '  Expected: ' . var_export( $expected, true ) . PHP_EOL . '  Actual:   ' . var_export( $actual, true ) . PHP_EOL );
@@ -222,6 +224,8 @@ function kgi_test_assert_same( $expected, $actual, string $message ): void {
  * @return void
  */
 function kgi_test_reset( string $country = 'us' ): void {
+	$GLOBALS['kgi_test_payload']    = null;
+	$GLOBALS['kgi_test_fields']     = array();
 	$GLOBALS['kgi_test_requests']   = array();
 	$GLOBALS['kgi_test_responses']  = array();
 	$GLOBALS['kgi_test_transients'] = array();
@@ -516,6 +520,164 @@ kgi_test_assert_same(
 	'An out-of-range ZIP must record "no_location_in_range".'
 );
 
+// Page-office preference must beat a closer owned ZIP, including the boundary.
+foreach ( array( 0.0, 60.0, 60.01 ) as $distance ) {
+	kgi_test_reset();
+	$GLOBALS['kgi_test_fields'][70001] = array( 'location_latitude' => 0, 'location_logitude' => rad2deg( $distance / 3958.7613 ) );
+	kgi_test_queue_response( 200, array( 'lat' => 0, 'lng' => 0 ) );
+	if ( $distance > 60 ) {
+		kgi_test_queue_response( 200, kgi_test_us_radius_body() );
+	}
+	$routed = kgi_resolve_location_for_entry_zip( array( 'form_id' => 13, '6' => '89052' ), get_post( 70001 ), 5800 );
+	kgi_test_assert_same( $distance <= 60 ? 70001 : 48215, $routed->ID ?? null, 'Page office must win within 60 miles, otherwise nearest owned ZIP wins.' );
+	kgi_test_assert_same( $distance <= 60 ? 'page_radius' : 'nearest_owned_zip', gform_get_meta( 5800, 'kgi_zip_routing_status' ), 'Routing must record the decision reason.' );
+}
+
+kgi_test_reset();
+kgi_test_queue_response( 200, kgi_test_us_radius_body() );
+try {
+	$routed = kgi_resolve_location_for_entry_zip( array( 'form_id' => 13, '6' => '89052' ), null, 5801 );
+	kgi_test_assert_same( 48215, $routed->ID ?? null, 'No-page submissions must use the nearest owned ZIP.' );
+} catch ( TypeError $error ) {
+	kgi_test_assert_same( 'nullable page location', 'required page location', 'Resolver must accept submissions without a page location.' );
+}
+
+// Coordinate cache and exact ownership must avoid unnecessary requests.
+kgi_test_reset();
+$GLOBALS['kgi_test_fields'][70001] = array( 'location_latitude' => 0, 'location_longitude' => 0 );
+kgi_test_queue_response( 200, array( 'lat' => 0, 'lng' => 0 ) );
+foreach ( array( 5802, 5803 ) as $entry_id ) {
+	$routed = kgi_resolve_location_for_entry_zip( array( 'form_id' => 13, '6' => '89052' ), get_post( 70001 ), $entry_id );
+	kgi_test_assert_same( 70001, $routed->ID ?? null, 'Coordinate cache must retain page-office priority.' );
+}
+kgi_test_assert_same( 1, count( $GLOBALS['kgi_test_requests'] ), 'Repeated office checks must reuse ZIP coordinates.' );
+$routed = kgi_resolve_location_for_entry_zip( array( 'form_id' => 13, '6' => '89123' ), get_post( 70001 ), 5804 );
+kgi_test_assert_same( 48215, $routed->ID ?? null, 'Exact ownership must override an in-range page office.' );
+kgi_test_assert_same( 'exact_owner', gform_get_meta( 5804, 'kgi_zip_routing_status' ), 'Exact ownership must be recorded.' );
+kgi_test_assert_same( 1, count( $GLOBALS['kgi_test_requests'] ), 'Exact ownership must not fetch coordinates.' );
+
+// Coordinate-provider failure must still allow the owned-ZIP fallback.
+kgi_test_reset();
+$GLOBALS['kgi_test_fields'][70001] = array( 'location_latitude' => 0, 'location_longitude' => 0 );
+kgi_test_queue_response( 503, '{}' );
+kgi_test_queue_response( 200, kgi_test_us_radius_body() );
+$routed = kgi_resolve_location_for_entry_zip( array( 'form_id' => 13, '6' => '89052' ), get_post( 70001 ), 5805 );
+kgi_test_assert_same( 48215, $routed->ID ?? null, 'Failed coordinate lookup must allow nearest-owned-ZIP fallback.' );
+kgi_test_assert_same( 1, count( $GLOBALS['kgi_test_errors'] ), 'Coordinate failure must be logged.' );
+
+// Bad office/ZIP coordinates must never grant page priority.
+foreach ( array(
+	array( 'office' => array( 'location_latitude' => 91, 'location_longitude' => 0 ), 'point' => null ),
+	array( 'office' => array( 'location_latitude' => 0, 'location_longitude' => 181 ), 'point' => null ),
+	array( 'office' => array( 'location_latitude' => 0, 'location_longitude' => 0 ), 'point' => array( 'lat' => 91, 'lng' => 0 ) ),
+	array( 'office' => array( 'location_latitude' => 0, 'location_longitude' => 0 ), 'point' => array( 'lat' => 'bad', 'lng' => 0 ) ),
+) as $fixture ) {
+	kgi_test_reset();
+	$GLOBALS['kgi_test_fields'][70001] = $fixture['office'];
+	if ( null !== $fixture['point'] ) {
+		kgi_test_queue_response( 200, $fixture['point'] );
+	}
+	kgi_test_queue_response( 200, kgi_test_us_radius_body() );
+	$routed = kgi_resolve_location_for_entry_zip( array( 'form_id' => 13, '6' => '89052' ), get_post( 70001 ), 5810 );
+	kgi_test_assert_same( 48215, $routed->ID ?? null, 'Invalid coordinates must fall through to nearest owned ZIP.' );
+}
+
+kgi_test_reset();
+$GLOBALS['kgi_test_fields'][70001] = array( 'location_latitude' => 0, 'location_longitude' => 0 );
+kgi_test_queue_response( 429, '{}' );
+$routed = kgi_resolve_location_for_entry_zip( array( 'form_id' => 13, '6' => '89052' ), get_post( 70001 ), 5811 );
+kgi_test_assert_same( null, $routed, 'Provider rate limit must fall back to unmatched routing.' );
+kgi_test_assert_same( 1, count( $GLOBALS['kgi_test_requests'] ), 'Coordinate rate limit must also pause radius requests.' );
+kgi_test_assert_same( 'lookup_failed_rate_limited', gform_get_meta( 5811, 'kgi_zip_routing_status' ), 'Rate limit reason must be retained.' );
+
+// Duplicate exact ownership keeps the page owner; no-page exact ownership works.
+kgi_test_reset();
+$GLOBALS['kgi_test_transients'][ KGI_LOCATION_ZIP_INDEX_TRANSIENT ]['89123'] = array( 48215, 70001 );
+$routed = kgi_resolve_location_for_entry_zip( array( 'form_id' => 13, '6' => '89123' ), get_post( 70001 ), 5812 );
+kgi_test_assert_same( 70001, $routed->ID ?? null, 'Shared ZIP must prefer the page when it is an exact owner.' );
+$routed = kgi_resolve_location_for_entry_zip( array( 'form_id' => 13, '6' => '89074' ), null, 5813 );
+kgi_test_assert_same( 70001, $routed->ID ?? null, 'No-page exact ZIP must route to its owner.' );
+kgi_test_assert_same( 0, count( $GLOBALS['kgi_test_requests'] ), 'Exact ownership must bypass all API calls.' );
+
+// Canada: spaced/lowercase postal codes, page-office priority and CA API URL.
+foreach ( array( 0.0, 60.0, 60.01 ) as $distance ) {
+	kgi_test_reset( 'ca' );
+	$GLOBALS['kgi_test_fields'][20180] = array( 'location_latitude' => 0, 'location_longitude' => rad2deg( $distance / 3958.7613 ) );
+	kgi_test_queue_response( 200, array( 'lat' => 0, 'lng' => 0 ) );
+	if ( $distance > 60 ) {
+		kgi_test_queue_response( 200, array( 'postal_codes' => array( 'L7L 4X9', 'M1V 3S2' ), 'distances' => array( 5.0, 10.0 ) ) );
+	}
+	$routed = kgi_resolve_location_for_entry_zip( array( 'form_id' => 13, '6' => 'l4z 1t9' ), get_post( 20180 ), 5850 );
+	kgi_test_assert_same( $distance <= 60 ? 20180 : 20181, $routed->ID ?? null, 'Canadian page office must win within 60 miles before a closer postal-code owner.' );
+	kgi_test_assert_same( 'https://www.zipcodeapi.com/rest/v2/CA/fixture-key/info.json/L4Z%201T9/degrees', $GLOBALS['kgi_test_requests'][0] ?? '', 'Canada must use its own coordinate endpoint and spaced postal code.' );
+}
+kgi_test_reset( 'ca' );
+$routed = kgi_resolve_location_for_entry_zip( array( 'form_id' => 13, '6' => 'l7l 4x9' ), get_post( 20180 ), 5851 );
+kgi_test_assert_same( 20181, $routed->ID ?? null, 'Canadian exact postal ownership must override the page office.' );
+kgi_test_assert_same( 0, count( $GLOBALS['kgi_test_requests'] ), 'Canadian owned postal codes must avoid API requests.' );
+kgi_test_reset( 'ca' );
+kgi_test_queue_response( 200, array( 'postal_codes' => array( 'L7L 4X9' ), 'distances' => array( 5.0 ) ) );
+try {
+	$routed = kgi_resolve_location_for_entry_zip( array( 'form_id' => 13, '6' => 'L4Z1T9' ), null, 5852 );
+	kgi_test_assert_same( 20181, $routed->ID ?? null, 'Canadian no-page leads must use the nearest owned postal code.' );
+} catch ( TypeError $error ) {
+	kgi_test_assert_same( 'nullable page location', 'required page location', 'Canadian no-page leads require nullable location.' );
+}
+
+// Exercise the real background job, with all outbound delivery mocked.
+class GFAPI {
+	public static function get_entry( $id ) {
+		return array( 'id' => $id, 'form_id' => 13, '6' => ( $GLOBALS['kgi_test_entry_code'] ?? '89052' ), 'date_created' => '2026-10-16 12:00:00' );
+	}
+}
+function absint( $value ) { return abs( (int) $value ); }
+function kgi_notify_unresolved_lead( $id, $entry ) {}
+function kgi_build_location_payload( $location ) { return array( 'routed_id' => $location->ID ); }
+function kgi_build_unresolved_location_payload() { return array( 'routed_id' => 0 ); }
+function kgi_build_entry_payload( $entry, $map ) { return array(); }
+function kgi_get_tracking_field_keys() { return array(); }
+function wp_remote_post( $url, $args ) {
+	$GLOBALS['kgi_test_payload'] = json_decode( $args['body'], true );
+	return array( 'status' => 200 );
+}
+require_once dirname( __DIR__ ) . '/includes/jobs/background-jobs.php';
+kgi_test_reset();
+gform_update_meta( 5900, 'kgi_location_source', 'unresolved' );
+$GLOBALS['kgi_test_options']['kgi_n8n_webhook_url'] = 'https://example.test/webhook';
+kgi_test_queue_response( 200, kgi_test_us_radius_body() );
+kgi_process_quote_entry_job( 5900 );
+kgi_test_assert_same( 'succeeded', gform_get_meta( 5900, 'kgi_submission_status' ), 'No-page background job must deliver successfully.' );
+kgi_test_assert_same( 48215, $GLOBALS['kgi_test_payload']['routed_id'] ?? null, 'No-page background job must deliver to nearest owner.' );
+kgi_test_assert_same( false, $GLOBALS['kgi_test_payload']['needs_review'] ?? null, 'Resolved no-page leads must clear review flags.' );
+
+kgi_test_reset();
+gform_update_meta( 5901, 'kgi_location_source', 'unresolved' );
+$GLOBALS['kgi_test_options']['kgi_n8n_webhook_url'] = 'https://example.test/webhook';
+$GLOBALS['kgi_test_options']['kgi_unresolved_serviceminder_api_key'] = 'fixture-parking-key';
+kgi_test_queue_response( 200, array( 'zip_codes' => array() ) );
+kgi_process_quote_entry_job( 5901 );
+kgi_test_assert_same( 'succeeded', gform_get_meta( 5901, 'kgi_submission_status' ), 'No qualifying franchise must deliver to parking-lot routing.' );
+kgi_test_assert_same( 0, $GLOBALS['kgi_test_payload']['routed_id'] ?? null, 'Parking-lot payload must be used when no owner qualifies.' );
+kgi_test_assert_same( true, $GLOBALS['kgi_test_payload']['needs_review'] ?? null, 'Parking-lot delivery must retain review flag.' );
+
+// Canadian no-page background job uses postal codes through delivery.
+kgi_test_reset( 'ca' );
+$GLOBALS['kgi_test_entry_code'] = 'l4z 1t9';
+gform_update_meta( 5950, 'kgi_location_source', 'unresolved' );
+$GLOBALS['kgi_test_options']['kgi_n8n_webhook_url'] = 'https://example.test/webhook';
+kgi_test_queue_response( 200, array( 'postal_codes' => array( 'L7L 4X9' ), 'distances' => array( 5.0 ) ) );
+kgi_process_quote_entry_job( 5950 );
+kgi_test_assert_same( 'succeeded', gform_get_meta( 5950, 'kgi_submission_status' ), 'Canadian no-page background job must succeed.' );
+kgi_test_assert_same( 20181, $GLOBALS['kgi_test_payload']['routed_id'] ?? null, 'Canadian no-page job must deliver to nearest postal owner.' );
+unset( $GLOBALS['kgi_test_entry_code'] );
+
+// Successful entries remain idempotent and must not send a second time.
+kgi_test_reset();
+gform_update_meta( 5903, 'kgi_submission_status', 'succeeded' );
+kgi_process_quote_entry_job( 5903 );
+kgi_test_assert_same( null, $GLOBALS['kgi_test_payload'], 'Successful entries must not be delivered again.' );
+kgi_test_assert_same( 0, count( $GLOBALS['kgi_test_requests'] ), 'Successful entries must not redo ZIP lookups.' );
+
 /*
  * ---------------------------------------------------------------------------
  * 7. Search-bar responses and per-visitor rate limit.
@@ -572,4 +734,4 @@ if ( $kgi_test_failures > 0 ) {
 	exit( 1 );
 }
 
-echo "ZIP lookup regression checks passed.\n";
+echo "ZIP lookup regression checks passed ({$kgi_test_assertions} assertions).\n";
