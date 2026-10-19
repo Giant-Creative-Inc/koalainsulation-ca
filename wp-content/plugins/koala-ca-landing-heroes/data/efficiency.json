@@ -1,0 +1,6110 @@
+{
+  "version": 1,
+  "page_slug": "awesome-test-page",
+  "location_slug": "efficiency",
+  "elements": [
+    {
+      "id": "caadhr",
+      "name": "shortcode",
+      "label": "CA campaign hero — query string presets",
+      "parent": 0,
+      "children": [],
+      "settings": {
+        "shortcode": "[koala_ca_landing_hero template=\"20847\"]"
+      }
+    },
+    {
+      "id": "trohhj",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "cansni"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "zgpnmr"
+        ],
+        "_position": "relative",
+        "_gradient:mobile_portrait": {
+          "colors": [
+            {
+              "id": "qzvsqp",
+              "color": {
+                "hex": "#f5f5f5",
+                "id": "b75af5",
+                "name": "Color #1"
+              }
+            }
+          ]
+        },
+        "_background": {
+          "color": {
+            "hex": "#dfeec4"
+          }
+        },
+        "_overflow": "hidden",
+        "_cssCustom": "#brxe-trohhj {\n  background-image:none;\n}"
+      }
+    },
+    {
+      "id": "effe36",
+      "name": "code",
+      "parent": "mdvfgz",
+      "children": [],
+      "settings": {
+        "code": "<?php echo \\Koala\\CALandingHeroes\\form(false); ?>",
+        "executeCode": true,
+        "_cssCustom": "\n.hero-form{\n  background-color: #fff;\n  border-radius:10px;\n  z-index: 999;\n  height: 100%;\n  padding: 20px;\n  overflow: auto;\n  transition: all 0.6s;\n}\n.hero-form-title-wrap{\n  margin: -20px -20px 20px;\n  padding: 15px 20px;\n  color: #042E53;\n  text-align: left;\n  background-color: #AFD56C;\n}\n.hero-form-wrapper .estimate-form-input-grid .estimate-form-input-wrapper {\n  margin-bottom:20px;\n}\n.estimate-form-inner-wrapper {\n  gap:0;\n  margin-bottom:0;\n}\n.hero-form-wrapper .estimate-form-input-grid .estimate-form-input-wrapper input {\n    border-radius: 40px;\n    border: 1px solid #424A51;\n    color: #424A51;\n}\n.hero-form-wrapper  .estimate-form-input-grid .estimate-form-input-wrapper p {\n    display: none;\n  \tmargin-bottom:0;\n}\n.hero-form-wrapper .estimate-form-input-grid {\n\tdisplay:block;\n      margin-bottom: 0;\n}\n.hero-form-wrapper .estimate-submit-btn {\n    background-color: #AFD56C !important;\n    border: 1px solid #AFD56C;\n    border-radius: 60px !important;\n    width: 100%;\n    text-align: center;\n    color: #042E53 !important;\n    text-transform: none !important;\n    margin-top: 20px;\n}",
+        "_cssClasses": "hero-form"
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "sisrai",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "ohawnk",
+        "nlehei"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "zgpnmr"
+        ],
+        "_padding:tablet_portrait": {
+          "bottom": "0"
+        },
+        "_position": "relative",
+        "_margin": {
+          "top": "0",
+          "bottom": "0"
+        },
+        "_padding": {
+          "bottom": "0",
+          "top": "0"
+        }
+      },
+      "label": "Benefits-section"
+    },
+    {
+      "id": "oaevyd",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "gbcqbr"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "zgpnmr"
+        ]
+      },
+      "label": "Section-benefits"
+    },
+    {
+      "id": "lzkyyl",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "wgaxdw"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "zgpnmr",
+          "rqgxbg"
+        ],
+        "_cssClasses": "section",
+        "_padding": {
+          "top": "96",
+          "bottom": "96"
+        },
+        "_padding:tablet_portrait": {
+          "top": "64",
+          "bottom": "64"
+        },
+        "_padding:mobile_landscape": {
+          "top": "50",
+          "bottom": "50"
+        },
+        "_padding:mobile_portrait": {
+          "top": "40",
+          "bottom": "40"
+        },
+        "_conditions": [
+          [
+            {
+              "id": "iqguic",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_cta_heading}",
+              "compare": "!="
+            }
+          ]
+        ]
+      },
+      "label": "Get a Quote"
+    },
+    {
+      "id": "gbcqbr",
+      "name": "container",
+      "parent": "oaevyd",
+      "children": [
+        "fszyia"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "lkhmxi"
+        ],
+        "_padding": {
+          "bottom": "80",
+          "top": "0"
+        },
+        "_padding:tablet_portrait": {
+          "top": "100",
+          "bottom": "100"
+        },
+        "_padding:mobile_landscape": {
+          "top": "50",
+          "bottom": "50"
+        },
+        "_padding:mobile_portrait": {
+          "top": "40",
+          "bottom": "40"
+        }
+      }
+    },
+    {
+      "id": "fszyia",
+      "name": "block",
+      "parent": "gbcqbr",
+      "children": [
+        "jjpnab"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "qpnrph"
+        ]
+      }
+    },
+    {
+      "id": "jjpnab",
+      "name": "block",
+      "parent": "fszyia",
+      "children": [
+        "hzcchc"
+      ],
+      "settings": {
+        "_direction": "column",
+        "_rowGap:tablet_portrait": "40px",
+        "_rowGap": "58px",
+        "_alignSelf": "stretch",
+        "_width": "100%"
+      }
+    },
+    {
+      "id": "hzcchc",
+      "name": "block",
+      "parent": "jjpnab",
+      "children": [
+        "ccwhmd",
+        "nxjgle",
+        "uoaemd",
+        "fffzpq"
+      ],
+      "settings": {
+        "_attributes": [
+          {
+            "id": "aykkyd",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "auhffp",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_direction": "row",
+        "_justifyContent": "center",
+        "_alignItems": "center",
+        "_columnGap": "12px",
+        "_rowGap": "12px",
+        "_flexWrap": "wrap"
+      },
+      "label": "header-wrap"
+    },
+    {
+      "id": "ccwhmd",
+      "name": "heading",
+      "parent": "hzcchc",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "ucgzqi"
+        ],
+        "tag": "h2",
+        "_cssCustom": "#brxe-ccwhmd .heading-style-display-span {\n  color: #AFD56C;\n\tfont-weight: 700;\n  text-transform: none;\n}",
+        "_width:mobile_portrait": "100%",
+        "_cssCustom:mobile_portrait": "#brxe-ccwhmd {\ntext-align:center\n}",
+        "_typography": {
+          "text-align": "center",
+          "text-transform": "none"
+        },
+        "text": "Our Services<br><span class=\"heading-style-display-span\">Insulation Solutions for Your Home</span>"
+      }
+    },
+    {
+      "id": "ohawnk",
+      "name": "container",
+      "parent": "sisrai",
+      "children": [
+        "hlcmyl"
+      ],
+      "settings": {
+        "_padding:mobile_landscape": {
+          "bottom": "50",
+          "top": "50"
+        },
+        "_padding:mobile_portrait": {
+          "bottom": "40",
+          "top": "40"
+        },
+        "_cssGlobalClasses": [
+          "lkhmxi"
+        ],
+        "_position": "relative",
+        "_position:tablet_portrait": "static",
+        "_padding": {
+          "top": "120",
+          "bottom": "120"
+        },
+        "_padding:tablet_portrait": {
+          "top": "100",
+          "bottom": "100"
+        }
+      }
+    },
+    {
+      "id": "hlcmyl",
+      "name": "block",
+      "parent": "ohawnk",
+      "children": [
+        "ceijyu"
+      ],
+      "settings": {
+        "_padding:mobile_landscape": {
+          "bottom": "56px",
+          "top": "56px"
+        },
+        "_padding:mobile_portrait": {
+          "bottom": "0",
+          "top": "25px"
+        }
+      }
+    },
+    {
+      "id": "ceijyu",
+      "name": "block",
+      "parent": "hlcmyl",
+      "children": [
+        "deeqhg"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "qpnrph"
+        ],
+        "_position:mobile_landscape": "static"
+      }
+    },
+    {
+      "id": "deeqhg",
+      "name": "tabs-nested",
+      "parent": "ceijyu",
+      "children": [
+        "rsiirc",
+        "ndqfks",
+        "mdmtzu"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "hlyxwt"
+        ],
+        "_cssCustom": "#brxe-deeqhg  .accordian-title.brxe-text-basic {\n    font-weight: 700;\n}"
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "rsiirc",
+      "name": "block",
+      "parent": "deeqhg",
+      "children": [
+        "falvod"
+      ],
+      "settings": {
+        "_attributes": [
+          {
+            "id": "uhwkdl",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "rflrmj",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_direction": "column",
+        "_display": "none",
+        "_alignItems:mobile_portrait": "stretch",
+        "_justifyContent:mobile_portrait": "flex-start",
+        "_rowGap": "12px",
+        "_rowGap:mobile_landscape": "0",
+        "_display:mobile_landscape": "flex"
+      },
+      "label": "Header-wrap"
+    },
+    {
+      "id": "falvod",
+      "name": "heading",
+      "parent": "rsiirc",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "ucgzqi"
+        ],
+        "_typography": {
+          "color": {
+            "hex": "#043968",
+            "id": "wrshvk",
+            "name": "Color #19"
+          }
+        },
+        "text": "{acf_why_eyebrow}<br /><span class=\"heading-style-display-span\">{acf_why_heading}</span>",
+        "tag": "custom",
+        "customTag": "div"
+      }
+    },
+    {
+      "id": "mdmtzu",
+      "name": "block",
+      "parent": "deeqhg",
+      "children": [
+        "ekcxqq",
+        "rdjakk",
+        "yirsoq",
+        "ssojuw",
+        "yqtzxw",
+        "fjsioa",
+        "dcgvpk",
+        "nzvyjp"
+      ],
+      "settings": {
+        "_hidden": {
+          "_cssClasses": "tab-content"
+        },
+        "_justifyContent": "flex-start",
+        "_alignItems": "center",
+        "_attributes": [
+          {
+            "id": "ckqoro",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "zaewql",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_rowGap:mobile_portrait": "0",
+        "_heightMin:mobile_portrait": "368px",
+        "_rowGap": "0",
+        "_columnGap:mobile_portrait": "0",
+        "_columnGap:mobile_landscape": "0",
+        "_columnGap:tablet_portrait": "0",
+        "_columnGap": "0"
+      },
+      "label": "Tab content"
+    },
+    {
+      "id": "yirsoq",
+      "name": "block",
+      "parent": "mdmtzu",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "wrsokx"
+        ],
+        "_hidden": {
+          "_cssClasses": "tab-pane"
+        },
+        "_position": "relative"
+      },
+      "label": "Pane"
+    },
+    {
+      "id": "rdjakk",
+      "name": "div",
+      "parent": "mdmtzu",
+      "children": [
+        "wwbvxo",
+        "skwxry"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "nniefm",
+          "pctsxs"
+        ],
+        "_typography": {
+          "color": {
+            "hex": "#042e53"
+          },
+          "font-size": "18px",
+          "line-height": "27px",
+          "font-family": "Inter",
+          "font-weight": "700"
+        },
+        "_margin": {
+          "left": "auto",
+          "right": "auto",
+          "top": "35",
+          "bottom": "0"
+        },
+        "_padding": {
+          "left": "28px",
+          "right": "28px",
+          "bottom": "12px",
+          "top": "12px"
+        },
+        "tag": "a",
+        "_display": "flex",
+        "_justifyContent": "center",
+        "_alignItems": "center",
+        "_border": {
+          "radius": {
+            "top": "99px",
+            "right": "99px",
+            "bottom": "99px",
+            "left": "99px"
+          }
+        },
+        "_background": {
+          "color": {
+            "hex": "#afd56c"
+          }
+        },
+        "_cssTransition": "all ease 0.3s",
+        "_background:hover": {
+          "color": {
+            "hex": "#7eb4a3"
+          }
+        },
+        "_attributes": [
+          {
+            "id": "wftwet",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "yanlwt",
+            "name": "data-duration",
+            "value": "0.6"
+          },
+          {
+            "id": "mpzxje",
+            "name": "data-delay",
+            "value": "0.4"
+          }
+        ],
+        "_typography:hover": {
+          "color": {
+            "hex": "#ffffff",
+            "id": "idapwb",
+            "name": "Color #23"
+          }
+        },
+        "_width": "fit-content"
+      }
+    },
+    {
+      "id": "wwbvxo",
+      "name": "text-basic",
+      "parent": "rdjakk",
+      "children": [],
+      "settings": {
+        "_interactions": [
+          {
+            "id": "jruywh",
+            "trigger": "click",
+            "action": "show",
+            "target": "popup",
+            "templateId": "4865"
+          }
+        ],
+        "text": "{acf_why_button_text}",
+        "_conditions": [
+          [
+            {
+              "id": "ngsegj",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_why_button_text}",
+              "compare": "!="
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ssojuw",
+      "name": "block",
+      "parent": "mdmtzu",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "wrsokx"
+        ],
+        "_hidden": {
+          "_cssClasses": "tab-pane"
+        }
+      },
+      "label": "Pane"
+    },
+    {
+      "id": "yqtzxw",
+      "name": "block",
+      "parent": "mdmtzu",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "wrsokx"
+        ],
+        "_hidden": {
+          "_cssClasses": "tab-pane"
+        }
+      },
+      "label": "Pane"
+    },
+    {
+      "id": "fjsioa",
+      "name": "block",
+      "parent": "mdmtzu",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "wrsokx"
+        ],
+        "_hidden": {
+          "_cssClasses": "tab-pane"
+        }
+      },
+      "label": "Pane"
+    },
+    {
+      "id": "dcgvpk",
+      "name": "block",
+      "parent": "mdmtzu",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "wrsokx"
+        ],
+        "_hidden": {
+          "_cssClasses": "tab-pane"
+        }
+      },
+      "label": "Pane"
+    },
+    {
+      "id": "nzvyjp",
+      "name": "block",
+      "parent": "mdmtzu",
+      "children": [],
+      "settings": {
+        "_hidden": {
+          "_cssClasses": "tab-pane"
+        },
+        "_cssGlobalClasses": [
+          "wrsokx"
+        ]
+      },
+      "label": "Pane"
+    },
+    {
+      "id": "ndqfks",
+      "name": "block",
+      "parent": "deeqhg",
+      "children": [
+        "hyattl",
+        "zdhejt",
+        "plmuna",
+        "ndvlbr",
+        "ef5470"
+      ],
+      "settings": {
+        "_justifyContent": "center",
+        "_hidden": {
+          "_cssClasses": "tab-menu"
+        },
+        "_cssGlobalClasses": [
+          "ofusfy"
+        ]
+      },
+      "label": "Tab menu"
+    },
+    {
+      "id": "plmuna",
+      "name": "block",
+      "parent": "ndqfks",
+      "children": [
+        "grtiuu"
+      ],
+      "settings": {
+        "_margin": {
+          "bottom": "50"
+        },
+        "_margin:mobile_portrait": {
+          "bottom": "40",
+          "top": "0"
+        },
+        "_direction": "row",
+        "_columnGap": "12px",
+        "_justifyContent": "flex-start"
+      }
+    },
+    {
+      "id": "grtiuu",
+      "name": "div",
+      "parent": "plmuna",
+      "children": [
+        "elatno"
+      ],
+      "settings": {
+        "_margin": {
+          "bottom": "24px"
+        },
+        "_height:mobile_landscape": "48px",
+        "_margin:mobile_portrait": {
+          "bottom": "8px"
+        },
+        "_height": "48px"
+      }
+    },
+    {
+      "id": "elatno",
+      "name": "image",
+      "parent": "grtiuu",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "kajpgo"
+        ],
+        "image": {
+          "id": 1901,
+          "filename": "Vector.png",
+          "size": "full",
+          "full": "{{UPLOADS}}/2024/09/Vector.png",
+          "url": "{{UPLOADS}}/2024/09/Vector.png"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "hyattl",
+      "name": "block",
+      "parent": "ndqfks",
+      "children": [
+        "pdjdqh"
+      ],
+      "settings": {
+        "_direction": "column",
+        "_display": "flex",
+        "_alignItems:mobile_portrait": "stretch",
+        "_justifyContent:mobile_portrait": "flex-start",
+        "_rowGap:mobile_landscape": "0",
+        "_display:mobile_landscape": "none",
+        "_attributes": [
+          {
+            "id": "ivmlmv",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "vxaxjv",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ]
+      },
+      "label": "Header-wrap"
+    },
+    {
+      "id": "pdjdqh",
+      "name": "heading",
+      "parent": "hyattl",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "ucgzqi"
+        ],
+        "tag": "h2",
+        "_typography": {
+          "color": {
+            "hex": "#043968",
+            "id": "wrshvk",
+            "name": "Color #19"
+          }
+        },
+        "text": "{acf_why_eyebrow}<br /><span class=\"heading-style-display-span\">{acf_why_heading}</span>",
+        "_cssCustom": "#brxe-pdjdqh .heading-style-display-span {\n  color: #AFD56C;\n\tfont-weight: 700;\n}\n\n#brxe-pdjdqh .heading-style-display-span span,\n#brxe-falvod .heading-style-display-span span {\n  color:var(--bricks-color-wrshvk);\n}"
+      }
+    },
+    {
+      "id": "ndvlbr",
+      "name": "block",
+      "parent": "ndqfks",
+      "children": [
+        "zrchip",
+        "umqrqa",
+        "wlwkau",
+        "mzvwdk",
+        "krkbws",
+        "bypzbh"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "wlxefx"
+        ],
+        "_attributes": [
+          {
+            "id": "gzbmsz",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "jysflg",
+            "name": "data-duration",
+            "value": "0.6"
+          },
+          {
+            "id": "vlrmoa",
+            "name": "data-delay",
+            "value": "0.2"
+          }
+        ],
+        "_conditions": [
+          [
+            {
+              "id": "ojedzj",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_override_default_values}",
+              "compare": "!=",
+              "value": "1"
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": "zrchip",
+      "name": "div",
+      "parent": "ndvlbr",
+      "children": [
+        "elrbgl",
+        "rjzatt"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "xbvgth"
+        ],
+        "_hidden": {
+          "_cssClasses": "tab-title"
+        },
+        "_border": {
+          "width": {
+            "top": "0px",
+            "right": "0px",
+            "left": "0px"
+          },
+          "radius": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          }
+        }
+      },
+      "label": "Title"
+    },
+    {
+      "id": "elrbgl",
+      "name": "block",
+      "parent": "zrchip",
+      "children": [
+        "whnvat",
+        "ameqcm"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "qolhrx"
+        ],
+        "_justifyContent": "flex-start",
+        "_columnGap": "16px",
+        "_direction:mobile_portrait": "row",
+        "_flexWrap:mobile_portrait": "nowrap",
+        "_alignItems:mobile_portrait": "flex-start",
+        "_padding:mobile_portrait": {
+          "right": "35"
+        }
+      }
+    },
+    {
+      "id": "ameqcm",
+      "name": "text-basic",
+      "parent": "elrbgl",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "fdelvb"
+        ],
+        "text": "Insulation Expertise You Can Rely On"
+      }
+    },
+    {
+      "id": "rjzatt",
+      "name": "block",
+      "parent": "zrchip",
+      "children": [
+        "pwpulb"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "boddwv"
+        ]
+      }
+    },
+    {
+      "id": "pwpulb",
+      "name": "block",
+      "parent": "rjzatt",
+      "children": [
+        "ywiage"
+      ],
+      "settings": {
+        "_margin": {
+          "bottom": "16px"
+        }
+      }
+    },
+    {
+      "id": "ywiage",
+      "name": "text",
+      "parent": "pwpulb",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "kulihi"
+        ],
+        "text": "<p>Our insulation professionals assess your home and recommend practical solutions for comfort and energy efficiency.</p>"
+      }
+    },
+    {
+      "id": "umqrqa",
+      "name": "div",
+      "parent": "ndvlbr",
+      "children": [
+        "wiousl",
+        "yswgxa"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "xbvgth"
+        ],
+        "_hidden": {
+          "_cssClasses": "tab-title"
+        },
+        "_border": {
+          "width": {
+            "top": "0px",
+            "right": "0px",
+            "left": "0px"
+          },
+          "radius": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          }
+        }
+      },
+      "label": "Title"
+    },
+    {
+      "id": "wiousl",
+      "name": "block",
+      "parent": "umqrqa",
+      "children": [
+        "zsqhek",
+        "kzppqs"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "qolhrx"
+        ],
+        "_justifyContent": "flex-start",
+        "_columnGap": "16px",
+        "_direction:mobile_portrait": "row",
+        "_flexWrap:mobile_portrait": "nowrap",
+        "_alignItems:mobile_portrait": "flex-start",
+        "_padding:mobile_portrait": {
+          "right": "35"
+        },
+        "_flexWrap:mobile_landscape": "nowrap"
+      }
+    },
+    {
+      "id": "kzppqs",
+      "name": "text-basic",
+      "parent": "wiousl",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "fdelvb"
+        ],
+        "text": "Exceptional Customer Service"
+      }
+    },
+    {
+      "id": "yswgxa",
+      "name": "block",
+      "parent": "umqrqa",
+      "children": [
+        "qrqnab"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "boddwv"
+        ]
+      }
+    },
+    {
+      "id": "qrqnab",
+      "name": "block",
+      "parent": "yswgxa",
+      "children": [
+        "nmqmqv"
+      ],
+      "settings": {
+        "_margin": {
+          "bottom": "16px"
+        }
+      }
+    },
+    {
+      "id": "nmqmqv",
+      "name": "text",
+      "parent": "qrqnab",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "kulihi"
+        ],
+        "text": "<p>We explain your options, answer your questions, and keep you informed throughout your insulation project.</p>"
+      }
+    },
+    {
+      "id": "wlwkau",
+      "name": "div",
+      "parent": "ndvlbr",
+      "children": [
+        "yqxxrc",
+        "vxvxas"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "xbvgth"
+        ],
+        "_hidden": {
+          "_cssClasses": "tab-title"
+        },
+        "_border": {
+          "width": {
+            "top": "0px",
+            "right": "0px",
+            "left": "0px"
+          },
+          "radius": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          }
+        }
+      },
+      "label": "Title"
+    },
+    {
+      "id": "yqxxrc",
+      "name": "block",
+      "parent": "wlwkau",
+      "children": [
+        "rctubj",
+        "uxxpuz"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "qolhrx"
+        ],
+        "_columnGap": "16px",
+        "_justifyContent": "flex-start",
+        "_direction:mobile_portrait": "row",
+        "_flexWrap:mobile_portrait": "nowrap",
+        "_alignItems:mobile_portrait": "flex-start",
+        "_padding:mobile_portrait": {
+          "right": "35",
+          "left": "0"
+        },
+        "_flexWrap:mobile_landscape": "nowrap"
+      }
+    },
+    {
+      "id": "uxxpuz",
+      "name": "text-basic",
+      "parent": "yqxxrc",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "fdelvb"
+        ],
+        "text": "Top Industry Expertise"
+      }
+    },
+    {
+      "id": "vxvxas",
+      "name": "block",
+      "parent": "wlwkau",
+      "children": [
+        "uzjujz"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "boddwv"
+        ]
+      }
+    },
+    {
+      "id": "uzjujz",
+      "name": "block",
+      "parent": "vxvxas",
+      "children": [
+        "mxwkpd"
+      ],
+      "settings": {
+        "_margin": {
+          "bottom": "16px"
+        }
+      }
+    },
+    {
+      "id": "mxwkpd",
+      "name": "text",
+      "parent": "uzjujz",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "kulihi"
+        ],
+        "text": "<p>Our team uses proven installation methods and insulation materials suited to your home and its needs.</p>"
+      }
+    },
+    {
+      "id": "mzvwdk",
+      "name": "div",
+      "parent": "ndvlbr",
+      "children": [
+        "kximnp",
+        "dijtmf"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "xbvgth"
+        ],
+        "_hidden": {
+          "_cssClasses": "tab-title"
+        },
+        "_border": {
+          "width": {
+            "top": "0px",
+            "right": "0px",
+            "left": "0px"
+          },
+          "radius": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          }
+        }
+      },
+      "label": "Title"
+    },
+    {
+      "id": "kximnp",
+      "name": "block",
+      "parent": "mzvwdk",
+      "children": [
+        "ryknhq",
+        "qzjlqg"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "qolhrx"
+        ],
+        "_justifyContent": "flex-start",
+        "_columnGap": "16px",
+        "_direction:mobile_portrait": "row",
+        "_flexWrap:mobile_portrait": "nowrap",
+        "_alignItems:mobile_portrait": "flex-start",
+        "_padding:mobile_portrait": {
+          "right": "35"
+        },
+        "_flexWrap:mobile_landscape": "nowrap"
+      }
+    },
+    {
+      "id": "qzjlqg",
+      "name": "text-basic",
+      "parent": "kximnp",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "fdelvb"
+        ],
+        "text": "Quick and Efficient Service"
+      }
+    },
+    {
+      "id": "dijtmf",
+      "name": "block",
+      "parent": "mzvwdk",
+      "children": [
+        "kzjcte"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "boddwv"
+        ]
+      }
+    },
+    {
+      "id": "kzjcte",
+      "name": "block",
+      "parent": "dijtmf",
+      "children": [
+        "gybccj"
+      ],
+      "settings": {
+        "_margin": {
+          "bottom": "16px"
+        }
+      }
+    },
+    {
+      "id": "gybccj",
+      "name": "text",
+      "parent": "kzjcte",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "kulihi"
+        ],
+        "text": "<p>We value your time and comfort, offering efficient services while treating your home with care. We promise to leave your space in better condition than we found it.</p>"
+      }
+    },
+    {
+      "id": "krkbws",
+      "name": "div",
+      "parent": "ndvlbr",
+      "children": [
+        "ynoqlm",
+        "sltnke"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "xbvgth"
+        ],
+        "_hidden": {
+          "_cssClasses": "tab-title"
+        },
+        "_display": "none"
+      },
+      "label": "Title"
+    },
+    {
+      "id": "ynoqlm",
+      "name": "block",
+      "parent": "krkbws",
+      "children": [
+        "nyunsj"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "qolhrx"
+        ]
+      }
+    },
+    {
+      "id": "nyunsj",
+      "name": "heading",
+      "parent": "ynoqlm",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "fdelvb"
+        ],
+        "text": "Post Installation Inspection",
+        "tag": "h5"
+      }
+    },
+    {
+      "id": "sltnke",
+      "name": "block",
+      "parent": "krkbws",
+      "children": [
+        "fovfga"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "boddwv"
+        ]
+      }
+    },
+    {
+      "id": "fovfga",
+      "name": "block",
+      "parent": "sltnke",
+      "children": [
+        "vbyvvj"
+      ],
+      "settings": {
+        "_margin": {
+          "bottom": "16px"
+        }
+      }
+    },
+    {
+      "id": "vbyvvj",
+      "name": "text",
+      "parent": "fovfga",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "kulihi"
+        ],
+        "text": "<p>We review the completed installation and answer your questions so you know what to expect from your insulation upgrade.</p>"
+      }
+    },
+    {
+      "id": "bypzbh",
+      "name": "div",
+      "parent": "ndvlbr",
+      "children": [
+        "opwbtm",
+        "zbdamt"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "xbvgth"
+        ],
+        "_hidden": {
+          "_cssClasses": "tab-title"
+        },
+        "_border": {
+          "width": {
+            "top": "0px",
+            "right": "0px",
+            "left": "0px"
+          },
+          "radius": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          }
+        }
+      },
+      "label": "Title"
+    },
+    {
+      "id": "opwbtm",
+      "name": "block",
+      "parent": "bypzbh",
+      "children": [
+        "dcbuvn",
+        "mfzdmv"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "qolhrx"
+        ],
+        "_justifyContent": "flex-start",
+        "_columnGap": "16px",
+        "_direction:mobile_portrait": "row",
+        "_flexWrap:mobile_portrait": "nowrap",
+        "_alignItems:mobile_portrait": "flex-start",
+        "_padding:mobile_portrait": {
+          "right": "35"
+        },
+        "_flexWrap:mobile_landscape": "nowrap"
+      }
+    },
+    {
+      "id": "mfzdmv",
+      "name": "text-basic",
+      "parent": "opwbtm",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "fdelvb"
+        ],
+        "text": "Solutions for Canadian Homes"
+      }
+    },
+    {
+      "id": "zbdamt",
+      "name": "block",
+      "parent": "bypzbh",
+      "children": [
+        "euggbr"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "boddwv"
+        ]
+      }
+    },
+    {
+      "id": "euggbr",
+      "name": "block",
+      "parent": "zbdamt",
+      "children": [
+        "ypthjz"
+      ],
+      "settings": {
+        "_margin": {
+          "bottom": "16px"
+        }
+      }
+    },
+    {
+      "id": "ypthjz",
+      "name": "text",
+      "parent": "euggbr",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "kulihi"
+        ],
+        "text": "<p>From winter drafts to summer heat, we help homeowners choose insulation solutions for year-round comfort.</p>"
+      }
+    },
+    {
+      "id": "npquga",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "tpzrxz"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "zgpnmr"
+        ],
+        "_padding": {
+          "top": "80px",
+          "bottom": "80px"
+        },
+        "_padding:tablet_portrait": {
+          "bottom": "64px",
+          "top": "64px"
+        },
+        "_padding:mobile_landscape": {
+          "bottom": "56px",
+          "top": "56px"
+        },
+        "_padding:mobile_portrait": {
+          "bottom": "48px",
+          "top": "48px"
+        },
+        "_display": "none"
+      },
+      "label": "Section-tabs"
+    },
+    {
+      "id": "gzphsr",
+      "name": "container",
+      "parent": "vghnnb",
+      "children": [
+        "kntobg",
+        "juzirv",
+        "koateu"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "lkhmxi"
+        ],
+        "_alignSelf": "center",
+        "_alignItems": "center",
+        "_padding:tablet_portrait": {
+          "left": "58",
+          "bottom": "48"
+        },
+        "_padding": {
+          "top": "0",
+          "bottom": "58"
+        },
+        "_columnGap": "58px",
+        "_rowGap": "58px",
+        "_columnGap:tablet_portrait": "48px",
+        "_rowGap:tablet_portrait": "48px",
+        "_padding:mobile_landscape": {
+          "left": "15"
+        },
+        "_padding:mobile_portrait": {
+          "bottom": "40"
+        },
+        "_columnGap:mobile_portrait": "40px",
+        "_rowGap:mobile_portrait": "40px"
+      }
+    },
+    {
+      "id": "kntobg",
+      "name": "block",
+      "parent": "gzphsr",
+      "children": [
+        "wujwec"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "oegoub"
+        ]
+      }
+    },
+    {
+      "id": "wujwec",
+      "name": "block",
+      "parent": "kntobg",
+      "children": [
+        "vjzafe"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "qpnrph"
+        ]
+      }
+    },
+    {
+      "id": "vjzafe",
+      "name": "block",
+      "parent": "wujwec",
+      "children": [
+        "gfpsxg",
+        "xiaiil"
+      ],
+      "settings": {
+        "_direction": "column",
+        "_rowGap": "24px",
+        "_alignItems": "center",
+        "_alignSelf": "center",
+        "_rowGap:mobile_portrait": "16px",
+        "_attributes": [
+          {
+            "id": "rbfylk",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "ciyegw",
+            "name": "data-delay",
+            "value": "0.1"
+          },
+          {
+            "id": "yvzrnw",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_rowGap:tablet_portrait": "24px"
+      }
+    },
+    {
+      "id": "gfpsxg",
+      "name": "block",
+      "parent": "vjzafe",
+      "children": [
+        "stfiau",
+        "oiuopm",
+        "leuvgm"
+      ],
+      "settings": {
+        "_typography": {
+          "text-align": "center"
+        },
+        "_direction": "column",
+        "_rowGap": "12px",
+        "_alignItems": "center",
+        "_alignSelf": "center"
+      }
+    },
+    {
+      "id": "stfiau",
+      "name": "heading",
+      "parent": "gfpsxg",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "ucgzqi",
+          "kzqscf"
+        ],
+        "_typography": {
+          "text-transform": "capitalize",
+          "text-align": "center"
+        },
+        "_attributes": [
+          {
+            "id": "ygtmtu",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "wjnpgk",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "tag": "h2",
+        "_margin:mobile_portrait": {
+          "bottom": "20px"
+        },
+        "_cssCustom": "#brxe-stfiau .heading-style-display-span {\n  color: #AFD56C;\n\tfont-weight: 700;\n}",
+        "_width:mobile_portrait": "100%",
+        "_cssCustom:mobile_portrait": "#brxe-stfiau {\ntext-align:center\n}",
+        "text": "What Our Customers Say<br><span class=\"heading-style-display-span\">About Koala Insulation</span>"
+      }
+    },
+    {
+      "id": "zdhejt",
+      "name": "text-basic",
+      "parent": "ndqfks",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "vtuuzc"
+        ],
+        "_attributes": [
+          {
+            "id": "mkpwjm",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "guljcr",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_typography": {
+          "color": {
+            "hex": "#043968",
+            "id": "wrshvk",
+            "name": "Color #19"
+          },
+          "font-family": "Alegreya Sans",
+          "font-weight": "500",
+          "font-size": "18px"
+        },
+        "text": "<p>Explore insulation solutions designed to help reduce drafts, manage indoor temperatures, and improve year-round comfort.</p>",
+        "_conditions": [
+          [
+            {
+              "id": "mpwbph",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_why_description}",
+              "compare": "!="
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": "leuvgm",
+      "name": "text-basic",
+      "parent": "gfpsxg",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "woueko",
+          "qlfedb"
+        ],
+        "text": "13,000+ Trusted Customer Reviews",
+        "_attributes": [
+          {
+            "id": "mkpwjm",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "guljcr",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_typography": {
+          "color": {
+            "hex": "#043968",
+            "id": "wrshvk",
+            "name": "Color #19"
+          },
+          "font-family": "Alegreya Sans",
+          "font-weight": "800",
+          "font-size": "16px"
+        }
+      }
+    },
+    {
+      "id": "xiaiil",
+      "name": "div",
+      "parent": "vjzafe",
+      "children": [
+        "pecunp"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "smhvvz",
+          "qlfedb"
+        ]
+      }
+    },
+    {
+      "id": "pecunp",
+      "name": "div",
+      "parent": "xiaiil",
+      "children": [
+        "jzjtbk",
+        "yifbzo"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "mvnuhu",
+          "rqawtd"
+        ],
+        "_display": "flex",
+        "_direction": "column",
+        "_rowGap": "32px"
+      }
+    },
+    {
+      "id": "jzjtbk",
+      "name": "div",
+      "parent": "pecunp",
+      "children": [
+        "ipvfwz"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "bhngmx",
+          "rxjtvk"
+        ],
+        "_typography": {
+          "text-align": "center"
+        }
+      }
+    },
+    {
+      "id": "ipvfwz",
+      "name": "div",
+      "parent": "jzjtbk",
+      "children": [
+        "kwcpus",
+        "iozdyi"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "xtinxf",
+          "bnaavv"
+        ],
+        "_display": "flex",
+        "_alignItems": "center",
+        "_direction": "column",
+        "_rowGap": "24px",
+        "query": {
+          "post_type": [
+            "testimonial"
+          ],
+          "order": "asc"
+        },
+        "hasLoop": true
+      }
+    },
+    {
+      "id": "kwcpus",
+      "name": "text-basic",
+      "parent": "ipvfwz",
+      "children": [],
+      "settings": {
+        "_attributes": [
+          {
+            "id": "swaumr",
+            "name": "data-swiper-parallax",
+            "value": "-300"
+          },
+          {
+            "id": "avmdco",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "dllkmt",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_cssGlobalClasses": [
+          "vyaztg",
+          "hohdjv",
+          "onjxff"
+        ],
+        "text": "{acf_testimonial_content}",
+        "tag": "p",
+        "_typography:mobile_landscape": {
+          "font-weight": "500"
+        }
+      }
+    },
+    {
+      "id": "iozdyi",
+      "name": "div",
+      "parent": "ipvfwz",
+      "children": [
+        "kfimsd",
+        "rfswju"
+      ],
+      "settings": {
+        "_display": "flex",
+        "_attributes": [
+          {
+            "id": "mymesr",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "hqunjm",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_columnGap": "16px",
+        "_justifyContent": "center"
+      }
+    },
+    {
+      "id": "kfimsd",
+      "name": "div",
+      "parent": "iozdyi",
+      "children": [
+        "fuqatf"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "udozhg"
+        ],
+        "_flexShrink:mobile_portrait": "0"
+      }
+    },
+    {
+      "id": "fuqatf",
+      "name": "text-basic",
+      "parent": "kfimsd",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "uyylzz"
+        ],
+        "text": "BB",
+        "tag": "span"
+      }
+    },
+    {
+      "id": "rfswju",
+      "name": "div",
+      "parent": "iozdyi",
+      "children": [
+        "olvftc",
+        "stegmy"
+      ],
+      "settings": {
+        "_display": "flex",
+        "_direction": "column",
+        "_rowGap": "4px"
+      }
+    },
+    {
+      "id": "olvftc",
+      "name": "div",
+      "parent": "rfswju",
+      "children": [
+        "ltzobg"
+      ],
+      "settings": {
+        "_height": "20px"
+      }
+    },
+    {
+      "id": "ltzobg",
+      "name": "image",
+      "parent": "olvftc",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "kajpgo"
+        ],
+        "image": {
+          "id": 4416,
+          "filename": "Frame-427319557-copy.png",
+          "size": "full",
+          "full": "https://koalainsulation.com/wp-content/uploads/2024/09/Frame-427319557-copy.png",
+          "url": "https://koalainsulation.com/wp-content/uploads/2024/09/Frame-427319557-copy.png"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "stegmy",
+      "name": "div",
+      "parent": "rfswju",
+      "children": [
+        "eusvjg",
+        "emrvzh"
+      ],
+      "settings": {
+        "_display": "flex",
+        "_columnGap": "8px",
+        "_alignItems": "center"
+      }
+    },
+    {
+      "id": "eusvjg",
+      "name": "text-basic",
+      "parent": "stegmy",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "aoziin"
+        ],
+        "text": "{acf_testimonial_author}"
+      }
+    },
+    {
+      "id": "emrvzh",
+      "name": "text-basic",
+      "parent": "stegmy",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "qinkxe"
+        ],
+        "text": "{acf_testimonial_author_location}"
+      }
+    },
+    {
+      "id": "yifbzo",
+      "name": "div",
+      "parent": "pecunp",
+      "children": [
+        "qxunjq",
+        "jlalpq"
+      ],
+      "settings": {
+        "_display": "flex",
+        "_justifyContent": "center",
+        "_background": {
+          "color": {
+            "hex": "#ffffff",
+            "id": "hkgilc",
+            "name": "Color #21"
+          }
+        },
+        "_bottom": "0",
+        "_right": "0",
+        "_columnGap": "32px",
+        "_position": "static",
+        "_zIndex": "2",
+        "_columnGap:tablet_portrait": "24px",
+        "_columnGap:mobile_portrait": "16px",
+        "_position:mobile_portrait": "static",
+        "_position:mobile_landscape": "static",
+        "_justifyContent:mobile_portrait": "flex-end",
+        "_attributes": [
+          {
+            "id": "tazuqa",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "iqxjbn",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_alignSelf:mobile_portrait": "center"
+      },
+      "label": "arrows"
+    },
+    {
+      "id": "qxunjq",
+      "name": "div",
+      "parent": "yifbzo",
+      "children": [
+        "ghowdy"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "bcklkz"
+        ],
+        "_display": "flex",
+        "_justifyContent": "center",
+        "_width": "64px",
+        "_height": "64px",
+        "_widthMin": "64px",
+        "_heightMin": "64px",
+        "_border": {
+          "width": {
+            "top": "1.5px",
+            "right": "1.5px",
+            "bottom": "1.5px",
+            "left": "1.5px"
+          },
+          "style": "solid",
+          "color": {
+            "hex": "#043968",
+            "id": "wrshvk",
+            "name": "Color #19"
+          },
+          "radius": {
+            "top": "16px",
+            "right": "16px",
+            "bottom": "16px",
+            "left": "16px"
+          }
+        },
+        "_alignItems": "center",
+        "_cursor": "pointer",
+        "_height:mobile_landscape": "50px",
+        "_heightMin:mobile_landscape": "50px",
+        "_width:mobile_landscape": "50px",
+        "_widthMin:mobile_landscape": "50px"
+      }
+    },
+    {
+      "id": "ghowdy",
+      "name": "svg",
+      "parent": "qxunjq",
+      "children": [],
+      "settings": {
+        "file": {
+          "id": 207,
+          "filename": "arrow_forward-1.svg",
+          "url": "https://koalainsulation.com/wp-content/uploads/2024/06/arrow_forward-1.svg"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "jlalpq",
+      "name": "div",
+      "parent": "yifbzo",
+      "children": [
+        "ynkgks"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "xorhdh"
+        ],
+        "_display": "flex",
+        "_alignItems": "center",
+        "_justifyContent": "center",
+        "_width": "64px",
+        "_height": "64px",
+        "_widthMin": "64px",
+        "_heightMin": "64px",
+        "_border": {
+          "radius": {
+            "top": "16px",
+            "right": "16px",
+            "bottom": "16px",
+            "left": "16px"
+          }
+        },
+        "_cursor": "pointer",
+        "_height:mobile_landscape": "50px",
+        "_heightMin:mobile_landscape": "50px",
+        "_width:mobile_landscape": "50px",
+        "_widthMin:mobile_landscape": "50px",
+        "_background": {
+          "color": {
+            "hex": "#95c93d",
+            "id": "kvoarz",
+            "name": "Color #20"
+          }
+        }
+      }
+    },
+    {
+      "id": "ynkgks",
+      "name": "svg",
+      "parent": "jlalpq",
+      "children": [],
+      "settings": {
+        "file": {
+          "id": 208,
+          "filename": "arrow_forward2.svg",
+          "url": "https://koalainsulation.com/wp-content/uploads/2024/06/arrow_forward2.svg"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "koateu",
+      "name": "div",
+      "parent": "gzphsr",
+      "children": [
+        "ef845f",
+        "ef0c3f"
+      ],
+      "settings": {
+        "_conditions": [
+          [
+            {
+              "id": "cqximg",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_use_custom_reviews}",
+              "compare": "!=",
+              "value": "1"
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": "ef845f",
+      "name": "code",
+      "parent": "koateu",
+      "children": [],
+      "settings": {
+        "code": "<div class=\"nj-badge\" data-source=\"5343641076236288,6069682734366720,6360224282181632,5857166636875776,5464982618112000,6180301227687936,5478677163278336,5376848448454656,6502259928596480,5788360505819136,5552839244382208,6144525232242688,5317999534276608,5771252565803008,5302672838623232,5795954379194368,5863204264083456,5132810422059008,6337240249139200,6112224302596096,5065990066405376,6649367102750720,5805497607520256,6166911908052992,6243193575702528,6043164410642432,4912272438984704,6015551902318592,4796275749027840,5254413281394688,5336099562192896,5516534754050048,6094148991451136,4688286394613760,5560370003968000,5473611873255424,4540512139214848,6197241828605952,5260062348541952,6091363329769472,5723836408922112,5664417027457024,4515013264408576,6359640479105024,5719381782298624,6597935092989952,6548585351479296,5571005320265728,6339767237607424,4542830743912448,5243577428344832,6192713626550272,4690597992988672,5734897471193088,4965425320820736,6300339693682688,5718249231089664,5433561228771328,6197155397632000,6164825363709952,5946693042569216,5679918312849408,4983666626789376,5649313048297472,4765327585443840,6019794881216512,5708212221509632,4764484473454592,5118694767460352,4809809653399552,4822080161054720,6528393355198464,4508743762182144,4944769023737856,6619382869655552,5306963775979520,5517095434190848,5909384913485824,6459478990651392\"></div>",
+        "executeCode": true,
+        "_display": "none"
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "ef0c3f",
+      "name": "code",
+      "parent": "koateu",
+      "children": [],
+      "settings": {
+        "code": "<?php echo \\Koala\\CALandingHeroes\\reviews_widget(); ?>",
+        "executeCode": true
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "vghnnb",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "gzphsr"
+      ],
+      "settings": {
+        "_alignItems": "center",
+        "_cssGlobalClasses": [
+          "zgpnmr"
+        ],
+        "_padding:mobile_landscape": {
+          "top": "56px"
+        },
+        "_padding:mobile_portrait": {
+          "top": "56px"
+        },
+        "_padding": {
+          "top": "80px"
+        },
+        "_padding:tablet_portrait": {
+          "top": "56px"
+        }
+      },
+      "label": "Testimonials"
+    },
+    {
+      "id": "qzkuds",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "vtkbfw"
+      ],
+      "settings": {
+        "_padding:mobile_portrait": {
+          "bottom": "40"
+        },
+        "_padding:tablet_portrait": {
+          "bottom": "48"
+        },
+        "_padding": {
+          "bottom": "58"
+        },
+        "_conditions": [
+          [
+            {
+              "id": "pstpgo",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_cities_heading}",
+              "compare": "!="
+            }
+          ]
+        ],
+        "_cssGlobalClasses": [
+          "zgpnmr"
+        ],
+        "_alignItems": "center"
+      }
+    },
+    {
+      "id": "uyhdwh",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "acigmr"
+      ],
+      "settings": {
+        "_margin": {
+          "top": "51",
+          "bottom": "51"
+        },
+        "_padding:mobile_portrait": {
+          "left": "44",
+          "right": "44"
+        },
+        "_margin:mobile_portrait": {
+          "top": "10",
+          "bottom": "10"
+        },
+        "_display": "none"
+      }
+    },
+    {
+      "id": "lfxcfm",
+      "name": "text-basic",
+      "parent": "fpxkub",
+      "children": [],
+      "settings": {
+        "text": "Learn More",
+        "_typography": {
+          "color": {
+            "hex": "#042e53"
+          },
+          "font-weight": "500"
+        }
+      }
+    },
+    {
+      "id": "adguxb",
+      "name": "section",
+      "parent": 0,
+      "children": [
+        "gdzlcf"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "zgpnmr"
+        ],
+        "_position": "relative"
+      },
+      "label": "CTA"
+    },
+    {
+      "id": "gdzlcf",
+      "name": "block",
+      "parent": "adguxb",
+      "children": [
+        "yifssu"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "qpnrph"
+        ]
+      }
+    },
+    {
+      "id": "yifssu",
+      "name": "block",
+      "parent": "gdzlcf",
+      "children": [
+        "dmodmr",
+        "ddpnil",
+        "qfjxun",
+        "qdfkyh"
+      ],
+      "settings": {
+        "_alignItems": "center",
+        "_direction": "column",
+        "_position": "relative",
+        "_gradient": {
+          "colors": [
+            {
+              "id": "uckxcr",
+              "color": {
+                "hex": "#95c93d"
+              }
+            },
+            {
+              "id": "vcoglv",
+              "color": {
+                "hex": "#73aadc"
+              }
+            }
+          ],
+          "angle": "100"
+        },
+        "_padding": {
+          "bottom": "128px",
+          "top": "128px",
+          "right": "80px",
+          "left": "80px"
+        },
+        "_border": {
+          "radius": {
+            "top": "200px",
+            "right": "200px"
+          }
+        },
+        "_justifyContent": "flex-start",
+        "_typography": {
+          "color": {
+            "hex": "#ffffff",
+            "id": "idapwb",
+            "name": "Color #23"
+          },
+          "text-align": "center"
+        },
+        "_padding:tablet_portrait": {
+          "bottom": "96px",
+          "top": "96px",
+          "right": "56px",
+          "left": "56px"
+        },
+        "_padding:mobile_landscape": {
+          "bottom": "56px",
+          "top": "56px",
+          "right": "56px",
+          "left": "56px"
+        },
+        "_border:mobile_landscape": {
+          "radius": {
+            "top": "50px",
+            "right": "50px"
+          }
+        },
+        "_padding:mobile_portrait": {
+          "left": "20px",
+          "right": "20px",
+          "top": "48px",
+          "bottom": "24"
+        },
+        "_cssCustom": "#brxe-yifssu{\n overflow-y: hidden;\n}",
+        "_border:tablet_portrait": {
+          "radius": {
+            "top": "100",
+            "right": "100"
+          }
+        },
+        "_border:mobile_portrait": {
+          "radius": {
+            "top": "0",
+            "right": "0",
+            "bottom": "0",
+            "left": "0"
+          }
+        },
+        "_margin": {
+          "top": "51"
+        }
+      }
+    },
+    {
+      "id": "dmodmr",
+      "name": "block",
+      "parent": "yifssu",
+      "children": [
+        "tvqrht",
+        "osndvz",
+        "vwkulf"
+      ],
+      "settings": {
+        "_alignItems": "center",
+        "_direction": "column",
+        "_position": "relative",
+        "_rowGap": "24px",
+        "_width": "100%",
+        "_widthMax": "720px",
+        "_position:mobile_landscape": "relative",
+        "_zIndex:mobile_landscape": "1",
+        "_zIndex": "1",
+        "_overflow:mobile_portrait": "hidden",
+        "_widthMax:mobile_portrait": "100%"
+      }
+    },
+    {
+      "id": "vwkulf",
+      "name": "div",
+      "parent": "dmodmr",
+      "children": [
+        "kzomvr"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "pctsxs",
+          "vdxwts",
+          "nniefm",
+          "mbkiof"
+        ],
+        "_attributes": [
+          {
+            "id": "aumrsj",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "qidmpf",
+            "name": "data-delay",
+            "value": "0.4"
+          },
+          {
+            "id": "vufbir",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_cssClasses": "show-sidebar-form",
+        "_interactions": [
+          {
+            "id": "ljtwmd",
+            "trigger": "click",
+            "action": "show",
+            "target": "popup",
+            "templateId": "4865"
+          }
+        ]
+      }
+    },
+    {
+      "id": "kzomvr",
+      "name": "text-basic",
+      "parent": "vwkulf",
+      "children": [],
+      "settings": {
+        "text": "{acf_cta_footer_button_text}"
+      }
+    },
+    {
+      "id": "osndvz",
+      "name": "text-basic",
+      "parent": "dmodmr",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "oeeoek",
+          "eqrice"
+        ],
+        "_attributes": [
+          {
+            "id": "wjasgi",
+            "name": "text-split"
+          },
+          {
+            "id": "nsitxi",
+            "name": "lines-slide-up"
+          }
+        ],
+        "_widthMax:tablet_portrait": "500",
+        "_widthMax:mobile_landscape": "450",
+        "text": "<p>Take the next step toward a more comfortable home. Request a free insulation evaluation today.</p>",
+        "_widthMax": "720px",
+        "_width": "100%"
+      }
+    },
+    {
+      "id": "qfjxun",
+      "name": "div",
+      "parent": "yifssu",
+      "children": [
+        "vrsxeg"
+      ],
+      "settings": {
+        "_position": "absolute",
+        "_top": "0",
+        "_height:mobile_landscape": "56px",
+        "_display:mobile_landscape": "none",
+        "_left": "10",
+        "_height:tablet_portrait": "100px",
+        "_left:tablet_portrait": "-40",
+        "_top:tablet_portrait": "-20",
+        "_top:mobile_landscape": "0",
+        "_left:mobile_landscape": "0",
+        "_height": "143px"
+      }
+    },
+    {
+      "id": "vrsxeg",
+      "name": "image",
+      "parent": "qfjxun",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "kajpgo"
+        ],
+        "image": {
+          "id": 245,
+          "filename": "Vector-1.png",
+          "size": "full",
+          "full": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/06/Vector-1.png",
+          "url": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/06/Vector-1.png"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "qdfkyh",
+      "name": "div",
+      "parent": "yifssu",
+      "children": [
+        "vvxrfw"
+      ],
+      "settings": {
+        "_position": "absolute",
+        "_right": "0px",
+        "_bottom": "40",
+        "_height": "280px",
+        "_height:tablet_portrait": "150px",
+        "_height:mobile_landscape": "112px",
+        "_bottom:mobile_portrait": "24px",
+        "_display:mobile_landscape": "block"
+      }
+    },
+    {
+      "id": "vvxrfw",
+      "name": "image",
+      "parent": "qdfkyh",
+      "children": [],
+      "settings": {
+        "image": {
+          "id": 247,
+          "filename": "Vector-1-1.png",
+          "size": "full",
+          "full": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/06/Vector-1-1.png",
+          "url": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/06/Vector-1-1.png"
+        },
+        "_cssGlobalClasses": [
+          "kajpgo",
+          "bomntd"
+        ]
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "kwayso",
+      "name": "image",
+      "parent": "oktfpy",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "kajpgo"
+        ],
+        "_width": "100px",
+        "image": {
+          "id": 1901,
+          "filename": "Vector.png",
+          "size": "full",
+          "full": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/09/Vector.png",
+          "url": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/09/Vector.png"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "tsdkrl",
+      "name": "text-basic",
+      "parent": "ymhfhv",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "ggrvfo"
+        ],
+        "text": "Get a FREE Quote",
+        "_alignSelf": "center",
+        "_width": "100%",
+        "_scrollSnapAlign": "center",
+        "_display": "flex",
+        "_flexDirection": "row",
+        "_justifyContent": "center"
+      }
+    },
+    {
+      "id": "tztuqe",
+      "name": "block",
+      "parent": "nbujgr",
+      "children": [],
+      "settings": {
+        "_padding": {
+          "top": "0",
+          "bottom": "0",
+          "right": "0",
+          "left": "24px"
+        },
+        "_padding:tablet_portrait": {
+          "left": "16px"
+        },
+        "_padding:mobile_landscape": {
+          "left": "0px"
+        },
+        "_hidden": {
+          "_cssClasses": "tab-content"
+        },
+        "_border": {
+          "style": "none",
+          "width": {
+            "left": "0",
+            "bottom": "0",
+            "right": "0",
+            "top": "0"
+          }
+        },
+        "_attributes": [
+          {
+            "id": "xuzmtb",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "njiipm",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ]
+      },
+      "label": "Tab content"
+    },
+    {
+      "id": "cansni",
+      "name": "container",
+      "parent": "trohhj",
+      "children": [
+        "mdxhkd"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "lkhmxi"
+        ],
+        "_padding": {
+          "top": "50",
+          "bottom": "50"
+        },
+        "_widthMax:mobile_portrait": "100%",
+        "_padding:tablet_portrait": {
+          "top": "64",
+          "bottom": "64"
+        },
+        "_padding:mobile_landscape": {
+          "top": "40",
+          "bottom": "40"
+        },
+        "_padding:mobile_portrait": {
+          "top": "40",
+          "bottom": "40"
+        }
+      }
+    },
+    {
+      "id": "mdxhkd",
+      "name": "block",
+      "parent": "cansni",
+      "children": [
+        "wpqozj"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "shhcdb"
+        ],
+        "_margin:mobile_portrait": {
+          "bottom": "0"
+        },
+        "_padding": {
+          "top": "0",
+          "bottom": "0"
+        },
+        "_display": "flex",
+        "_direction": "row"
+      }
+    },
+    {
+      "id": "wpqozj",
+      "name": "block",
+      "parent": "mdxhkd",
+      "children": [
+        "ushqoq",
+        "mdvfgz",
+        "efebf2"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "qpnrph"
+        ],
+        "_gridGap": "50px",
+        "_gridTemplateColumns": "1fr .65fr",
+        "_gridGap:tablet_portrait": "48px",
+        "_gridTemplateColumns:mobile_portrait": "1fr",
+        "_gridGap:mobile_portrait": "32px",
+        "_gridTemplateColumns:mobile_landscape": "1fr",
+        "_gridGap:mobile_landscape": "32",
+        "_display": "flex",
+        "_direction": "row",
+        "_alignItems": "flex-start"
+      }
+    },
+    {
+      "id": "mdvfgz",
+      "name": "block",
+      "parent": "wpqozj",
+      "children": [
+        "effe36"
+      ],
+      "settings": {
+        "_position": "relative",
+        "_zIndex": "1",
+        "_border": {
+          "radius": {
+            "top": "10px",
+            "right": "10px",
+            "bottom": "10px",
+            "left": "10px"
+          }
+        },
+        "_attributes": [
+          {
+            "id": "kpzfcp",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "zbourt",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_direction:mobile_landscape": "row",
+        "_cssClasses": "hero-form-wrapper",
+        "_cssCustom": ".hero-form-wrapper{\n  position: relative;\n  z-index: 9998;\n}",
+        "_widthMax": "440px"
+      }
+    },
+    {
+      "id": "ushqoq",
+      "name": "block",
+      "parent": "wpqozj",
+      "children": [
+        "aewmjg"
+      ],
+      "settings": {
+        "_position": "relative",
+        "_zIndex": "1",
+        "_justifyContent": "center"
+      }
+    },
+    {
+      "id": "aewmjg",
+      "name": "block",
+      "parent": "ushqoq",
+      "children": [
+        "wikxop",
+        "kxcmpd",
+        "pzpdkn",
+        "hftndi",
+        "typumu",
+        "jsmhvd",
+        "ef30db",
+        "gxvefv",
+        "efb89a"
+      ],
+      "settings": {
+        "_direction": "column",
+        "_rowGap": "24px",
+        "_rowGap:mobile_landscape": "16px"
+      }
+    },
+    {
+      "id": "gxvefv",
+      "name": "div",
+      "parent": "aewmjg",
+      "children": [
+        "ksxhhj",
+        "bopmuv"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "pctsxs",
+          "vdxwts",
+          "nniefm",
+          "mbkiof"
+        ],
+        "_attributes": [
+          {
+            "id": "aumrsj",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "qidmpf",
+            "name": "data-delay",
+            "value": "0.4"
+          },
+          {
+            "id": "vufbir",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_interactions": [
+          {
+            "id": "couobm",
+            "trigger": "click",
+            "action": "show",
+            "target": "popup",
+            "templateId": "4865"
+          }
+        ],
+        "_border": {
+          "radius": {
+            "top": "30",
+            "right": "30",
+            "bottom": "30",
+            "left": "30"
+          }
+        }
+      }
+    },
+    {
+      "id": "ksxhhj",
+      "name": "text-basic",
+      "parent": "gxvefv",
+      "children": [],
+      "settings": {
+        "text": "Get a FREE Quote",
+        "_margin": {
+          "top": "0"
+        },
+        "_conditions": [
+          [
+            {
+              "id": "ydkwgr",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_hero_button_text}",
+              "compare": "=="
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": "dkbbae",
+      "name": "text-basic",
+      "parent": "typumu",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "oeeoek"
+        ],
+        "_typography": {
+          "color": {
+            "hex": "#043968"
+          },
+          "font-size": "16",
+          "line-height": "2"
+        },
+        "_widthMax:tablet_portrait": "600",
+        "_cssId": "location-hero-text",
+        "_typography:tablet_portrait": {
+          "font-size": "16",
+          "line-height": "1.8"
+        },
+        "_widthMax:mobile_landscape": "100%",
+        "text": "{acf_hero_description}"
+      }
+    },
+    {
+      "id": "pzpdkn",
+      "name": "text-basic",
+      "parent": "aewmjg",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "oeeoek"
+        ],
+        "text": "Let Our Insulation Experts Show You The Many Benefits Of Our High Performance Insulation.",
+        "_typography": {
+          "color": {
+            "hex": "#000000",
+            "rgb": "rgba(0, 0, 0, 0.5)",
+            "hsl": "hsla(0, 0%, 0%, 0.5)"
+          }
+        },
+        "_widthMax:tablet_portrait": "600",
+        "_display": "none"
+      }
+    },
+    {
+      "id": "tpzrxz",
+      "name": "container",
+      "parent": "npquga",
+      "children": [
+        "mwzrez"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "lkhmxi"
+        ]
+      }
+    },
+    {
+      "id": "mwzrez",
+      "name": "block",
+      "parent": "tpzrxz",
+      "children": [
+        "ucklyn"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "qpnrph"
+        ]
+      }
+    },
+    {
+      "id": "ucklyn",
+      "name": "block",
+      "parent": "mwzrez",
+      "children": [
+        "hczhhm"
+      ],
+      "settings": [],
+      "label": "tabs-wrapper"
+    },
+    {
+      "id": "hczhhm",
+      "name": "tabs-nested",
+      "parent": "ucklyn",
+      "children": [
+        "auvazr",
+        "tkxggt"
+      ],
+      "settings": {
+        "titleActiveBackgroundColor": {
+          "hex": "#043968",
+          "rgb": "rgba(4, 57, 104, 0.05)",
+          "hsl": "hsla(208, 93%, 21%, 0.05)"
+        },
+        "contentBorder": {
+          "width": {
+            "top": 1,
+            "right": 1,
+            "bottom": 1,
+            "left": 1
+          },
+          "style": "none"
+        },
+        "direction": "row",
+        "titlePadding": {
+          "top": "16px",
+          "right": "16px",
+          "bottom": "16px",
+          "left": "16px"
+        },
+        "direction:mobile_portrait": "column",
+        "titleBorder": {
+          "width": {
+            "bottom": "1px",
+            "top": "1px",
+            "right": "1px",
+            "left": "1px"
+          },
+          "style": "solid",
+          "color": {
+            "hex": "#000000",
+            "rgb": "rgba(0, 0, 0, 0.3)",
+            "hsl": "hsla(0, 0%, 0%, 0.3)"
+          }
+        },
+        "titleActiveBorder": {
+          "color": {
+            "hex": "#043968",
+            "id": "wrshvk",
+            "name": "Color #19"
+          }
+        },
+        "direction:mobile_landscape": "column"
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "auvazr",
+      "name": "block",
+      "parent": "hczhhm",
+      "children": [
+        "qpbikb",
+        "thcnjd",
+        "gvkxwl",
+        "eucuam",
+        "rrraqw"
+      ],
+      "settings": {
+        "_direction": "column",
+        "_padding": {
+          "right": "24px"
+        },
+        "_alignItems": "stretch",
+        "_padding:tablet_portrait": {
+          "right": "16px"
+        },
+        "_padding:mobile_landscape": {
+          "right": "0px"
+        },
+        "_hidden": {
+          "_cssClasses": "tab-menu"
+        },
+        "_rowGap": "12px",
+        "_margin:mobile_landscape": {
+          "bottom": "16px"
+        }
+      },
+      "label": "Tab menu"
+    },
+    {
+      "id": "qpbikb",
+      "name": "block",
+      "parent": "auvazr",
+      "children": [
+        "vsxdqa"
+      ],
+      "settings": {
+        "_position": "relative",
+        "_attributes": [
+          {
+            "id": "ulpluv",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "tdgbsu",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_direction": "column",
+        "_padding": {
+          "bottom": "36px"
+        },
+        "_alignItems": "flex-start",
+        "_padding:tablet_portrait": {
+          "bottom": "24px"
+        },
+        "_padding:mobile_landscape": {
+          "bottom": "12px"
+        },
+        "_direction:tablet_portrait": "column",
+        "_gridTemplateColumns:mobile_landscape": "1fr auto",
+        "_justifyContentGrid:mobile_landscape": "flex-start",
+        "_alignContentGrid:mobile_landscape": "center",
+        "_alignItemsGrid:mobile_landscape": "center",
+        "_justifyContent": "flex-start",
+        "_flexWrap:mobile_landscape": "nowrap",
+        "_rowGap:mobile_landscape": "0",
+        "_alignItems:mobile_landscape": "flex-start"
+      },
+      "label": "benefits-heading-wrap"
+    },
+    {
+      "id": "eicewb",
+      "name": "heading",
+      "parent": "vsxdqa",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "abocft",
+          "bgqqqy"
+        ],
+        "text": "Benefits"
+      }
+    },
+    {
+      "id": "ibksdn",
+      "name": "div",
+      "parent": "vsxdqa",
+      "children": [
+        "nwjwru"
+      ],
+      "settings": {
+        "_padding": {
+          "bottom": "24px"
+        },
+        "_height:mobile_landscape": "48px",
+        "_height": "64px"
+      }
+    },
+    {
+      "id": "nwjwru",
+      "name": "image",
+      "parent": "ibksdn",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "kajpgo"
+        ],
+        "image": {
+          "id": 1901,
+          "filename": "Vector.png",
+          "size": "full",
+          "full": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/09/Vector.png",
+          "url": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/09/Vector.png"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "thcnjd",
+      "name": "div",
+      "parent": "auvazr",
+      "children": [
+        "znzvke",
+        "fasvyj"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "gjokyx"
+        ],
+        "_hidden": {
+          "_cssClasses": "tab-title"
+        },
+        "_background:active": {
+          "color": {
+            "hex": "#ffffff",
+            "rgb": "rgba(255, 255, 255, 0)",
+            "hsl": "hsla(0, 0%, 100%, 0)"
+          }
+        },
+        "_typography:active": {
+          "color": {
+            "hex": "#8bc34a",
+            "id": "0c817a",
+            "name": "Color #17"
+          }
+        },
+        "_padding": {
+          "bottom": "16",
+          "top": "16",
+          "left": "16",
+          "right": "16"
+        },
+        "_alignItems": "center"
+      },
+      "label": "Title"
+    },
+    {
+      "id": "znzvke",
+      "name": "image",
+      "parent": "thcnjd",
+      "children": [],
+      "settings": {
+        "_width": "30px",
+        "_height": "30px",
+        "image": {
+          "id": 2193,
+          "filename": "23.png",
+          "size": "full",
+          "full": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/09/23.png",
+          "url": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/09/23.png"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "fasvyj",
+      "name": "text-basic",
+      "parent": "thcnjd",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "ggrvfo"
+        ],
+        "text": "Enhanced Comfort"
+      }
+    },
+    {
+      "id": "gvkxwl",
+      "name": "div",
+      "parent": "auvazr",
+      "children": [
+        "wpcbiz",
+        "hivows"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "gjokyx"
+        ],
+        "_padding": {
+          "top": "16",
+          "right": "16",
+          "bottom": "16",
+          "left": "16"
+        },
+        "_hidden": {
+          "_cssClasses": "tab-title"
+        },
+        "_alignItems": "center"
+      },
+      "label": "Title"
+    },
+    {
+      "id": "wpcbiz",
+      "name": "image",
+      "parent": "gvkxwl",
+      "children": [],
+      "settings": {
+        "_height": "30px",
+        "_width": "30px",
+        "image": {
+          "id": 2196,
+          "filename": "24.png",
+          "size": "full",
+          "full": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/09/24.png",
+          "url": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/09/24.png"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "hivows",
+      "name": "text-basic",
+      "parent": "gvkxwl",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "ggrvfo"
+        ],
+        "text": "Energy Savings",
+        "_typography:mobile_landscape": {
+          "font-size": "18"
+        }
+      }
+    },
+    {
+      "id": "eucuam",
+      "name": "div",
+      "parent": "auvazr",
+      "children": [
+        "lvowvo",
+        "njwvek"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "gjokyx"
+        ],
+        "_alignItems": "center",
+        "_hidden": {
+          "_cssClasses": "tab-title"
+        },
+        "_padding": {
+          "bottom": "16",
+          "top": "16",
+          "left": "16",
+          "right": "16"
+        }
+      },
+      "label": "Title"
+    },
+    {
+      "id": "lvowvo",
+      "name": "image",
+      "parent": "eucuam",
+      "children": [],
+      "settings": {
+        "_width": "30px",
+        "_height": "30px",
+        "image": {
+          "id": 2713,
+          "filename": "spray-bottle_6453040-2-1.png",
+          "size": "full",
+          "full": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/09/spray-bottle_6453040-2-1.png",
+          "url": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/09/spray-bottle_6453040-2-1.png"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "njwvek",
+      "name": "text-basic",
+      "parent": "eucuam",
+      "children": [],
+      "settings": {
+        "text": "Quality Materials",
+        "_cssGlobalClasses": [
+          "ggrvfo"
+        ]
+      }
+    },
+    {
+      "id": "tkxggt",
+      "name": "block",
+      "parent": "hczhhm",
+      "children": [
+        "xopkgk",
+        "xwnuog",
+        "oxozvj",
+        "jfhevt"
+      ],
+      "settings": {
+        "_hidden": {
+          "_cssClasses": "tab-content"
+        },
+        "_padding": {
+          "right": "0",
+          "top": "0",
+          "bottom": "0",
+          "left": "24px"
+        },
+        "_padding:tablet_portrait": {
+          "left": "16px"
+        },
+        "_padding:mobile_landscape": {
+          "left": "0px"
+        },
+        "_border": {
+          "style": "none",
+          "width": {
+            "left": "0",
+            "bottom": "0",
+            "right": "0",
+            "top": "0"
+          }
+        },
+        "_attributes": [
+          {
+            "id": "izywla",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "skfzgb",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ]
+      },
+      "label": "Tab content"
+    },
+    {
+      "id": "jfhevt",
+      "name": "block",
+      "parent": "tkxggt",
+      "children": [
+        "arbgli",
+        "ggbfrn"
+      ],
+      "settings": {
+        "_hidden": {
+          "_cssClasses": "tab-pane"
+        }
+      },
+      "label": "Pane"
+    },
+    {
+      "id": "arbgli",
+      "name": "block",
+      "parent": "jfhevt",
+      "children": [
+        "cjfspw"
+      ],
+      "settings": {
+        "_padding": {
+          "bottom": "1px",
+          "top": "1px",
+          "right": "1px",
+          "left": "1px"
+        },
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "16px",
+            "right": "16px",
+            "bottom": "16px",
+            "left": "16px"
+          }
+        },
+        "_height:mobile_landscape": "240px",
+        "_gradient": {
+          "applyTo": "background",
+          "gradientType": "linear",
+          "colors": [
+            {
+              "id": "ifrcob",
+              "color": {
+                "hex": "#000000",
+                "rgb": "rgba(0, 0, 0, 0.33)",
+                "hsl": "hsla(0, 0%, 0%, 0.33)"
+              }
+            },
+            {
+              "id": "gutgvw",
+              "color": {
+                "hex": "#666666",
+                "rgb": "rgba(102, 102, 102, 0)",
+                "hsl": "hsla(0, 0%, 40%, 0)"
+              }
+            }
+          ]
+        },
+        "_margin": {
+          "bottom": "10px"
+        }
+      }
+    },
+    {
+      "id": "cjfspw",
+      "name": "block",
+      "parent": "arbgli",
+      "children": [
+        "jzroak"
+      ],
+      "settings": {
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "16px",
+            "right": "16px",
+            "bottom": "16px",
+            "left": "16px"
+          }
+        },
+        "_padding": {
+          "bottom": "16px",
+          "top": "16px",
+          "right": "16px",
+          "left": "16px"
+        },
+        "_height": "369px",
+        "_background": {
+          "color": {
+            "hex": "#ffffff",
+            "id": "idapwb",
+            "name": "Color #23"
+          }
+        }
+      }
+    },
+    {
+      "id": "jzroak",
+      "name": "image",
+      "parent": "cjfspw",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "cqkqkl"
+        ],
+        "image": {
+          "id": 2330,
+          "filename": "4.jpg",
+          "size": "full",
+          "full": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/06/4.jpg",
+          "url": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/06/4.jpg"
+        },
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "8px",
+            "right": "8px",
+            "bottom": "8px",
+            "left": "8px"
+          }
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "ggbfrn",
+      "name": "block",
+      "parent": "jfhevt",
+      "children": [
+        "paoqqv",
+        "uxmgky"
+      ],
+      "settings": {
+        "_alignItems": "flex-start",
+        "_direction": "column",
+        "_justifyContent": "flex-start",
+        "_rowGap": "16px"
+      }
+    },
+    {
+      "id": "paoqqv",
+      "name": "heading",
+      "parent": "ggbfrn",
+      "children": [],
+      "settings": {
+        "text": "Eco Friendly",
+        "_typography": {
+          "color": {
+            "hex": "#043968",
+            "id": "wrshvk",
+            "name": "Color #19"
+          },
+          "font-weight": "500"
+        },
+        "_cssGlobalClasses": [
+          "lefuig",
+          "luswmg",
+          "arzmym"
+        ],
+        "tag": "h3",
+        "_padding": {
+          "left": "0",
+          "right": "0"
+        }
+      }
+    },
+    {
+      "id": "uxmgky",
+      "name": "text",
+      "parent": "ggbfrn",
+      "children": [],
+      "settings": {
+        "text": "<p>Choose insulation that’s better for your home and the planet, such as solar-powered attic fans.</p>",
+        "_typography": {
+          "color": {
+            "hex": "#000000",
+            "id": "mxzylx",
+            "name": "Color #21",
+            "rgb": "rgba(0, 0, 0, 0.5)",
+            "hsl": "hsla(0, 0%, 0%, 0.5)"
+          },
+          "font-weight": "400",
+          "font-size": "18px",
+          "font-family": "custom_font_426"
+        }
+      }
+    },
+    {
+      "id": "xopkgk",
+      "name": "block",
+      "parent": "tkxggt",
+      "children": [
+        "xsigud",
+        "woaxjt"
+      ],
+      "settings": {
+        "_hidden": {
+          "_cssClasses": "tab-pane"
+        }
+      },
+      "label": "Pane"
+    },
+    {
+      "id": "xsigud",
+      "name": "block",
+      "parent": "xopkgk",
+      "children": [
+        "ubkouc"
+      ],
+      "settings": {
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "16px",
+            "right": "16px",
+            "bottom": "16px",
+            "left": "16px"
+          }
+        },
+        "_padding": {
+          "top": "1px",
+          "right": "1px",
+          "bottom": "1px",
+          "left": "1px"
+        },
+        "_height:mobile_landscape": "240px",
+        "_gradient": {
+          "applyTo": "background",
+          "gradientType": "linear",
+          "colors": [
+            {
+              "id": "ifrcob",
+              "color": {
+                "hex": "#000000",
+                "rgb": "rgba(0, 0, 0, 0.33)",
+                "hsl": "hsla(0, 0%, 0%, 0.33)"
+              }
+            },
+            {
+              "id": "gutgvw",
+              "color": {
+                "hex": "#666666",
+                "rgb": "rgba(102, 102, 102, 0)",
+                "hsl": "hsla(0, 0%, 40%, 0)"
+              }
+            }
+          ]
+        },
+        "_margin": {
+          "bottom": "10px"
+        }
+      }
+    },
+    {
+      "id": "wohauf",
+      "name": "image",
+      "parent": "ubkouc",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "cqkqkl"
+        ],
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "8px",
+            "right": "8px",
+            "bottom": "8px",
+            "left": "8px"
+          }
+        },
+        "image": {
+          "id": 1577,
+          "filename": "Frame-23.jpg",
+          "size": "full",
+          "full": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/08/Frame-23.jpg",
+          "url": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/08/Frame-23.jpg"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "xbmfna",
+      "name": "heading",
+      "parent": "woaxjt",
+      "children": [],
+      "settings": {
+        "text": "Enhanced Comfort<br>",
+        "_typography": {
+          "color": {
+            "hex": "#043968",
+            "id": "wrshvk",
+            "name": "Color #19"
+          },
+          "font-weight": "500"
+        },
+        "_cssGlobalClasses": [
+          "lefuig",
+          "luswmg",
+          "arzmym"
+        ],
+        "tag": "h3"
+      }
+    },
+    {
+      "id": "uwuxqu",
+      "name": "text",
+      "parent": "woaxjt",
+      "children": [],
+      "settings": {
+        "text": "<p>Stay cozy inside, no matter the weather outside.</p>",
+        "_typography": {
+          "color": {
+            "hex": "#000000",
+            "id": "mxzylx",
+            "name": "Color #21",
+            "rgb": "rgba(0, 0, 0, 0.5)",
+            "hsl": "hsla(0, 0%, 0%, 0.5)"
+          },
+          "font-weight": "400",
+          "font-size": "18px",
+          "font-family": "custom_font_426"
+        }
+      }
+    },
+    {
+      "id": "xwnuog",
+      "name": "block",
+      "parent": "tkxggt",
+      "children": [
+        "exexyl",
+        "veeraq"
+      ],
+      "settings": {
+        "_hidden": {
+          "_cssClasses": "tab-pane"
+        }
+      },
+      "label": "Pane"
+    },
+    {
+      "id": "veeraq",
+      "name": "block",
+      "parent": "xwnuog",
+      "children": [
+        "mzrvqy",
+        "hbhkww"
+      ],
+      "settings": {
+        "_alignItems": "flex-start",
+        "_direction": "column",
+        "_justifyContent": "flex-start",
+        "_rowGap": "16px"
+      }
+    },
+    {
+      "id": "mzrvqy",
+      "name": "heading",
+      "parent": "veeraq",
+      "children": [],
+      "settings": {
+        "text": "Energy Savings<br>",
+        "_typography": {
+          "color": {
+            "hex": "#043968",
+            "id": "wrshvk",
+            "name": "Color #19"
+          },
+          "font-weight": "500"
+        },
+        "_cssGlobalClasses": [
+          "lefuig",
+          "luswmg",
+          "arzmym"
+        ],
+        "tag": "h3"
+      }
+    },
+    {
+      "id": "hbhkww",
+      "name": "text",
+      "parent": "veeraq",
+      "children": [],
+      "settings": {
+        "text": "<p>Save on your energy bills while keeping your home comfy all year.</p>",
+        "_typography": {
+          "color": {
+            "hex": "#000000",
+            "id": "mxzylx",
+            "name": "Color #21",
+            "rgb": "rgba(0, 0, 0, 0.5)",
+            "hsl": "hsla(0, 0%, 0%, 0.5)"
+          },
+          "font-weight": "400",
+          "font-size": "18px",
+          "font-family": "custom_font_426"
+        }
+      }
+    },
+    {
+      "id": "exexyl",
+      "name": "block",
+      "parent": "xwnuog",
+      "children": [
+        "oqbzqn"
+      ],
+      "settings": {
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "16px",
+            "right": "16px",
+            "bottom": "16px",
+            "left": "16px"
+          }
+        },
+        "_padding": {
+          "top": "1px",
+          "right": "1px",
+          "bottom": "1px",
+          "left": "1px"
+        },
+        "_height:mobile_landscape": "240px",
+        "_gradient": {
+          "applyTo": "background",
+          "gradientType": "linear",
+          "colors": [
+            {
+              "id": "ifrcob",
+              "color": {
+                "hex": "#000000",
+                "rgb": "rgba(0, 0, 0, 0.33)",
+                "hsl": "hsla(0, 0%, 0%, 0.33)"
+              }
+            },
+            {
+              "id": "gutgvw",
+              "color": {
+                "hex": "#666666",
+                "rgb": "rgba(102, 102, 102, 0)",
+                "hsl": "hsla(0, 0%, 40%, 0)"
+              }
+            }
+          ]
+        },
+        "_margin": {
+          "bottom": "10px"
+        }
+      }
+    },
+    {
+      "id": "oqbzqn",
+      "name": "block",
+      "parent": "exexyl",
+      "children": [
+        "bydbwr"
+      ],
+      "settings": {
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "16px",
+            "right": "16px",
+            "bottom": "16px",
+            "left": "16px"
+          }
+        },
+        "_padding": {
+          "top": "16px",
+          "right": "16px",
+          "bottom": "16px",
+          "left": "16px"
+        },
+        "_height": "369px",
+        "_background": {
+          "color": {
+            "hex": "#ffffff",
+            "id": "idapwb",
+            "name": "Color #23"
+          }
+        }
+      }
+    },
+    {
+      "id": "bydbwr",
+      "name": "image",
+      "parent": "oqbzqn",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "cqkqkl"
+        ],
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "8px",
+            "right": "8px",
+            "bottom": "8px",
+            "left": "8px"
+          }
+        },
+        "image": {
+          "id": 1696,
+          "filename": "Frame-22.jpg",
+          "size": "full",
+          "full": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/08/Frame-22.jpg",
+          "url": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/08/Frame-22.jpg"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "oxozvj",
+      "name": "block",
+      "parent": "tkxggt",
+      "children": [
+        "czioad",
+        "wfhgni"
+      ],
+      "settings": {
+        "_hidden": {
+          "_cssClasses": "tab-pane"
+        }
+      },
+      "label": "Pane"
+    },
+    {
+      "id": "wfhgni",
+      "name": "block",
+      "parent": "oxozvj",
+      "children": [
+        "ctgbie",
+        "ydxgfu"
+      ],
+      "settings": {
+        "_direction": "column",
+        "_justifyContent": "flex-start",
+        "_alignItems": "flex-start",
+        "_rowGap": "16px"
+      }
+    },
+    {
+      "id": "ctgbie",
+      "name": "heading",
+      "parent": "wfhgni",
+      "children": [],
+      "settings": {
+        "text": "Reduced Noise",
+        "_typography": {
+          "color": {
+            "hex": "#043968",
+            "id": "wrshvk",
+            "name": "Color #19"
+          },
+          "font-weight": "500"
+        },
+        "_cssGlobalClasses": [
+          "lefuig",
+          "luswmg",
+          "arzmym"
+        ],
+        "tag": "h3"
+      }
+    },
+    {
+      "id": "ydxgfu",
+      "name": "text",
+      "parent": "wfhgni",
+      "children": [],
+      "settings": {
+        "_margin": {
+          "left": "0"
+        },
+        "text": "<p>We use top-quality insulation to give you lasting results.</p>",
+        "_typography": {
+          "color": {
+            "hex": "#000000",
+            "id": "mxzylx",
+            "name": "Color #21",
+            "rgb": "rgba(0, 0, 0, 0.5)",
+            "hsl": "hsla(0, 0%, 0%, 0.5)"
+          },
+          "font-weight": "400",
+          "font-size": "18px",
+          "font-family": "custom_font_426"
+        }
+      }
+    },
+    {
+      "id": "czioad",
+      "name": "block",
+      "parent": "oxozvj",
+      "children": [
+        "ttwryb"
+      ],
+      "settings": {
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "16px",
+            "right": "16px",
+            "bottom": "16px",
+            "left": "16px"
+          }
+        },
+        "_padding": {
+          "top": "1px",
+          "right": "1px",
+          "bottom": "1px",
+          "left": "1px"
+        },
+        "_margin": {
+          "bottom": "10px"
+        },
+        "_height:mobile_landscape": "240px",
+        "_gradient": {
+          "applyTo": "background",
+          "gradientType": "linear",
+          "colors": [
+            {
+              "id": "ifrcob",
+              "color": {
+                "hex": "#000000",
+                "rgb": "rgba(0, 0, 0, 0.33)",
+                "hsl": "hsla(0, 0%, 0%, 0.33)"
+              }
+            },
+            {
+              "id": "gutgvw",
+              "color": {
+                "hex": "#666666",
+                "rgb": "rgba(102, 102, 102, 0)",
+                "hsl": "hsla(0, 0%, 40%, 0)"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ttwryb",
+      "name": "block",
+      "parent": "czioad",
+      "children": [
+        "lpqtjt"
+      ],
+      "settings": {
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "16px",
+            "right": "16px",
+            "bottom": "16px",
+            "left": "16px"
+          }
+        },
+        "_padding": {
+          "top": "16px",
+          "right": "16px",
+          "bottom": "16px",
+          "left": "16px"
+        },
+        "_height": "369px",
+        "_background": {
+          "color": {
+            "hex": "#ffffff",
+            "id": "idapwb",
+            "name": "Color #23"
+          }
+        }
+      }
+    },
+    {
+      "id": "lpqtjt",
+      "name": "image",
+      "parent": "ttwryb",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "cqkqkl"
+        ],
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "8px",
+            "right": "8px",
+            "bottom": "8px",
+            "left": "8px"
+          }
+        },
+        "image": {
+          "id": 1516,
+          "filename": "Frame-427319542.jpg",
+          "size": "full",
+          "full": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/08/Frame-427319542.jpg",
+          "url": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/08/Frame-427319542.jpg"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "naknou",
+      "name": "block",
+      "parent": 0,
+      "children": [
+        "fgcnuy",
+        "wtulgb",
+        "kfrlkw"
+      ],
+      "settings": {
+        "_display": "none"
+      }
+    },
+    {
+      "id": "hvjtcn",
+      "name": "text-basic",
+      "parent": "kfrlkw",
+      "children": [],
+      "settings": {
+        "text": "{acf_area_name}",
+        "_cssGlobalClasses": [
+          "bmkscc"
+        ]
+      }
+    },
+    {
+      "id": "fgcnuy",
+      "name": "text-basic",
+      "parent": "naknou",
+      "children": [],
+      "settings": {
+        "text": "{acf_location_latitude}",
+        "_cssId": "loc-lat"
+      }
+    },
+    {
+      "id": "wtulgb",
+      "name": "text-basic",
+      "parent": "naknou",
+      "children": [],
+      "settings": {
+        "text": "{acf_location_logitude}",
+        "_cssId": "loc-long"
+      }
+    },
+    {
+      "id": "ubkouc",
+      "name": "block",
+      "parent": "xsigud",
+      "children": [
+        "wohauf"
+      ],
+      "settings": {
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "16px",
+            "right": "16px",
+            "bottom": "16px",
+            "left": "16px"
+          }
+        },
+        "_padding": {
+          "top": "16px",
+          "right": "16px",
+          "bottom": "16px",
+          "left": "16px"
+        },
+        "_height": "369px",
+        "_background": {
+          "color": {
+            "hex": "#ffffff",
+            "id": "idapwb",
+            "name": "Color #23"
+          }
+        }
+      }
+    },
+    {
+      "id": "woaxjt",
+      "name": "block",
+      "parent": "xopkgk",
+      "children": [
+        "xbmfna",
+        "uwuxqu"
+      ],
+      "settings": {
+        "_alignItems": "flex-start",
+        "_direction": "column",
+        "_justifyContent": "flex-start",
+        "_rowGap": "16px"
+      }
+    },
+    {
+      "id": "rrraqw",
+      "name": "div",
+      "parent": "auvazr",
+      "children": [
+        "nfbjdt",
+        "gwbndo"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "gjokyx"
+        ],
+        "_alignItems": "center",
+        "_hidden": {
+          "_cssClasses": "tab-title"
+        },
+        "_padding": {
+          "bottom": "16",
+          "top": "16",
+          "left": "16",
+          "right": "16"
+        }
+      },
+      "label": "Title"
+    },
+    {
+      "id": "nfbjdt",
+      "name": "image",
+      "parent": "rrraqw",
+      "children": [],
+      "settings": {
+        "_width": "30px",
+        "_height": "30px",
+        "image": {
+          "id": 2714,
+          "filename": "spray-bottle_6453040-2-2.png",
+          "size": "full",
+          "full": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/09/spray-bottle_6453040-2-2.png",
+          "url": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/09/spray-bottle_6453040-2-2.png"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "gwbndo",
+      "name": "text-basic",
+      "parent": "rrraqw",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "ggrvfo"
+        ],
+        "text": "Eco-Friendly Options"
+      }
+    },
+    {
+      "id": "jsmhvd",
+      "name": "div",
+      "parent": "aewmjg",
+      "children": [
+        "ilryed"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "grdimx"
+        ],
+        "tag": "a",
+        "_attributes": [
+          {
+            "id": "vbatbr",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "cworzk",
+            "name": "data-duration",
+            "value": "0.6"
+          },
+          {
+            "id": "qkyewb",
+            "name": "data-delay",
+            "value": "0.3"
+          }
+        ],
+        "_display": "none"
+      }
+    },
+    {
+      "id": "ilryed",
+      "name": "text-basic",
+      "parent": "jsmhvd",
+      "children": [],
+      "settings": {
+        "text": "Get a Free Estimate"
+      }
+    },
+    {
+      "id": "vsxdqa",
+      "name": "block",
+      "parent": "qpbikb",
+      "children": [
+        "eicewb",
+        "ibksdn"
+      ],
+      "settings": {
+        "_direction": "row",
+        "_justifyContent": "flex-start",
+        "_alignItems": "flex-end"
+      }
+    },
+    {
+      "id": "kfrlkw",
+      "name": "div",
+      "parent": "naknou",
+      "children": [
+        "hvjtcn",
+        "nbwgqk",
+        "rwakwt"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "ccjepc"
+        ],
+        "hasLoop": true,
+        "query": {
+          "objectType": "acf_location_area_serviced"
+        }
+      }
+    },
+    {
+      "id": "rwakwt",
+      "name": "text-basic",
+      "parent": "kfrlkw",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "earsni"
+        ],
+        "text": "{acf_area_longitude}"
+      }
+    },
+    {
+      "id": "nbwgqk",
+      "name": "text-basic",
+      "parent": "kfrlkw",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "wtdqdz"
+        ],
+        "text": "{acf_area_latitude}"
+      }
+    },
+    {
+      "id": "ef30db",
+      "name": "code",
+      "parent": "aewmjg",
+      "children": [],
+      "settings": {
+        "code": "<?php\n$button_code = get_field('housecall_pro_button_code');\nif ($button_code) {\n    echo $button_code;\n}\n?>\n",
+        "_display": "none"
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "typumu",
+      "name": "block",
+      "parent": "aewmjg",
+      "children": [
+        "dkbbae"
+      ],
+      "settings": []
+    },
+    {
+      "id": "wgaxdw",
+      "name": "container",
+      "parent": "lzkyyl",
+      "children": [
+        "iivhcl",
+        "nkdyva",
+        "lingns"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "lkhmxi"
+        ],
+        "_margin": {
+          "left": "auto",
+          "right": "auto"
+        },
+        "_flexWrap": "nowrap",
+        "_padding:tablet_portrait": {
+          "left": "80",
+          "right": "80"
+        },
+        "_padding:mobile_portrait": {
+          "right": "40",
+          "left": "40"
+        },
+        "_padding": {
+          "top": "0",
+          "bottom": "0"
+        },
+        "_rowGap:tablet_portrait": "0"
+      }
+    },
+    {
+      "id": "hftndi",
+      "name": "heading",
+      "parent": "aewmjg",
+      "children": [],
+      "settings": {
+        "_typography": {
+          "color": {
+            "hex": "#043968",
+            "id": "wrshvk",
+            "name": "Color #19"
+          },
+          "font-size": "80",
+          "font-weight": "700",
+          "line-height": "1"
+        },
+        "tag": "h2",
+        "_cssGlobalClasses": [
+          "edebzb"
+        ],
+        "_typography:tablet_portrait": {
+          "font-size": "58"
+        },
+        "_typography:mobile_landscape": {
+          "font-size": "48"
+        },
+        "_conditions": [
+          [
+            {
+              "id": "uowtlc",
+              "key": "dynamic_data",
+              "dynamic_data": "acf_hero_big_headline",
+              "compare": "!="
+            }
+          ]
+        ],
+        "text": "{acf_hero_big_headline}"
+      }
+    },
+    {
+      "id": "iivhcl",
+      "name": "heading",
+      "parent": "wgaxdw",
+      "children": [],
+      "settings": {
+        "_typography": {
+          "color": {
+            "hex": "#afd56c"
+          },
+          "font-family": "Alegreya Sans",
+          "font-size": "24"
+        },
+        "_margin": {
+          "left": "auto",
+          "right": "auto"
+        },
+        "tag": "custom",
+        "customTag": "span",
+        "text": "Ready to Make Your Home More Comfortable?"
+      }
+    },
+    {
+      "id": "nkdyva",
+      "name": "text",
+      "parent": "wgaxdw",
+      "children": [],
+      "settings": {
+        "_margin": {
+          "left": "auto",
+          "right": "auto"
+        },
+        "text": "<h3>Get expert advice on insulation, air sealing, and attic ventilation. Schedule a free insulation evaluation with Koala Insulation.</h3>",
+        "_typography": {
+          "color": {
+            "hex": "#ffffff",
+            "id": "idapwb",
+            "name": "Color #23"
+          },
+          "text-align": "center",
+          "font-family": "Alegreya Sans"
+        },
+        "_widthMax": "750px",
+        "_cssCustom": "#brxe-nkdyva strong {\n font-weight:unset;\n  color:#afd56c;\n}"
+      }
+    },
+    {
+      "id": "lingns",
+      "name": "div",
+      "parent": "wgaxdw",
+      "children": [
+        "uqatso",
+        "opmrvp"
+      ],
+      "settings": {
+        "_attributes": [
+          {
+            "id": "aumrsj",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "qidmpf",
+            "name": "data-delay",
+            "value": "0.4"
+          },
+          {
+            "id": "vufbir",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_cssGlobalClasses": [
+          "pctsxs",
+          "vdxwts",
+          "nniefm",
+          "ulqbks"
+        ],
+        "_alignSelf": "center",
+        "_interactions": [
+          {
+            "id": "krpbos",
+            "trigger": "click",
+            "action": "show",
+            "target": "popup",
+            "templateId": "4865"
+          }
+        ],
+        "_margin": {
+          "top": "30"
+        }
+      }
+    },
+    {
+      "id": "uqatso",
+      "name": "text-basic",
+      "parent": "lingns",
+      "children": [],
+      "settings": {
+        "text": "Get a FREE Quote",
+        "_cssClasses": "show-sidebar-form",
+        "_conditions": [
+          [
+            {
+              "id": "bzmhhq",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_cta_button_text}",
+              "compare": "=="
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": "efb89a",
+      "name": "code",
+      "parent": "aewmjg",
+      "children": [],
+      "settings": {
+        "code": "<?php echo \\Koala\\CALandingHeroes\\review_panel(false); ?>",
+        "_cssGlobalClasses": [
+          "pqiifj"
+        ],
+        "_order:mobile_portrait": "1",
+        "_order:mobile_landscape": "1",
+        "_margin:mobile_landscape": {
+          "bottom": "20"
+        },
+        "_width": "fit-content",
+        "_margin:mobile_portrait": {
+          "left": "2",
+          "top": "30",
+          "bottom": "2"
+        },
+        "_width:mobile_portrait": "100%",
+        "executeCode": true
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "sopmfl",
+      "name": "div",
+      "parent": 0,
+      "children": [],
+      "settings": {
+        "_display": "none"
+      }
+    },
+    {
+      "id": "vtkbfw",
+      "name": "container",
+      "parent": "qzkuds",
+      "children": [
+        "awxeer"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "lkhmxi"
+        ],
+        "_columnGap": "58",
+        "_rowGap": "58",
+        "_columnGap:tablet_portrait": "48",
+        "_rowGap:tablet_portrait": "48",
+        "_columnGap:mobile_landscape": "24",
+        "_rowGap:mobile_landscape": "24"
+      }
+    },
+    {
+      "id": "awxeer",
+      "name": "block",
+      "parent": "vtkbfw",
+      "children": [
+        "lrwkfd",
+        "zofrtt",
+        "zdudaj"
+      ],
+      "settings": {
+        "_alignItems": "center",
+        "_direction": "column",
+        "_rowGap": "24"
+      }
+    },
+    {
+      "id": "zdudaj",
+      "name": "div",
+      "parent": "awxeer",
+      "children": [
+        "rvmoth",
+        "jazouc"
+      ],
+      "settings": {
+        "_cssGlobalClasses": [
+          "nniefm",
+          "pctsxs"
+        ],
+        "_typography": {
+          "color": {
+            "hex": "#042e53"
+          },
+          "font-size": "18px",
+          "line-height": "27px",
+          "font-family": "Inter",
+          "font-weight": "700"
+        },
+        "_margin": {
+          "left": "auto",
+          "right": "auto",
+          "bottom": "0"
+        },
+        "_padding": {
+          "left": "28px",
+          "right": "28px",
+          "bottom": "12px",
+          "top": "12px"
+        },
+        "tag": "a",
+        "_display": "flex",
+        "_justifyContent": "center",
+        "_alignItems": "center",
+        "_border": {
+          "radius": {
+            "top": "99px",
+            "right": "99px",
+            "bottom": "99px",
+            "left": "99px"
+          }
+        },
+        "_background": {
+          "color": {
+            "hex": "#afd56c"
+          }
+        },
+        "_cssTransition": "all ease 0.3s",
+        "_background:hover": {
+          "color": {
+            "hex": "#7eb4a3"
+          }
+        },
+        "_attributes": [
+          {
+            "id": "wftwet",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "yanlwt",
+            "name": "data-duration",
+            "value": "0.6"
+          },
+          {
+            "id": "mpzxje",
+            "name": "data-delay",
+            "value": "0.4"
+          }
+        ],
+        "_typography:hover": {
+          "color": {
+            "hex": "#ffffff",
+            "id": "idapwb",
+            "name": "Color #23"
+          }
+        },
+        "_width": "fit-content"
+      }
+    },
+    {
+      "id": "rvmoth",
+      "name": "text-basic",
+      "parent": "zdudaj",
+      "children": [],
+      "settings": {
+        "_interactions": [
+          {
+            "id": "jruywh",
+            "trigger": "click",
+            "action": "show",
+            "target": "popup",
+            "templateId": "4865"
+          }
+        ],
+        "text": "Get a FREE Quote",
+        "_conditions": [
+          [
+            {
+              "id": "qeahvc",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_cities_button_text}",
+              "compare": "=="
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": "lrwkfd",
+      "name": "heading",
+      "parent": "awxeer",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "edebzb"
+        ],
+        "_attributes": [
+          {
+            "id": "tgywjg",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "otndqc",
+            "name": "data-delay",
+            "value": "0.1"
+          },
+          {
+            "id": "oyjaku",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_typography": {
+          "color": {
+            "hex": "#043968",
+            "id": "wrshvk",
+            "name": "Color #19"
+          },
+          "font-weight": "700",
+          "text-align": "center"
+        },
+        "tag": "h2",
+        "_widthMax": "816",
+        "_cssCustom": "@media ( min-width:1275px ) {\n  #brxe-lrwkfd {\n  \tmax-width:40%;\n\t}\n}\n\n#brxe-lrwkfd .green,\n#brxe-lrwkfd span{\n  color: #AFD56C;\n}",
+        "text": "Insulation for Every Season"
+      }
+    },
+    {
+      "id": "zofrtt",
+      "name": "text-basic",
+      "parent": "awxeer",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "vtuuzc"
+        ],
+        "_typography": {
+          "font-size": "18px",
+          "color": {
+            "hex": "#043968",
+            "id": "wrshvk",
+            "name": "Color #19"
+          },
+          "font-family": "Alegreya Sans",
+          "font-weight": "500",
+          "text-align": "center"
+        },
+        "_attributes": [
+          {
+            "id": "mkpwjm",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "guljcr",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_widthMax": "816",
+        "_display:mobile_portrait": "block",
+        "text": "<p>Keep your home comfortable through Canadian winters and summers. Koala Insulation offers spray foam, blown-in insulation, batt insulation, insulation removal, and solar attic fans to help improve comfort and energy efficiency.</p>"
+      }
+    },
+    {
+      "id": "efebf2",
+      "name": "code",
+      "parent": "wpqozj",
+      "children": [],
+      "settings": {
+        "code": "<img src=\"https://koalainsulation.com/wp-content/uploads/2024/06/Vector.png\" alt=\"brxe-nvjdya\"   fetchpriority=\"high\" />",
+        "_position": "absolute",
+        "_bottom": "0",
+        "_right": "25%",
+        "_zIndex": "0",
+        "_cssCustom": "#brxe-efebf2 {\n    position: absolute;\n    bottom: 0px;\n    right: -40%;\n    z-index: 0;\n}",
+        "_display:mobile_landscape": "none",
+        "_display:mobile_portrait": "none",
+        "executeCode": true
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "jmlmbd",
+      "name": "video",
+      "parent": "ekcxqq",
+      "children": [],
+      "settings": {
+        "videoType": "vimeo",
+        "youTubeId": "5DGo0AYOJ7s",
+        "youtubeControls": true,
+        "youtubeShowinfo": true,
+        "fileControls": true,
+        "fileUrl": "dropbox.com/scl/fi/ldb4gawwl108ofkynykp2/What-to-Expect-16x9-V5.mp4?rlkey=t7hb8mdmxpamchskcqcj6jcdh&dl=0",
+        "videoPoster": {
+          "id": 71902,
+          "filename": "koala-mkt-4-2.jpg",
+          "size": "large",
+          "full": "https://koalainsulation.com/wp-content/uploads/2025/11/koala-mkt-4-2.jpg",
+          "url": "https://koalainsulation.com/wp-content/uploads/2025/11/koala-mkt-4-2-950x583.jpg"
+        },
+        "overlayIcon": {
+          "library": "svg",
+          "svg": {
+            "id": 8367,
+            "filename": "Frame-1321317057-1.svg",
+            "url": "https://koalastage.wpenginepowered.com/wp-content/uploads/2024/10/Frame-1321317057-1.svg"
+          }
+        },
+        "vimeoId": "1138098612",
+        "vimeoHash": "b3ed173b57",
+        "_border": {
+          "width": {
+            "top": "12",
+            "right": "12",
+            "bottom": "12",
+            "left": "12"
+          }
+        },
+        "_overflow": "hidden"
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "acigmr",
+      "name": "container",
+      "parent": "uyhdwh",
+      "children": [
+        "tutddb",
+        "fpxkub"
+      ],
+      "settings": {
+        "_padding": {
+          "right": "2%"
+        },
+        "_direction": "row",
+        "_alignSelf": "center",
+        "_justifyContent": "space-between",
+        "_alignItems": "center",
+        "_padding:tablet_portrait": {
+          "left": "40",
+          "right": "40"
+        },
+        "_padding:mobile_portrait": {
+          "left": "0",
+          "right": "0"
+        }
+      }
+    },
+    {
+      "id": "tutddb",
+      "name": "div",
+      "parent": "acigmr",
+      "children": [
+        "oihmrt",
+        "clqyzt"
+      ],
+      "settings": {
+        "_display": "flex",
+        "_direction": "column",
+        "_rowGap": "10px"
+      }
+    },
+    {
+      "id": "oihmrt",
+      "name": "heading",
+      "parent": "tutddb",
+      "children": [],
+      "settings": {
+        "text": "Insulation Education",
+        "_typography": {
+          "font-size": "56",
+          "color": {
+            "hex": "#042e53"
+          }
+        },
+        "_typography:mobile_portrait": {
+          "font-size": "32"
+        }
+      }
+    },
+    {
+      "id": "clqyzt",
+      "name": "text",
+      "parent": "tutddb",
+      "children": [],
+      "settings": {
+        "_width": "100%",
+        "text": "<p>Learn why insulation is critical to your home’s energy efficiency and your family’s comfort.&nbsp;</p>",
+        "_typography": {
+          "color": {
+            "hex": "#5a646d"
+          },
+          "font-size": "16",
+          "line-height": "2"
+        },
+        "_margin:mobile_portrait": {
+          "top": "10"
+        },
+        "_padding:mobile_portrait": {
+          "top": "10"
+        },
+        "_cssGlobalClasses": [
+          "oeeoek"
+        ],
+        "_widthMax:tablet_portrait": "100%",
+        "_typography:tablet_portrait": {
+          "font-size": "16",
+          "line-height": "1.8"
+        }
+      }
+    },
+    {
+      "id": "fpxkub",
+      "name": "div",
+      "parent": "acigmr",
+      "children": [
+        "lfxcfm"
+      ],
+      "settings": {
+        "_border": {
+          "radius": {
+            "top": "1000",
+            "right": "1000",
+            "left": "1000",
+            "bottom": "1000"
+          },
+          "color": {
+            "hex": "#042e53"
+          },
+          "style": "solid",
+          "width": {
+            "top": "2",
+            "right": "2",
+            "bottom": "2",
+            "left": "2"
+          }
+        },
+        "_padding": {
+          "bottom": "12",
+          "top": "12",
+          "right": "32",
+          "left": "32"
+        }
+      }
+    },
+    {
+      "id": "uoaemd",
+      "name": "block",
+      "parent": "hzcchc",
+      "children": [
+        "jkwfxp"
+      ],
+      "settings": {
+        "_display": "grid",
+        "_gridTemplateColumns": "1fr 1fr 1fr",
+        "_gridGap": "24px",
+        "_gridTemplateColumns:mobile_landscape": "1fr 1fr ",
+        "_gridGap:mobile_landscape": "16px",
+        "_gridTemplateColumns:mobile_portrait": "1fr",
+        "_attributes": [
+          {
+            "id": "mqdtcj"
+          }
+        ],
+        "_margin": {
+          "top": "40px",
+          "bottom": "0"
+        },
+        "_conditions": [
+          [
+            {
+              "id": "abnakp",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_services_display_type}",
+              "compare": "!=",
+              "value": "custom"
+            }
+          ]
+        ]
+      },
+      "label": "additional-services-list"
+    },
+    {
+      "id": "jkwfxp",
+      "name": "block",
+      "parent": "uoaemd",
+      "children": [
+        "noukns"
+      ],
+      "settings": {
+        "tag": "a",
+        "link": {
+          "type": "meta",
+          "useDynamicData": "{post_url}"
+        },
+        "_gradient": {
+          "applyTo": "background",
+          "gradientType": "linear",
+          "colors": [
+            {
+              "id": "suuhbt",
+              "color": {
+                "hex": "#000000",
+                "rgb": "rgba(0, 0, 0, 0.33)",
+                "hsl": "hsla(0, 0%, 0%, 0.33)"
+              }
+            },
+            {
+              "id": "rosmqt",
+              "color": {
+                "hex": "#666666",
+                "rgb": "rgba(102, 102, 102, 0)",
+                "hsl": "hsla(0, 0%, 40%, 0)"
+              }
+            }
+          ]
+        },
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "20px",
+            "right": "20px",
+            "bottom": "20px",
+            "left": "20px"
+          }
+        },
+        "_padding": {
+          "top": "1px",
+          "right": "1px",
+          "bottom": "1px",
+          "left": "1px"
+        },
+        "query": {
+          "post_type": [
+            "service"
+          ],
+          "orderby": "post__in",
+          "order": "asc",
+          "posts_per_page": "5",
+          "exclude_current_post": true,
+          "post__in": [
+            2365,
+            283,
+            288,
+            286,
+            284
+          ]
+        },
+        "_attributes": [
+          {
+            "id": "xzxitq",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "shzsjs",
+            "name": "data-duration",
+            "value": "0.6"
+          },
+          {
+            "id": "lithmx",
+            "name": "data-delay",
+            "value": "0.2"
+          }
+        ],
+        "hasLoop": true
+      }
+    },
+    {
+      "id": "noukns",
+      "name": "block",
+      "parent": "jkwfxp",
+      "children": [
+        "qpcaxt",
+        "kqpadh",
+        "kitliq"
+      ],
+      "settings": {
+        "_background": {
+          "color": {
+            "hex": "#ffffff",
+            "id": "idapwb",
+            "name": "Color #23"
+          }
+        },
+        "_height": "100%",
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "20px",
+            "right": "20px",
+            "bottom": "20px",
+            "left": "20px"
+          }
+        },
+        "_direction": "column",
+        "_justifyContent": "flex-start",
+        "_alignItems": "flex-start",
+        "_rowGap": "16px",
+        "_padding": {
+          "top": "16px",
+          "right": "16px",
+          "bottom": "16px",
+          "left": "16px"
+        }
+      }
+    },
+    {
+      "id": "qpcaxt",
+      "name": "block",
+      "parent": "noukns",
+      "children": [
+        "jeppoa"
+      ],
+      "settings": {
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "8px",
+            "right": "8px",
+            "bottom": "8px",
+            "left": "8px"
+          }
+        },
+        "_height": "461px",
+        "_height:tablet_portrait": "384px"
+      }
+    },
+    {
+      "id": "jeppoa",
+      "name": "image",
+      "parent": "qpcaxt",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "cqkqkl"
+        ],
+        "image": {
+          "useDynamicData": "{acf_services_detail_image}",
+          "size": "large"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "kqpadh",
+      "name": "text-basic",
+      "parent": "noukns",
+      "children": [],
+      "settings": {
+        "text": "{post_title}",
+        "_cssGlobalClasses": [
+          "lefuig"
+        ]
+      }
+    },
+    {
+      "id": "kitliq",
+      "name": "text-basic",
+      "parent": "noukns",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "oeeoek",
+          "rwvzsg"
+        ],
+        "text": "{acf_short_description_}"
+      }
+    },
+    {
+      "id": "ekcxqq",
+      "name": "block",
+      "parent": "mdmtzu",
+      "children": [
+        "jmlmbd"
+      ],
+      "settings": {
+        "_border": {
+          "radius": {
+            "top": "12",
+            "right": "12",
+            "left": "12",
+            "bottom": "12"
+          }
+        },
+        "_overflow": "hidden"
+      }
+    },
+    {
+      "id": "nlehei",
+      "name": "image",
+      "parent": "sisrai",
+      "children": [],
+      "settings": {
+        "image": {
+          "id": 53000,
+          "filename": "Obie.svg",
+          "size": "full",
+          "full": "https://koalastage.wpenginepowered.com/wp-content/uploads/2025/11/Obie.svg",
+          "url": "https://koalastage.wpenginepowered.com/wp-content/uploads/2025/11/Obie.svg"
+        },
+        "_widthMax": "22%",
+        "_position": "absolute",
+        "_right": "0",
+        "_display:tablet_portrait": "none",
+        "_top": "70%"
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "whnvat",
+      "name": "image",
+      "parent": "elrbgl",
+      "children": [],
+      "settings": {
+        "image": {
+          "id": 20875,
+          "filename": "Trusted-Badge-Icon.svg",
+          "size": "full",
+          "full": "{{UPLOADS}}/2026/04/Trusted-Badge-Icon.svg",
+          "url": "{{UPLOADS}}/2026/04/Trusted-Badge-Icon.svg"
+        },
+        "_margin:mobile_portrait": {
+          "top": "4"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "ryknhq",
+      "name": "image",
+      "parent": "kximnp",
+      "children": [],
+      "settings": {
+        "image": {
+          "id": 20872,
+          "filename": "Quick-Service-Icon.png",
+          "size": "full",
+          "full": "{{UPLOADS}}/2026/04/Quick-Service-Icon.png",
+          "url": "{{UPLOADS}}/2026/04/Quick-Service-Icon.png"
+        },
+        "_margin:mobile_portrait": {
+          "top": "4"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "rctubj",
+      "name": "image",
+      "parent": "yqxxrc",
+      "children": [],
+      "settings": {
+        "image": {
+          "id": 20873,
+          "filename": "Expertise-Icon.png",
+          "size": "full",
+          "full": "{{UPLOADS}}/2026/04/Expertise-Icon.png",
+          "url": "{{UPLOADS}}/2026/04/Expertise-Icon.png"
+        },
+        "_margin:mobile_portrait": {
+          "top": "4"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "zsqhek",
+      "name": "image",
+      "parent": "wiousl",
+      "children": [],
+      "settings": {
+        "image": {
+          "id": 20874,
+          "filename": "Customer-Service-Icon.svg",
+          "size": "full",
+          "full": "{{UPLOADS}}/2026/04/Customer-Service-Icon.svg",
+          "url": "{{UPLOADS}}/2026/04/Customer-Service-Icon.svg"
+        },
+        "_margin:mobile_portrait": {
+          "top": "4"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "dcbuvn",
+      "name": "image",
+      "parent": "opwbtm",
+      "children": [],
+      "settings": {
+        "image": {
+          "id": 20871,
+          "filename": "Nationwide-Icon.png",
+          "size": "full",
+          "full": "{{UPLOADS}}/2026/04/Nationwide-Icon.png",
+          "url": "{{UPLOADS}}/2026/04/Nationwide-Icon.png"
+        },
+        "_margin:mobile_portrait": {
+          "top": "4"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "kxcmpd",
+      "name": "heading",
+      "parent": "aewmjg",
+      "children": [],
+      "settings": {
+        "_conditions": [
+          [
+            {
+              "id": "uowtlc",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_service_hero_titile}",
+              "compare": "=="
+            }
+          ]
+        ],
+        "_cssGlobalClasses": [
+          "edebzb"
+        ],
+        "_typography": {
+          "color": {
+            "hex": "#043968",
+            "id": "wrshvk",
+            "name": "Color #19"
+          },
+          "font-weight": "700",
+          "font-size": "36",
+          "line-height": "1"
+        },
+        "tag": "h1",
+        "_typography:tablet_portrait": {
+          "font-size": "36"
+        },
+        "_typography:mobile_landscape": {
+          "font-size": "32"
+        },
+        "text": "{acf_hero_subheading}",
+        "_typography:mobile_portrait": {
+          "font-size": "28"
+        }
+      }
+    },
+    {
+      "id": "ef5470",
+      "name": "code",
+      "parent": "ndqfks",
+      "children": [],
+      "settings": {
+        "code": "<?php\n$accordion_data = get_field('why_accordion');\n$generic_copy = [\n ['Insulation Expertise You Can Rely On', 'Our insulation professionals assess your home and recommend practical solutions for comfort and energy efficiency.'],\n ['Exceptional Customer Service', 'We explain your options, answer your questions, and keep you informed throughout your insulation project.'],\n ['Solutions for Your Home', 'Our team uses proven installation methods and insulation materials suited to your home and its needs.'],\n ['Quick and Efficient Service', 'We respect your time and treat your home with care throughout the installation.'],\n ['Solutions for Canadian Homes', 'From winter drafts to summer heat, we help homeowners choose insulation solutions for year-round comfort.'],\n];\n$existing_rows = is_array($accordion_data) ? array_values($accordion_data) : [];\n$accordion_data = [];\nforeach ($generic_copy as $index => $copy) {\n $accordion_data[] = ['icon' => $existing_rows[$index]['icon'] ?? false, 'heading' => $copy[0], 'description' => $copy[1]];\n}\n\nif ( $accordion_data ) : ?>\n    <div id=\"brxe-ndvlbr\" class=\"brxe-block tab-menu-list\" data-animi=\"up\" data-duration=\"0.6\" data-delay=\"0.2\">\n        \n        <?php foreach ( $accordion_data as $index => $row ) : \n            $icon    = $row['icon']; // Assumes Image Array\n            $heading = $row['heading'];\n            $desc    = $row['description'];\n\n            // Bricks logic for the first item to be open by default\n            $is_first      = ($index === 0) ? ' brx-open' : '';\n            $active_head   = ($index === 0) ? ' active' : '';\n            $display_style = ($index === 0) ? 'style=\"display: block;\"' : '';\n        ?>\n        \n            <div class=\"brxe-div steps-tab-title tab-title<?php echo $is_first; ?>\">\n                \n                <div class=\"brxe-block step-tab-head<?php echo $active_head; ?>\">\n                    <?php if ( $icon ) : ?>\n                        <img src=\"<?php echo esc_url($icon['url']); ?>\" \n                             class=\"brxe-image css-filter size-full\" \n                             alt=\"<?php echo esc_attr($icon['alt']); ?>\">\n                    <?php endif; ?>\n                    \n                    <div class=\"brxe-text-basic accordian-title\">\n                        <?php echo esc_html($heading); ?>\n                    </div>\n                </div>\n\n                <div class=\"brxe-block step-tab-content\" <?php echo $display_style; ?>>\n                    <div class=\"brxe-block\">\n                        <div class=\"brxe-text accordian-text\">\n                            <p><?php echo wp_kses_post($desc); ?></p>\n                        </div>\n                    </div>\n                </div>\n\n            </div>\n            \n        <?php endforeach; ?>\n        \n    </div>\n<?php endif; ?>",
+        "_conditions": [
+          [
+            {
+              "id": "pechfs",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_override_default_values}",
+              "value": "1"
+            }
+          ]
+        ],
+        "executeCode": true,
+        "_cssCustom": "#brxe-ef5470 .step-tab-head.brxe-block {\n  justify-content:flex-start;\n}\n\n@media ( max-width:478px ) {\n   #brxe-ef5470 .steps-tab-title .accordian-title.brxe-text-basic {\n   \tfont-size:20px !important;\n   }\n}"
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "nxjgle",
+      "name": "div",
+      "parent": "hzcchc",
+      "children": [
+        "oijced"
+      ],
+      "settings": {
+        "_margin": {
+          "bottom": "24px"
+        },
+        "_height:mobile_landscape": "48px",
+        "_margin:mobile_portrait": {
+          "bottom": "8px"
+        },
+        "_height": "48px",
+        "_conditions": [
+          [
+            {
+              "id": "rabqwk",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_services_heading}",
+              "compare": "!="
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": "oijced",
+      "name": "image",
+      "parent": "nxjgle",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "kajpgo"
+        ],
+        "image": {
+          "id": 1901,
+          "filename": "Vector.png",
+          "size": "full",
+          "full": "{{UPLOADS}}/2024/09/Vector.png",
+          "url": "{{UPLOADS}}/2024/09/Vector.png"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "bopmuv",
+      "name": "text-basic",
+      "parent": "gxvefv",
+      "children": [],
+      "settings": {
+        "text": "{acf_hero_button_text}",
+        "_margin": {
+          "top": "0"
+        },
+        "_conditions": [
+          [
+            {
+              "id": "zqlqwn",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_hero_button_text}",
+              "compare": "!="
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": "oiuopm",
+      "name": "text-basic",
+      "parent": "gfpsxg",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "vtuuzc"
+        ],
+        "_attributes": [
+          {
+            "id": "mkpwjm",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "guljcr",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "_typography": {
+          "color": {
+            "hex": "#043968",
+            "id": "wrshvk",
+            "name": "Color #19"
+          },
+          "font-family": "Alegreya Sans",
+          "font-weight": "500",
+          "font-size": "24px"
+        },
+        "text": "<p>See what customers have to say about their experience with Koala Insulation.</p>"
+      }
+    },
+    {
+      "id": "skwxry",
+      "name": "text-basic",
+      "parent": "rdjakk",
+      "children": [],
+      "settings": {
+        "_interactions": [
+          {
+            "id": "jruywh",
+            "trigger": "click",
+            "action": "show",
+            "target": "popup",
+            "templateId": "4865"
+          }
+        ],
+        "text": "Get a FREE Quote",
+        "_conditions": [
+          [
+            {
+              "id": "qqlqpk",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_why_button_text}",
+              "compare": "=="
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": "jazouc",
+      "name": "text-basic",
+      "parent": "zdudaj",
+      "children": [],
+      "settings": {
+        "_interactions": [
+          {
+            "id": "jruywh",
+            "trigger": "click",
+            "action": "show",
+            "target": "popup",
+            "templateId": "4865"
+          }
+        ],
+        "text": "{acf_cities_button_text}",
+        "_conditions": [
+          [
+            {
+              "id": "ggpnau",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_cities_button_text}",
+              "compare": "!="
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": "opmrvp",
+      "name": "text-basic",
+      "parent": "lingns",
+      "children": [],
+      "settings": {
+        "text": "{acf_cta_button_text}",
+        "_cssClasses": "show-sidebar-form",
+        "_conditions": [
+          [
+            {
+              "id": "lspyvm",
+              "key": "dynamic_data",
+              "dynamic_data": "[acf_cta_button_text}",
+              "compare": "!="
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "id": "tvqrht",
+      "name": "heading",
+      "parent": "dmodmr",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "mnzbth",
+          "ewqrfr",
+          "luswmg"
+        ],
+        "_attributes": [
+          {
+            "id": "ygtmtu",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "rtuixh",
+            "name": "data-delay",
+            "value": "0.2"
+          },
+          {
+            "id": "wjnpgk",
+            "name": "data-duration",
+            "value": "0.6"
+          }
+        ],
+        "tag": "h2",
+        "_typography": {
+          "color": {
+            "hex": "#ffffff",
+            "id": "idapwb",
+            "name": "Color #23"
+          }
+        },
+        "text": "Make Your Home More Comfortable"
+      }
+    },
+    {
+      "id": "fffzpq",
+      "name": "block",
+      "parent": "hzcchc",
+      "children": [
+        "tgphsa"
+      ],
+      "settings": {
+        "_display": "grid",
+        "_gridGap": "24px",
+        "_gridTemplateColumns:mobile_landscape": "1fr 1fr ",
+        "_gridGap:mobile_landscape": "16px",
+        "_gridTemplateColumns:mobile_portrait": "1fr",
+        "_margin": {
+          "top": "40px",
+          "bottom": "0"
+        },
+        "_conditions": [
+          [
+            {
+              "id": "sezwud",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_services_display_type}",
+              "value": "custom"
+            }
+          ]
+        ],
+        "_gridTemplateColumns": "1fr 1fr",
+        "_attributes": [
+          {
+            "id": "lylibj",
+            "name": "style",
+            "value": "grid-template-columns: repeat({acf_service_columns_amount}, 1fr);"
+          }
+        ],
+        "_cssCustom": "@media (max-width: 1023px) {\n  #brxe-fffzpq {\n    grid-template-columns: 1fr 1fr !important;\n  }\n}\n@media (max-width: 767px) {\n  #brxe-fffzpq {\n    grid-template-columns: 1fr !important;\n  }\n}"
+      },
+      "label": "additional-services-list"
+    },
+    {
+      "id": "tgphsa",
+      "name": "block",
+      "parent": "fffzpq",
+      "children": [
+        "fewyor"
+      ],
+      "settings": {
+        "_gradient": {
+          "applyTo": "background",
+          "gradientType": "linear",
+          "colors": [
+            {
+              "id": "suuhbt",
+              "color": {
+                "hex": "#000000",
+                "rgb": "rgba(0, 0, 0, 0.33)",
+                "hsl": "hsla(0, 0%, 0%, 0.33)"
+              }
+            },
+            {
+              "id": "rosmqt",
+              "color": {
+                "hex": "#666666",
+                "rgb": "rgba(102, 102, 102, 0)",
+                "hsl": "hsla(0, 0%, 40%, 0)"
+              }
+            }
+          ]
+        },
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "20px",
+            "right": "20px",
+            "bottom": "20px",
+            "left": "20px"
+          }
+        },
+        "_padding": {
+          "top": "1px",
+          "right": "1px",
+          "bottom": "1px",
+          "left": "1px"
+        },
+        "_attributes": [
+          {
+            "id": "xzxitq",
+            "name": "data-animi",
+            "value": "up"
+          },
+          {
+            "id": "shzsjs",
+            "name": "data-duration",
+            "value": "0.6"
+          },
+          {
+            "id": "lithmx",
+            "name": "data-delay",
+            "value": "0.2"
+          }
+        ],
+        "query": {
+          "objectType": "acf_services_content"
+        },
+        "hasLoop": true
+      }
+    },
+    {
+      "id": "fewyor",
+      "name": "block",
+      "parent": "tgphsa",
+      "children": [
+        "ezrqwc",
+        "gycfpn",
+        "otkaef"
+      ],
+      "settings": {
+        "_background": {
+          "color": {
+            "hex": "#ffffff",
+            "id": "idapwb",
+            "name": "Color #23"
+          }
+        },
+        "_height": "100%",
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "20px",
+            "right": "20px",
+            "bottom": "20px",
+            "left": "20px"
+          }
+        },
+        "_direction": "column",
+        "_justifyContent": "flex-start",
+        "_alignItems": "flex-start",
+        "_rowGap": "16px",
+        "_padding": {
+          "top": "16px",
+          "right": "16px",
+          "bottom": "16px",
+          "left": "16px"
+        }
+      }
+    },
+    {
+      "id": "ezrqwc",
+      "name": "block",
+      "parent": "fewyor",
+      "children": [
+        "yrjqrc"
+      ],
+      "settings": {
+        "_overflow": "hidden",
+        "_border": {
+          "radius": {
+            "top": "8px",
+            "right": "8px",
+            "bottom": "8px",
+            "left": "8px"
+          }
+        },
+        "_height": "320px",
+        "_height:tablet_portrait": "384px"
+      }
+    },
+    {
+      "id": "gycfpn",
+      "name": "text-basic",
+      "parent": "fewyor",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "lefuig"
+        ],
+        "text": "Choose the Right Insulation for Your Home"
+      }
+    },
+    {
+      "id": "otkaef",
+      "name": "text-basic",
+      "parent": "fewyor",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "oeeoek",
+          "rwvzsg"
+        ],
+        "text": "<p>Every home is different. Our team can assess your existing insulation and help you compare options for your attic, walls, and other spaces.</p>"
+      }
+    },
+    {
+      "id": "yrjqrc",
+      "name": "image",
+      "parent": "ezrqwc",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "cqkqkl"
+        ],
+        "image": {
+          "useDynamicData": "{acf_services_content_image}",
+          "size": "large"
+        }
+      },
+      "themeStyles": []
+    },
+    {
+      "id": "ddpnil",
+      "name": "text-basic",
+      "parent": "yifssu",
+      "children": [],
+      "settings": {
+        "_cssGlobalClasses": [
+          "oeeoek"
+        ],
+        "_attributes": [
+          {
+            "id": "wjasgi",
+            "name": "text-split"
+          },
+          {
+            "id": "nsitxi",
+            "name": "lines-slide-up"
+          }
+        ],
+        "_widthMax:tablet_portrait": "500",
+        "_widthMax:mobile_landscape": "450",
+        "text": "{acf_cta_footer_disclaimer_text}",
+        "_widthMax": "720px",
+        "_width": "100%",
+        "_padding": {
+          "top": "40px"
+        },
+        "_typography": {
+          "font-size": "12px"
+        }
+      }
+    },
+    {
+      "id": "wikxop",
+      "name": "heading",
+      "parent": "aewmjg",
+      "children": [],
+      "settings": {
+        "_typography": {
+          "color": {
+            "hex": "#043968",
+            "id": "wrshvk",
+            "name": "Color #19"
+          },
+          "font-size": "80",
+          "font-weight": "700",
+          "line-height": "1"
+        },
+        "tag": "h1",
+        "_cssGlobalClasses": [
+          "edebzb"
+        ],
+        "_typography:tablet_portrait": {
+          "font-size": "58"
+        },
+        "_typography:mobile_landscape": {
+          "font-size": "48"
+        },
+        "_conditions": [
+          [
+            {
+              "id": "uowtlc",
+              "key": "dynamic_data",
+              "dynamic_data": "acf_service_hero_titile",
+              "compare": "!="
+            }
+          ]
+        ],
+        "text": "{acf_hero_heading}"
+      }
+    },
+    {
+      "id": "juzirv",
+      "name": "div",
+      "parent": "gzphsr",
+      "children": [
+        "sojlvf"
+      ],
+      "settings": {
+        "_conditions": [
+          [
+            {
+              "id": "oyhrgm",
+              "key": "dynamic_data",
+              "dynamic_data": "{acf_use_custom_reviews}",
+              "compare": "==",
+              "value": "1"
+            }
+          ]
+        ],
+        "_alignSelf": "center",
+        "_display": "flex",
+        "_direction": "row",
+        "_direction:mobile_portrait": "column"
+      }
+    },
+    {
+      "id": "sojlvf",
+      "name": "div",
+      "parent": "juzirv",
+      "children": [
+        "slcxsq",
+        "hldtjx",
+        "kzmfcx",
+        "jnzgax"
+      ],
+      "settings": {
+        "hasLoop": true,
+        "query": {
+          "objectType": "acf_custom_reviews"
+        },
+        "_padding": {
+          "top": "30",
+          "right": "20",
+          "bottom": "30",
+          "left": "20"
+        },
+        "_margin": {
+          "left": "5",
+          "right": "5",
+          "bottom": "10"
+        },
+        "_cssCustom": "#brxe-sojlvf {\n      border: 1px none #ddd;\n    border-radius: 6px;\n    background-color: #fff;\n    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.2);\n}",
+        "_width": "100%",
+        "_widthMax": "412px"
+      }
+    },
+    {
+      "id": "kzmfcx",
+      "name": "text-basic",
+      "parent": "sojlvf",
+      "children": [],
+      "settings": {
+        "text": "{acf_custom_reviews_name}",
+        "_typography": {
+          "font-size": "16px",
+          "line-height": "1",
+          "font-weight": "700",
+          "color": {
+            "hex": "#042e53"
+          }
+        }
+      }
+    },
+    {
+      "id": "jnzgax",
+      "name": "text-basic",
+      "parent": "sojlvf",
+      "children": [],
+      "settings": {
+        "_typography": {
+          "font-size": "16px",
+          "color": {
+            "hex": "#32363d"
+          },
+          "line-height": "1.2"
+        },
+        "text": "{acf_custom_reviews_title}"
+      }
+    },
+    {
+      "id": "hldtjx",
+      "name": "text-basic",
+      "parent": "sojlvf",
+      "children": [],
+      "settings": {
+        "text": "{acf_custom_reviews_quote}",
+        "_typography": {
+          "font-size": "18",
+          "line-height": "24px",
+          "color": {
+            "hex": "#32363d"
+          }
+        },
+        "_padding": {
+          "bottom": "24"
+        }
+      }
+    },
+    {
+      "id": "slcxsq",
+      "name": "svg",
+      "parent": "sojlvf",
+      "children": [],
+      "settings": {
+        "height": "20",
+        "file": {
+          "id": 21674,
+          "filename": "quote-2-1.svg",
+          "url": "{{UPLOADS}}/2026/07/quote-2-1.svg"
+        }
+      },
+      "themeStyles": []
+    }
+  ],
+  "page_settings": {
+    "customCss": ".text-size-regular.brxe-text-basic p {\n    font-size: 18px;\n    line-height: 2; /* 200% */\n}\nh1 p,\nh2 p,\nh3 p,\nh4 p,\nh5 p {\n    display: inline;\n    margin-bottom: 0;\n}\n#acc_rich-text p {\n  font-family: \"Plus Jakarta Sans\";\n  font-size: 18px;\n  font-weight: 400;\n  line-height: 27px;\n}\n#acc_rich-text h1 {\nfont-family: \"Alegreya Sans\";\nfont-size: 56px;\nfont-weight: 500;\nline-height: 56px;\nletter-spacing: -0.03em;\nmargin-bottom: 20px;\n}\n\n#acc_rich-text h2 {\nfont-family: \"Alegreya Sans\";\nfont-size: 48px;\nfont-weight: 500;\nline-height: 48px;\nletter-spacing: -0.03em;\nmargin-bottom: 20px;\n}\n\n#acc_rich-text h3 {\nfont-family: \"Alegreya Sans\";\nfont-size: 40px;\nfont-weight: 500;\nline-height: 40px;\nletter-spacing: -0.03em;\nmargin-bottom: 20px;\n}\n\n#acc_rich-text h4 {\nfont-family: \"Alegreya Sans\";\nfont-size: 32px;\nfont-weight: 500;\nline-height: 32px;\nletter-spacing: -0.03em;\nmargin-bottom: 20px;\n}\n\n#acc_rich-text h5 {\nfont-family: \"Alegreya Sans\";\nfont-size: 30px;\nfont-weight: 500;\nline-height: 30px;\nletter-spacing: -0.03em;\nmargin-bottom: 20px;\n}\n\n#acc_rich-text h6 {\nfont-family: \"Alegreya Sans\";\nfont-size: 24px;\nfont-weight: 500;\nline-height: 24px;\nletter-spacing: -0.03em;\nmargin-bottom: 20px;\n}\n\n/* Responsive Styles for Mobile Devices */\n@media (max-width: 768px) {\n  #acc_rich-text h1 {\n  font-size: 36px;\n  line-height: 40px;\n}\n\n#acc_rich-text h2 {\n  font-size: 32px;\n  line-height: 36px;\n}\n\n#acc_rich-text h3 {\n  font-size: 28px;\n  line-height: 32px;\n}\n\n#acc_rich-text h4 {\n  font-size: 24px;\n  line-height: 28px;\n}\n\n#acc_rich-text h5 {\n  font-size: 20px;\n  line-height: 24px;\n}\n\n#acc_rich-text h6 {\n  font-size: 18px;\n  line-height: 22px;\n}\n}\n\n#brxe-alwinq .bricks-video-preview-image {\n  background-image: url(\"https://koalainsulation.com/wp-content/uploads/2025/02/Frame-11.jpg\") !important;\n}\n\n",
+    "customScriptsHeader": "",
+    "customScriptsBody": "",
+    "customScriptsFooter": ""
+  },
+  "page_meta": {
+    "cta_heading": "Get a Quote",
+    "_cta_heading": "field_69e77442399b2",
+    "why_eyebrow": "Why Choose",
+    "_why_eyebrow": "field_69e77363399a9",
+    "why_heading": "Koala <span>Insulation?</span>",
+    "_why_heading": "field_69e7737f399aa",
+    "override_default_values": "1",
+    "_override_default_values": "field_69e7804d034be",
+    "hero_description": "Feel the difference in every room with insulation that wraps your space in comfort and cuts down on energy costs. Experience a comfortable and efficient home with Koala Insulation's quality insulation services and more.",
+    "_hero_description": "field_69e77330399a7",
+    "services_display_type": "inherit",
+    "_services_display_type": "field_69e774a8399b7",
+    "hero_subheading": "North America's Trusted Insulation Contractors",
+    "_hero_subheading": "field_69e77323399a6",
+    "hero_heading": "Koala Insulation",
+    "_hero_heading": "field_69e77314399a5",
+    "why_accordion": "5",
+    "_why_accordion": "field_69e77395399ab",
+    "hero_form_heading": "Talk to Our Insulation Experts Today.",
+    "_hero_form_heading": "field_69e77347399a8",
+    "cities_display_type": "set",
+    "_cities_display_type": "field_69e774d3399b8",
+    "why_accordion_0_icon": "20875",
+    "_why_accordion_0_icon": "field_69e773ad399ad",
+    "why_accordion_0_heading": "#1 Insulation Company Nationwide",
+    "_why_accordion_0_heading": "field_69e773a8399ac",
+    "why_accordion_0_description": "As the #1 Insulation company nationwide, we pride ourselves on our exceptional reputation for quality work, our reliable team of licensed insulation experts, and lifetime-lasting customer service. We have a proven track record for delivering reliable and cost efficient insulation solutions that makes us a trusted choice for homeowners and businesses across the nation.",
+    "_why_accordion_0_description": "field_69e773b5399ae",
+    "why_accordion_1_icon": "20874",
+    "_why_accordion_1_icon": "field_69e773ad399ad",
+    "why_accordion_1_heading": "Exceptional Customer Service",
+    "_why_accordion_1_heading": "field_69e773a8399ac",
+    "why_accordion_1_description": "We prioritize our customers with a focus on providing excellent support and personalized service for every project. With over 13,000 positive reviews, we are dedicated to ensuring a customer-friendly, stress-free and cost efficient experience for every customer.",
+    "_why_accordion_1_description": "field_69e773b5399ae",
+    "why_accordion_2_icon": "20873",
+    "_why_accordion_2_icon": "field_69e773ad399ad",
+    "why_accordion_2_heading": "Top Industry Expertise",
+    "_why_accordion_2_heading": "field_69e773a8399ac",
+    "why_accordion_2_description": "With over 67,000 insulation jobs completed nationwide, we bring a wealth of experience and skill. Our team uses the latest techniques to ensure effective and reliable custom solutions to fit your needs.",
+    "_why_accordion_2_description": "field_69e773b5399ae",
+    "why_accordion_3_icon": "20872",
+    "_why_accordion_3_icon": "field_69e773ad399ad",
+    "why_accordion_3_heading": "Quick and Efficient Service",
+    "_why_accordion_3_heading": "field_69e773a8399ac",
+    "why_accordion_3_description": "We value your time and comfort, offering efficient services while treating your home with care. We promise to leave your space in better condition than we found it.",
+    "_why_accordion_3_description": "field_69e773b5399ae",
+    "why_accordion_4_icon": "20871",
+    "_why_accordion_4_icon": "field_69e773ad399ad",
+    "why_accordion_4_heading": "Nationwide Coverage",
+    "_why_accordion_4_heading": "field_69e773a8399ac",
+    "why_accordion_4_description": "As a locally-owned business, we’re dedicated to serving our community with top-quality services and a friendly, personal touch.",
+    "_why_accordion_4_description": "field_69e773b5399ae"
+  },
+  "media": {
+    "1901": "2024/09/Vector.png",
+    "4416": "2024/09/Frame-427319557-copy.png",
+    "207": "2024/06/arrow_forward-1.svg",
+    "208": "2024/06/arrow_forward2.svg",
+    "245": "2024/06/Vector-1.png",
+    "247": "2024/06/Vector-1-1.png",
+    "2193": "2024/09/23.png",
+    "2196": "2024/09/24.png",
+    "2713": "2024/09/spray-bottle_6453040-2-1.png",
+    "2330": "2024/06/4.jpg",
+    "1577": "2024/08/Frame-23.jpg",
+    "1696": "2024/08/Frame-22.jpg",
+    "1516": "2024/08/Frame-427319542.jpg",
+    "2714": "2024/09/spray-bottle_6453040-2-2.png",
+    "8367": "2024/10/Frame-1321317057-1.svg",
+    "20875": "2026/04/Trusted-Badge-Icon.svg",
+    "20872": "2026/04/Quick-Service-Icon.png",
+    "20873": "2026/04/Expertise-Icon.png",
+    "20874": "2026/04/Customer-Service-Icon.svg",
+    "20871": "2026/04/Nationwide-Icon.png",
+    "21674": "2026/07/quote-2-1.svg"
+  },
+  "global_classes": {
+    "zgpnmr": "section",
+    "abocft": "heading-style-display",
+    "edebzb": "heading-style-h1",
+    "mnzbth": "heading-style-h2",
+    "ucgzqi": "heading-style-h3",
+    "lefuig": "heading-style-h4",
+    "woueko": "text-size-small",
+    "oeeoek": "text-size-regular",
+    "vyaztg": "text-size-large",
+    "lkhmxi": "padding-global",
+    "qpnrph": "section-component",
+    "cqkqkl": "image-cover",
+    "eqrice": "text-weight-semibold",
+    "arzmym": "font-weight-medium",
+    "onjxff": "is-blue",
+    "smhvvz": "slider-main_component",
+    "mvnuhu": "swiper",
+    "rqawtd": "is-slider-main-swiper",
+    "bhngmx": "swiper-wrapper",
+    "rxjtvk": "is-slider-main-wrapper",
+    "xtinxf": "swiper-slide",
+    "bnaavv": "is-slider-main-slide",
+    "udozhg": "testimonial-person-name-circle",
+    "uyylzz": "testimonial-person-name-initials",
+    "aoziin": "testimonials-person-name",
+    "qinkxe": "testimonials-date",
+    "bcklkz": "swiper-prev",
+    "xorhdh": "swiper-next",
+    "ewqrfr": "font-weight-bold",
+    "luswmg": "text-allcaps",
+    "hohdjv": "font-weight-semibold",
+    "kajpgo": "image-contain",
+    "bgqqqy": "text-color-green",
+    "oegoub": "container-medium",
+    "fdelvb": "accordian-title",
+    "kulihi": "accordian-text",
+    "bomntd": "is-absolute",
+    "kzqscf": "is-all-caps",
+    "rwvzsg": "text-color-mute",
+    "gjokyx": "tab-title",
+    "ggrvfo": "tab-heading",
+    "shhcdb": "padding-section-small",
+    "grdimx": "location-quote-btn",
+    "ccjepc": "loc-areas",
+    "bmkscc": "loc-area-name",
+    "wtdqdz": "loc-area-lat",
+    "earsni": "loc-area-long",
+    "hlyxwt": "steps-tab-wrapper",
+    "wrsokx": "steps-tab-pane",
+    "ofusfy": "steps-tab-menu",
+    "xbvgth": "steps-tab-title",
+    "qolhrx": "step-tab-head",
+    "boddwv": "step-tab-content",
+    "wlxefx": "tab-menu-list",
+    "pctsxs": "btn",
+    "vdxwts": "is-no-icon",
+    "qlfedb": "hide",
+    "vtuuzc": "testimonials-subtext",
+    "rqgxbg": "cta-wrapper",
+    "nniefm": "btn-round",
+    "mbkiof": "btn-round-navy",
+    "pqiifj": "review-wrapper",
+    "ulqbks": "btn-round-hover-invert"
+  },
+  "services": [
+    "spray-foam-insulation",
+    "blown-in-attic-insulation",
+    "insulation-removal-services",
+    "batt-insulation-installation",
+    "solar-attic-fans"
+  ]
+}

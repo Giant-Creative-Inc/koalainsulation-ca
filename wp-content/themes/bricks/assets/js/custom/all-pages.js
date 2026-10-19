@@ -380,7 +380,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const segments = pathname.split("/").filter(Boolean);
 
   // Check if the URL contains a location slug
-  if (segments.length > 1) {
+  if (segments.length > 1 && !window.koalaEfficiencyLanding) {
     const locationSlug = segments[1]; // Assume the first segment is the location slug
 
     if (locationSlug == 'why-koala' ||
