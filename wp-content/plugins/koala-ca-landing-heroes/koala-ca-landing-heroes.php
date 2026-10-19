@@ -41,7 +41,7 @@ function in_template() {
 function review_panel($campaign = false) {
     if (!in_template()) { return ''; }
     $class = $campaign ? 'ca-landing-hero__proof' : 'review-link-block';
-    return '<a class="' . esc_attr($class) . '" href="#brxe-uoaemd"><p>Insulation for <span>Year-Round Comfort</span></p></a>';
+    return '<a class="' . esc_attr($class) . '" href="#ca-landing-reviews"><p>Top Insulation Contractor in <span>Canada</span></p><img class="ca-landing-hero__stars" src="' . esc_url(plugins_url('assets/stars.png', __FILE__)) . '" width="250" height="40" alt="" aria-hidden="true"></a>';
 }
 function reviews_widget() {
     if (!in_template()) { return ''; }
