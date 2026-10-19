@@ -146,4 +146,3 @@ add_action('wp_head', function () {
     if (!request_uses_template() || !selected_key()) { return; }
     echo '<link rel="preload" as="image" fetchpriority="high" href="' . esc_url(plugins_url('assets/' . selected_key() . '.webp', __FILE__)) . '">';
 }, 2);
-
