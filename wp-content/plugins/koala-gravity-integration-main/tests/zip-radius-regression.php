@@ -357,6 +357,37 @@ kgi_test_assert_same(
 kgi_test_assert_same( array( 20181, 20180 ), array_column( $result['locations'], 'location_id' ), 'Canadian locations must be sorted closest-first.' );
 kgi_test_assert_same( 19.4, $result['locations'][0]['distance'] ?? null, 'Canadian distances must come from the parallel distances array.' );
 
+// Recorded Toronto regression: Waterloo's provider coordinates were in Toronto.
+kgi_test_assert_same( 1643, count( kgi_ca_fsa_bounds() ), 'The independent dataset must contain all 2021 census FSAs.' );
+foreach ( array( array( 'N2V0G6', 0.553 ), array( 'L9L0B2', 7.964 ), array( 'L7J0B6', 9.034 ) ) as $bad_pair ) {
+	kgi_test_assert_same( false, kgi_ca_radius_distance_is_plausible( 'M5V3A8', $bad_pair[0], $bad_pair[1] ), 'Recorded impossible Toronto distances must be rejected.' );
+}
+kgi_test_assert_same( true, kgi_ca_radius_distance_is_plausible( 'M5V3A8', 'L7L4X9', 25.0 ), 'Plausible owned-code distances remain provider distances.' );
+kgi_test_assert_same( true, kgi_ca_radius_distance_is_plausible( 'M5V3A8', 'M5V0N3', 0.008 ), 'Same-area short distances must not be rejected.' );
+kgi_test_assert_same( false, kgi_ca_radius_distance_is_plausible( 'M5V3A8', 'Z9Z9Z9', 1.0 ), 'Unknown areas must not establish a safe nearest match.' );
+kgi_test_assert_same( false, kgi_ca_radius_distance_is_plausible( 'M5V3A8', 'M5V0N3', -1.0 ), 'Negative distances must be rejected.' );
+
+kgi_test_reset( 'ca' );
+$GLOBALS['kgi_test_transients'][ KGI_LOCATION_ZIP_INDEX_TRANSIENT ]['N2V0G6'] = array( 20180 );
+kgi_test_queue_response( 200, array( 'postal_codes' => array( 'N2V 0G6', 'L7L 4X9' ), 'distances' => array( 0.553, 25.0 ) ) );
+$result = kgi_lookup_nearby_locations( 'M5V 3A8', 'search' );
+kgi_test_assert_same( array( 20181 ), array_column( $result['locations'], 'location_id' ), 'An impossible nearest candidate must not displace a plausible owned-code candidate.' );
+kgi_test_assert_same( 25.0, $result['locations'][0]['distance'], 'The guard must never invent corrected distances.' );
+kgi_lookup_nearby_locations( 'M5V3A8', 'search' );
+kgi_test_assert_same( 1, count( $GLOBALS['kgi_test_requests'] ), 'Geography validation must also apply to cached data without extra requests.' );
+
+kgi_test_reset( 'ca' );
+$GLOBALS['kgi_test_transients'][ KGI_LOCATION_ZIP_INDEX_TRANSIENT ]['N2V0G6'] = array( 20180 );
+kgi_test_queue_response( 200, array( 'postal_codes' => array( 'N2V 0G6' ), 'distances' => array( 0.553 ) ) );
+$result = kgi_lookup_nearby_locations( 'M5V3A8', 'search' );
+kgi_test_assert_same( 'lookup_failed', $result['status'], 'All-invalid provider candidates must fail safely, not claim there is no service.' );
+kgi_test_assert_same( 'invalid_geography', $result['error_type'], 'Invalid geography must have an actionable error type.' );
+$routed = kgi_resolve_location_for_entry_zip( array( 'form_id' => 13, '6' => 'M5V3A8' ), get_post( 20180 ), 0 );
+kgi_test_assert_same( null, $routed, 'Neither page preference nor nearest fallback may select an impossible candidate.' );
+kgi_test_assert_same( array(), $GLOBALS['kgi_test_meta'], 'Entry ID zero must never create entry metadata during QA.' );
+$result = kgi_lookup_nearby_locations( 'N2V0G6', 'search' );
+kgi_test_assert_same( 'match', $result['status'], 'Exact postal ownership must remain authoritative despite provider-coordinate errors.' );
+
 /*
  * ---------------------------------------------------------------------------
  * 3. No match, not found, invalid input.
@@ -528,7 +559,7 @@ foreach ( array( 'us', 'ca' ) as $country ) {
 		$near_id = 'ca' === $country ? 20181 : 48215;
 		$code = 'ca' === $country ? 'l4z 1t9' : '89052';
 		$body = 'ca' === $country
-			? array( 'postal_codes' => array( 'L7L 4X9', 'M1V 3S2' ), 'distances' => array( 3.0, $distance ) )
+			? array( 'postal_codes' => array( 'L7L 4X9', 'M1V 3S2' ), 'distances' => array( 19.4, $distance ) )
 			: array( 'zip_codes' => array( array( 'zip_code' => '89012', 'distance' => 3.0 ), array( 'zip_code' => '89074', 'distance' => $distance ) ) );
 		kgi_test_queue_response( 200, $body );
 		$routed = kgi_resolve_location_for_entry_zip( array( 'form_id' => 13, '6' => $code ), get_post( $page_id ), 5800 );
@@ -588,7 +619,7 @@ kgi_test_reset( 'ca' );
 $GLOBALS['kgi_test_entry_code'] = 'l4z 1t9';
 gform_update_meta( 5950, 'kgi_location_source', 'unresolved' );
 $GLOBALS['kgi_test_options']['kgi_n8n_webhook_url'] = 'https://example.test/webhook';
-kgi_test_queue_response( 200, array( 'postal_codes' => array( 'L7L 4X9' ), 'distances' => array( 5.0 ) ) );
+kgi_test_queue_response( 200, array( 'postal_codes' => array( 'L7L 4X9' ), 'distances' => array( 19.4 ) ) );
 kgi_process_quote_entry_job( 5950 );
 kgi_test_assert_same( 'succeeded', gform_get_meta( 5950, 'kgi_submission_status' ), 'Canadian no-page background job must succeed.' );
 kgi_test_assert_same( 20181, $GLOBALS['kgi_test_payload']['routed_id'] ?? null, 'Canadian no-page job must deliver to nearest postal owner.' );

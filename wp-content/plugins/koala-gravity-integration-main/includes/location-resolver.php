@@ -9,6 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once __DIR__ . '/canadian-distance-validation.php';
+
 /**
  * Transient key for the normalized ZIP/postal-code-to-location index.
  */
@@ -420,7 +422,8 @@ function kgi_lookup_nearby_locations( string $raw_code, string $source = 'search
 		return $result;
 	}
 
-	$nearest = array();
+	$nearest  = array();
+	$rejected = 0;
 
 	foreach ( $radius['codes'] as $pair ) {
 		$nearby_code = (string) $pair[0];
@@ -430,7 +433,13 @@ function kgi_lookup_nearby_locations( string $raw_code, string $source = 'search
 			continue;
 		}
 
-		foreach ( $index[ $nearby_code ] ?? array() as $owner_id ) {
+		$owners = $index[ $nearby_code ] ?? array();
+		if ( $owners && 'ca' === $request['country'] && ! kgi_ca_radius_distance_is_plausible( $request['code'], $nearby_code, $distance ) ) {
+			++$rejected;
+			continue;
+		}
+
+		foreach ( $owners as $owner_id ) {
 			$owner_id = (int) $owner_id;
 
 			if ( ! isset( $nearest[ $owner_id ] ) || $distance < $nearest[ $owner_id ]['distance'] ) {
@@ -444,6 +453,21 @@ function kgi_lookup_nearby_locations( string $raw_code, string $source = 'search
 	}
 
 	if ( empty( $nearest ) ) {
+		if ( $rejected ) {
+			$result['status']     = 'lookup_failed';
+			$result['error_type'] = 'invalid_geography';
+			kgi_record_zip_lookup_error(
+				array(
+					'source'      => $source,
+					'code'        => $request['code'],
+					'error_type'  => 'invalid_geography',
+					'http_status' => 200,
+					'message'     => 'No geographically plausible owned postal-code distances were returned.',
+					'entry_id'    => $entry_id,
+				)
+			);
+			return $result;
+		}
 		$result['status'] = 'no_match';
 
 		return $result;

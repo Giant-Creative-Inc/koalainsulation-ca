@@ -101,12 +101,13 @@ function kgi_get_zip_lookup_log(): array {
  */
 function kgi_get_zip_lookup_error_label( string $error_type ): string {
 	$labels = array(
-		'rate_limited'     => __( 'Hourly request limit reached (429)', 'koala-gravity-integration' ),
-		'auth_error'       => __( 'API key rejected (401)', 'koala-gravity-integration' ),
-		'missing_api_key'  => __( 'No zipcodeapi.com API key configured', 'koala-gravity-integration' ),
-		'transport'        => __( 'Could not connect or timed out', 'koala-gravity-integration' ),
-		'invalid_response' => __( 'Unreadable response', 'koala-gravity-integration' ),
-		'provider'         => __( 'zipcodeapi.com returned an error', 'koala-gravity-integration' ),
+		'rate_limited'      => __( 'Hourly request limit reached (429)', 'koala-gravity-integration' ),
+		'auth_error'        => __( 'API key rejected (401)', 'koala-gravity-integration' ),
+		'missing_api_key'   => __( 'No zipcodeapi.com API key configured', 'koala-gravity-integration' ),
+		'transport'         => __( 'Could not connect or timed out', 'koala-gravity-integration' ),
+		'invalid_response'  => __( 'Unreadable response', 'koala-gravity-integration' ),
+		'invalid_geography' => __( 'Provider postal-code distances contradict Canadian geography', 'koala-gravity-integration' ),
+		'provider'          => __( 'zipcodeapi.com returned an error', 'koala-gravity-integration' ),
 	);
 
 	if ( isset( $labels[ $error_type ] ) ) {
