@@ -2,7 +2,7 @@
 
 This package ports the approved Local Efficiency preview into a **new, dedicated Bricks template** and a separate preview landing page. It does not edit shared template 20847, other landing pages, shared classes, Gravity Forms, location credentials, cache rules, or the existing location router.
 
-It includes all six compressed WebP heroes, fonts, scoped responsive CSS, the approved generic content and five service links, the corporate review helper, ACF page content, and supporting media. Review feed contents remain the destination site's existing corporate feed; no review or customer database is imported.
+It includes all six compressed WebP heroes, fonts, scoped responsive CSS, the approved generic content and five service links, the corporate review helper, ACF page content, and supporting media. The corporate review feed is the default. An optional Efficiency-only Canadian feed is configured separately as described below; no review text or customer database is bundled in Git.
 
 ## Safety and prerequisites
 
@@ -78,3 +78,35 @@ node --test tests/cross-border-location-switch.test.js
 ```
 
 The migration was dry-run against Local with no content writes. Staging application and browser/routing/cache acceptance remain pending.
+
+## Efficiency-only combined Canadian reviews
+
+`koala_efficiency_landing.reviews_feed_id` selects a dedicated RichPlugins free
+feed for the exact Efficiency preview route. Do not change the corporate
+shortcode option or a location's `google_review_shortcode` to install this feed.
+The existing corporate fallback remains available when no dedicated feed has
+been configured.
+
+Connect the Canadian sources with the installed free RichPlugins connector first.
+The source manifest contains public Place IDs only; review text is retained in
+RichPlugins' staging tables, not in Git. The staging-only setup defaults to a dry
+run and refuses missing, non-Canadian, duplicate or unrated sources:
+
+```sh
+wp eval-file wp-content/plugins/koala-ca-landing-heroes/tools/configure-canadian-reviews.php
+wp eval-file wp-content/plugins/koala-ca-landing-heroes/tools/configure-canadian-reviews.php apply
+```
+
+The hero and body widget both calculate a review-count-weighted average from the
+source location ratings, rounded once to one decimal. Duplicate source IDs count
+once. This estimates a combined rating from Google's published rounded location
+ratings; it does not average only the displayed review cards. The widget links
+to its Canadian sources and does not send a combined "Write a review" link to
+one arbitrary franchise. Existing source feeds, global options and template
+20847 are not modified. No Google API key or paid license is installed.
+
+Free imports contain a selection of reviews, not every historical review. Without
+an API key, automatic refresh is not enabled. Source ratings/counts reflect the
+plugin's cached data; reconnecting shared sources can update other widgets, so
+coordinate any future refresh separately. Restore the prior `reviews_feed_id`
+from `koala_efficiency_reviews_backup.config` to undo only this feed selection.

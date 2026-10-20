@@ -2,11 +2,12 @@
 /**
  * Plugin Name: Koala Efficiency Landing Page
  * Description: Isolated Efficiency campaign template for Local and staging.
- * Version: 1.1.0
+ * Version: 1.2.0
  */
 namespace Koala\CALandingHeroes;
 if (!defined('ABSPATH')) { exit; }
 require __DIR__ . '/scope.php';
+require __DIR__ . '/reviews.php';
 if (defined('WP_CLI') && WP_CLI) { require __DIR__ . '/cli.php'; }
 if (!allowed_environment()) { return; }
 function config() { return (array) get_option('koala_efficiency_landing', []); }
@@ -45,7 +46,11 @@ function review_panel($campaign = false) {
     $summary = review_summary();
     if ($summary) {
         $stars = esc_url(plugins_url('assets/stars.png', __FILE__));
-        $html .= '<div class="ca-landing-hero__review-row"><span class="ca-landing-rating" aria-hidden="true"><img class="ca-landing-rating__empty" src="' . $stars . '" alt=""><span style="width:' . esc_attr((string) ($summary['rating'] * 20)) . '%"><img src="' . $stars . '" alt=""></span></span><span>' . esc_html(number_format_i18n($summary['rating'], 1) . '/5 on Google · ' . number_format_i18n($summary['count']) . ' reviews') . '</span></div>';
+        $label = number_format_i18n($summary['rating'], 1) . '/5 on Google · ' . number_format_i18n($summary['count']) . ' reviews';
+        if ($summary['locations'] > 1) {
+            $label = number_format_i18n($summary['rating'], 1) . '/5 combined · ' . number_format_i18n($summary['count']) . ' Google reviews';
+        }
+        $html .= '<div class="ca-landing-hero__review-row"><span class="ca-landing-rating" aria-hidden="true"><img class="ca-landing-rating__empty" src="' . $stars . '" alt=""><span style="width:' . esc_attr((string) ($summary['rating'] * 20)) . '%"><img src="' . $stars . '" alt=""></span></span><span>' . esc_html($label) . '</span></div>';
     }
     return $html . '</a>';
 }
@@ -53,36 +58,44 @@ function review_summary() {
     static $summary = null;
     if ($summary !== null) { return $summary; }
     $summary = [];
-    $shortcode = function_exists('koala_get_google_review_shortcode') ? koala_get_google_review_shortcode(0) : '';
-    if (!preg_match('/^\[grw\s+id=["\x27]?([1-9][0-9]*)["\x27]?\s*\/?\]$/', $shortcode, $match)
-        || get_option('grw_active') === '0' || !class_exists('\\WP_Rplg_Google_Reviews\\Includes\\Core\\Core')) { return $summary; }
-    $feed = get_post((int) $match[1]);
-    if (!$feed || $feed->post_type !== 'grw_feed') { return $summary; }
+    $feed = reviews_feed();
+    if (!$feed || get_option('grw_active') === '0' || !class_exists('\\WP_Rplg_Google_Reviews\\Includes\\Core\\Core')) { return $summary; }
     $core = new \WP_Rplg_Google_Reviews\Includes\Core\Core();
     $widget = $core->get_reviews($feed);
-    $businesses = array_values((array) ($widget['businesses'] ?? []));
-    if (count($businesses) !== 1) { return $summary; }
-    $business = (array) $businesses[0];
-    $rating = (float) ($business['rating'] ?? 0);
-    $count = (int) ($business['review_count'] ?? 0);
-    if ($rating > 0 && $rating <= 5 && $count > 0) { $summary = ['rating' => $rating, 'count' => $count]; }
+    $summary = combined_review_summary((array) ($widget['businesses'] ?? []));
     return $summary;
 }
 function reviews_widget() {
     if (!in_template()) { return ''; }
-    $shortcode = function_exists('koala_get_google_review_shortcode') ? koala_get_google_review_shortcode(0) : '';
-    if (!preg_match('/^\[grw\s+id=["\x27]?([1-9][0-9]*)["\x27]?\s*\/?\]$/', $shortcode, $match)) { return ''; }
-    $data = ['feed_id' => (int) $match[1]];
-    $feed = get_post($data['feed_id']);
-    if (!$feed || $feed->post_type !== 'grw_feed' || get_option('grw_active') === '0') { return ''; }
+    $feed = reviews_feed();
+    if (!$feed || get_option('grw_active') === '0' || !class_exists('\\WP_Rplg_Google_Reviews\\Includes\\Core\\Core')) { return ''; }
     // Use the installed widget renderer, normalizing rating-only reviews for PHP 8.3.
     $core = new \WP_Rplg_Google_Reviews\Includes\Core\Core();
-    $widget = $core->get_reviews(get_post($data['feed_id']));
+    $widget = $core->get_reviews($feed);
+    $sources = '';
+    $summary = combined_review_summary((array) $widget['businesses']);
+    if (!empty(config()['reviews_feed_id']) && $summary) {
+        foreach ($widget['businesses'] as $business) {
+            $sources .= '<li><a href="' . esc_url($business->url) . '" target="_blank" rel="noopener noreferrer">' . esc_html($business->name) . '</a></li>';
+        }
+        // The stock grid header uses only the first business. Give this render a
+        // combined header, without mutating any source business or cached feed.
+        $combined = clone $widget['businesses'][0];
+        $combined->name = 'Koala Insulation — Canadian Locations';
+        $combined->rating = $summary['rating'];
+        $combined->review_count = $summary['count'];
+        $combined->url = '#ca-landing-review-sources';
+        $widget['businesses'] = [$combined];
+        $widget['options'] = clone $widget['options'];
+        $widget['options']->hide_writereview = true;
+        $widget['options']->header_hide_photo = true;
+        $sources = '<details id="ca-landing-review-sources"><summary>Reviews from ' . (int) $summary['locations'] . ' Canadian locations</summary><p>A selection of Google reviews is shown below; the combined rating uses each location’s total review count.</p><ul>' . $sources . '</ul></details>';
+    }
     foreach ($widget['reviews'] as $review) {
         foreach (['text', 'images'] as $field) { if (!isset($review->$field)) { $review->$field = ''; } }
     }
     $view = new \WP_Rplg_Google_Reviews\Includes\View();
-    return '<div id="ca-landing-reviews">' . $view->render($data['feed_id'], $widget['businesses'], $widget['reviews'], $widget['options']) . '</div>';
+    return '<div id="ca-landing-reviews">' . $sources . $view->render($feed->ID, $widget['businesses'], $widget['reviews'], $widget['options']) . '</div>';
 }
 function form($campaign = false) {
     if (!in_template() || !function_exists('gravity_form')) { return ''; }
