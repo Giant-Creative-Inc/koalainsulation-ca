@@ -167,6 +167,7 @@ add_action('wp_enqueue_scripts', function () {
     }, $css);
     wp_add_inline_style('koala-ca-landing-heroes', $css);
     wp_add_inline_script('all-pages-js', 'window.koalaEfficiencyLanding = true;', 'before');
+    wp_enqueue_script('koala-efficiency-header-estimate', plugins_url('assets/header-estimate.js', __FILE__), [], filemtime(__DIR__ . '/assets/header-estimate.js'), true);
     if (function_exists('gravity_form_enqueue_scripts')) { gravity_form_enqueue_scripts(1, true); }
 }, 99);
 // Remove the old image preload at read time only for a selected campaign.

@@ -13,6 +13,7 @@ namespace {
     function add_shortcode($tag, $callback) { $GLOBALS['shortcodes'][$tag] = $callback; }
     function wp_register_style(...$args) {}
     function wp_enqueue_style($handle) { $GLOBALS['assets'][] = $handle; }
+    function wp_enqueue_script($handle, ...$args) { $GLOBALS['assets'][] = $handle; }
     function wp_add_inline_style($handle, $css) { $GLOBALS['css'] = $css; }
     function wp_add_inline_script($handle, $script, $position) { $GLOBALS['scripts'][] = [$handle, $script, $position]; }
     function plugins_url($path, $file = '') { return 'https://staging.example/ca/wp-content/plugins/koala-ca-landing-heroes/' . $path; }
@@ -31,6 +32,7 @@ namespace {
     check(selected_template() === 903, 'Efficiency selects its destination template without relying on current loop post ID');
     foreach ($GLOBALS['hooks']['wp_enqueue_scripts'] as $callback) { $callback(); }
     check($GLOBALS['scripts'][0] === ['all-pages-js', 'window.koalaEfficiencyLanding = true;', 'before'], 'corporate navigation flag is inserted before shared script');
+    check(in_array('koala-efficiency-header-estimate', $GLOBALS['assets'], true), 'Efficiency alone receives the header estimate popup handler');
     check(strpos($GLOBALS['css'], '#brxe-efhero') !== false && strpos($GLOBALS['css'], '#brxe-caadhr') === false, 'CSS references destination-specific IDs');
     check(strpos($GLOBALS['css'], 'url("https://staging.example/ca/wp-content/plugins/koala-ca-landing-heroes/assets/filson-black.woff")') !== false, 'inline stylesheet fonts keep correct absolute asset URLs');
     $GLOBALS['assets'] = []; $GLOBALS['scripts'] = [];
