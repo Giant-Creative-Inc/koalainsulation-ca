@@ -120,11 +120,15 @@ function form($campaign = false) {
     } finally { remove_filter('gform_submit_button_' . $form_id, $button_filter); }
     return $html;
 }
+function hero_image_url($key) {
+    $asset = $key === 'ice-storm' ? 'ice-storm-20261020' : $key;
+    return plugins_url('assets/' . $asset . '.webp', __FILE__);
+}
 add_shortcode('koala_ca_landing_hero', function ($attrs) {
     $key = selected_key();
     if (($attrs['template'] ?? '') !== '20847' || !in_template() || !$key) { return ''; }
     $preset = presets()[$key];
-    $url = plugins_url('assets/' . $key . '.webp', __FILE__);
+    $url = hero_image_url($key);
     ob_start(); ?>
     <section class="ca-landing-hero" data-hero="<?php echo esc_attr($key); ?>" aria-labelledby="ca-landing-hero-heading">
       <img class="ca-landing-hero__image" src="<?php echo esc_url($url); ?>" width="<?php echo (int) $preset['width']; ?>" height="<?php echo (int) $preset['height']; ?>" alt="" loading="eager" fetchpriority="high" decoding="async">
@@ -183,5 +187,5 @@ add_filter('get_post_metadata', function ($value, $object_id, $key, $single) {
 }, 10, 4);
 add_action('wp_head', function () {
     if (!request_uses_template() || !selected_key()) { return; }
-    echo '<link rel="preload" as="image" fetchpriority="high" href="' . esc_url(plugins_url('assets/' . selected_key() . '.webp', __FILE__)) . '">';
+    echo '<link rel="preload" as="image" fetchpriority="high" href="' . esc_url(hero_image_url(selected_key())) . '">';
 }, 2);
