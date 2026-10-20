@@ -41,7 +41,32 @@ function in_template() {
 function review_panel($campaign = false) {
     if (!in_template()) { return ''; }
     $class = $campaign ? 'ca-landing-hero__proof' : 'review-link-block';
-    return '<a class="' . esc_attr($class) . '" href="#ca-landing-reviews"><p>Top Insulation Contractor in <span>Canada</span></p><img class="ca-landing-hero__stars" src="' . esc_url(plugins_url('assets/stars.png', __FILE__)) . '" width="250" height="40" alt="" aria-hidden="true"></a>';
+    $html = '<a class="' . esc_attr($class) . '" href="#ca-landing-reviews"><p>Top Insulation Contractor</p>';
+    $summary = review_summary();
+    if ($summary) {
+        $stars = esc_url(plugins_url('assets/stars.png', __FILE__));
+        $html .= '<div class="ca-landing-hero__review-row"><span class="ca-landing-rating" aria-hidden="true"><img class="ca-landing-rating__empty" src="' . $stars . '" alt=""><span style="width:' . esc_attr((string) ($summary['rating'] * 20)) . '%"><img src="' . $stars . '" alt=""></span></span><span>' . esc_html(number_format_i18n($summary['rating'], 1) . '/5 on Google · ' . number_format_i18n($summary['count']) . ' reviews') . '</span></div>';
+    }
+    return $html . '</a>';
+}
+function review_summary() {
+    static $summary = null;
+    if ($summary !== null) { return $summary; }
+    $summary = [];
+    $shortcode = function_exists('koala_get_google_review_shortcode') ? koala_get_google_review_shortcode(0) : '';
+    if (!preg_match('/^\[grw\s+id=["\x27]?([1-9][0-9]*)["\x27]?\s*\/?\]$/', $shortcode, $match)
+        || get_option('grw_active') === '0' || !class_exists('\\WP_Rplg_Google_Reviews\\Includes\\Core\\Core')) { return $summary; }
+    $feed = get_post((int) $match[1]);
+    if (!$feed || $feed->post_type !== 'grw_feed') { return $summary; }
+    $core = new \WP_Rplg_Google_Reviews\Includes\Core\Core();
+    $widget = $core->get_reviews($feed);
+    $businesses = array_values((array) ($widget['businesses'] ?? []));
+    if (count($businesses) !== 1) { return $summary; }
+    $business = (array) $businesses[0];
+    $rating = (float) ($business['rating'] ?? 0);
+    $count = (int) ($business['review_count'] ?? 0);
+    if ($rating > 0 && $rating <= 5 && $count > 0) { $summary = ['rating' => $rating, 'count' => $count]; }
+    return $summary;
 }
 function reviews_widget() {
     if (!in_template()) { return ''; }
