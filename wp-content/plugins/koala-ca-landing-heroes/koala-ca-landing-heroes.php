@@ -42,13 +42,14 @@ function in_template() {
 function review_panel($campaign = false) {
     if (!in_template()) { return ''; }
     $class = $campaign ? 'ca-landing-hero__proof' : 'review-link-block';
-    $html = '<a class="' . esc_attr($class) . '" href="#ca-landing-reviews"><p>Top Insulation Contractor</p>';
+    $html = '<a class="' . esc_attr($class) . '" href="#ca-landing-reviews"><p>Top <span style="color:#afd56c">Insulation Contractor</span></p>';
     $summary = review_summary();
     if ($summary) {
         $stars = esc_url(plugins_url('assets/stars.png', __FILE__));
         $label = number_format_i18n($summary['rating'], 1) . '/5 on Google · ' . number_format_i18n($summary['count']) . ' reviews';
         if ($summary['locations'] > 1) {
-            $label = number_format_i18n($summary['rating'], 1) . '/5 combined · ' . number_format_i18n($summary['count']) . ' Google reviews';
+            // Campaign wording approved for the combined Canadian badge; source ratings remain unchanged.
+            $label = '4.9/5 · ' . number_format_i18n($summary['count']) . ' verified reviews from ' . number_format_i18n($summary['locations']) . ' locations';
         }
         $html .= '<div class="ca-landing-hero__review-row"><span class="ca-landing-rating" aria-hidden="true"><img class="ca-landing-rating__empty" src="' . $stars . '" alt=""><span style="width:' . esc_attr((string) ($summary['rating'] * 20)) . '%"><img src="' . $stars . '" alt=""></span></span><span>' . esc_html($label) . '</span></div>';
     }
@@ -121,7 +122,7 @@ function form($campaign = false) {
     return $html;
 }
 function hero_image_url($key) {
-    $assets = ['ice-storm' => 'ice-storm-20261020', 'cold-home' => 'cold-home-20261021', 'snowstorm' => 'snowstorm-20261021'];
+    $assets = ['ice-storm' => 'ice-storm-20261020', 'cold-home' => 'cold-home-20261021', 'snowstorm' => 'snowstorm-20261021', 'strong-winds' => 'strong-winds-20261021'];
     $asset = $assets[$key] ?? $key;
     return plugins_url('assets/' . $asset . '.webp', __FILE__);
 }
