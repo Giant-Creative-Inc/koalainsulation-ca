@@ -11,3 +11,18 @@
     window.bricksOpenPopup(4865);
   }, true);
 })();
+
+// Measure the actual header for the exact Efficiency campaign hero.
+(() => {
+  const hero = document.querySelector('.ca-landing-hero[data-hero]');
+  if (!hero) return;
+  const update = () => {
+    const headerHeight = Math.max(0, hero.getBoundingClientRect().top + window.scrollY);
+    hero.style.setProperty('--ca-hero-header-height', `${headerHeight}px`);
+  };
+  update();
+  window.addEventListener('resize', update, { passive: true });
+  window.addEventListener('load', update, { once: true });
+  const header = document.querySelector('header');
+  if (header && typeof ResizeObserver !== 'undefined') new ResizeObserver(update).observe(header);
+})();

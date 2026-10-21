@@ -121,8 +121,12 @@ function form($campaign = false) {
     return $html;
 }
 function hero_image_url($key) {
-    $asset = $key === 'ice-storm' ? 'ice-storm-20261020' : $key;
+    $assets = ['ice-storm' => 'ice-storm-20261020', 'cold-home' => 'cold-home-20261021', 'snowstorm' => 'snowstorm-20261021'];
+    $asset = $assets[$key] ?? $key;
     return plugins_url('assets/' . $asset . '.webp', __FILE__);
+}
+function hero_mobile_image_url() {
+    return plugins_url('assets/snowstorm-mobile-20261021.webp', __FILE__);
 }
 add_shortcode('koala_ca_landing_hero', function ($attrs) {
     $key = selected_key();
@@ -131,7 +135,9 @@ add_shortcode('koala_ca_landing_hero', function ($attrs) {
     $url = hero_image_url($key);
     ob_start(); ?>
     <section class="ca-landing-hero" data-hero="<?php echo esc_attr($key); ?>" aria-labelledby="ca-landing-hero-heading">
+      <?php if ($key === 'snowstorm') : ?><picture><source media="(max-width: 767px)" srcset="<?php echo esc_url(hero_mobile_image_url()); ?>" width="750" height="1008"><?php endif; ?>
       <img class="ca-landing-hero__image" src="<?php echo esc_url($url); ?>" width="<?php echo (int) $preset['width']; ?>" height="<?php echo (int) $preset['height']; ?>" alt="" loading="eager" fetchpriority="high" decoding="async">
+      <?php if ($key === 'snowstorm') : ?></picture><?php endif; ?>
       <div class="ca-landing-hero__inner">
         <div class="ca-landing-hero__copy">
           <h1 id="ca-landing-hero-heading" class="ca-landing-hero__heading"><?php echo wp_kses($preset['headline'], ['span' => ['class' => []], 'br' => []]); ?></h1>
@@ -187,5 +193,9 @@ add_filter('get_post_metadata', function ($value, $object_id, $key, $single) {
 }, 10, 4);
 add_action('wp_head', function () {
     if (!request_uses_template() || !selected_key()) { return; }
-    echo '<link rel="preload" as="image" fetchpriority="high" href="' . esc_url(hero_image_url(selected_key())) . '">';
+    $media = selected_key() === 'snowstorm' ? ' media="(min-width: 768px)"' : '';
+    echo '<link rel="preload" as="image" fetchpriority="high"' . $media . ' href="' . esc_url(hero_image_url(selected_key())) . '">';
+    if (selected_key() === 'snowstorm') {
+        echo '<link rel="preload" as="image" fetchpriority="high" media="(max-width: 767px)" href="' . esc_url(hero_mobile_image_url()) . '">';
+    }
 }, 2);

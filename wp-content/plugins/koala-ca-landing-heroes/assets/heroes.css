@@ -48,7 +48,7 @@
 
 .ca-landing-hero a:focus-visible{outline:3px solid #042e53;outline-offset:4px}
 .ca-landing-hero .ca-landing-hero__proof:focus-visible{outline-color:#afd56c}
-@media(max-width:1100px) and (min-width:768px){.ca-landing-hero__inner{grid-template-columns:minmax(0,1fr) 36%;gap:24px;padding:40px 24px}.ca-landing-hero .ca-landing-hero__heading{font-size:5.8vw!important}.ca-landing-hero[data-hero="snowstorm"] .ca-landing-hero__heading{font-size:5vw!important}.ca-landing-hero[data-hero="strong-winds"] .ca-landing-hero__heading{font-size:5.2vw!important}.ca-landing-hero[data-hero="ice-storm"] .ca-landing-hero__heading{font-size:6.6vw!important}}
+@media(max-width:1199px) and (min-width:768px){.ca-landing-hero__inner{grid-template-columns:minmax(0,1fr) 36%;gap:24px;padding:40px 24px}.ca-landing-hero .ca-landing-hero__heading{font-size:5.8vw!important}.ca-landing-hero[data-hero="snowstorm"] .ca-landing-hero__heading{font-size:5vw!important}.ca-landing-hero[data-hero="strong-winds"] .ca-landing-hero__heading{font-size:5.2vw!important}.ca-landing-hero[data-hero="ice-storm"] .ca-landing-hero__heading{font-size:6.6vw!important}}
 @media(max-width:767px){.ca-landing-hero__inner{display:flex;flex-direction:column;align-items:stretch;gap:32px;padding:52px 20px 32px}.ca-landing-hero .ca-landing-hero__copy{gap:28px;align-self:stretch!important;justify-content:center}.ca-landing-hero .ca-landing-hero__heading{font-size:clamp(36px,7.8vw,58px)!important;letter-spacing:.02em!important}.ca-landing-hero[data-hero="snowstorm"] .ca-landing-hero__heading{font-size:clamp(34px,7.5vw,54px)!important}.ca-landing-hero[data-hero="strong-winds"] .ca-landing-hero__heading{font-size:clamp(32px,7.3vw,54px)!important}.ca-landing-hero[data-hero="ice-storm"] .ca-landing-hero__heading{font-size:clamp(40px,9vw,64px)!important}.ca-landing-hero .ca-landing-hero__proof{font-size:22px;padding:14px 20px}.ca-landing-hero .ca-landing-hero__review-row{font-size:16px}.ca-landing-hero .ca-landing-hero__image{height:520px;object-position:50% 50%}.ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__image{object-position:85% 50%}.ca-landing-hero[data-hero="icicles"] .ca-landing-hero__image{object-position:75% 50%}.ca-landing-hero[data-hero="snowstorm"] .ca-landing-hero__image{object-position:75% 50%}.ca-landing-hero[data-hero="icicles"],.ca-landing-hero[data-hero="snowstorm"]{background:#e7edf5}.ca-landing-hero[data-hero="ice-storm"]::before{bottom:auto;height:520px;background:linear-gradient(90deg,rgba(13,75,129,.9),rgba(13,75,129,.1))}}
 /* Figma's campaign-specific image crops, confined to the decorative image layer. */
 @media(min-width:768px){
@@ -121,22 +121,22 @@
 }
 
 /* White canvas beneath campaign imagery on mobile and tablet. */
-@media (max-width: 1100px) {
+@media (max-width: 1199px) {
   .ca-landing-hero[data-hero] { background-color: #fff; }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1199px) {
   .ca-landing-hero .ca-landing-hero__inner { padding-bottom: 0; }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1199px) {
   .ca-landing-hero .ca-landing-hero__form > .hero-form {
     box-shadow: 0 4px 16px rgba(4, 46, 83, .18);
   }
 }
 
 /* Remove stacked top padding before Why Choose on campaign landing pages. */
-@media (max-width: 1100px) {
+@media (max-width: 1199px) {
   #brx-content:has(#brxe-caadhr .ca-landing-hero) #brxe-ohawnk,
   #brx-content:has(#brxe-caadhr .ca-landing-hero) #brxe-hlcmyl {
     padding-top: 0;
@@ -150,7 +150,7 @@
   }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1199px) {
   .ca-landing-hero {
     padding-bottom: 24px;
     margin-bottom: 0;
@@ -161,21 +161,13 @@
 body.koala-efficiency-landing #footer-address { display: none; }
 
 /* Efficiency QA F01: keep the lead form readable on stacked tablet layouts. */
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1199px) {
   body.koala-efficiency-landing .ca-landing-hero__inner { display: flex; flex-direction: column; align-items: stretch; gap: 32px; }
   body.koala-efficiency-landing .ca-landing-hero__copy { align-self: stretch; }
   body.koala-efficiency-landing .ca-landing-hero .ca-landing-hero__form { max-width: 720px; align-self: center; }
   body.koala-efficiency-landing .ca-landing-hero .ca-landing-hero__image { inset: 0; width: 100%; height: 560px; object-position: 50% 50%; }
   body.koala-efficiency-landing .ca-landing-hero::before { bottom: auto; height: 560px; }
   body.koala-efficiency-landing .ca-landing-hero .ca-landing-hero__image { mask-image: linear-gradient(#000 0%, #000 80%, transparent 100%); }
-}
-/* F02: keep the ad headline over the portrait, with the rating below the image. */
-@media (max-width: 767px) {
-  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__image { height: 300px; transform: none; object-position: 75% 50%; mask-image: none; -webkit-mask-image: none; }
-  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"]::before { display: none; }
-  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__inner { padding-top: 32px; }
-  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__copy { display: grid; grid-template-rows: 268px auto; gap: 28px; }
-  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__heading { width: 55%; align-self: start; font-size: clamp(25px, 7.2vw, 40px) !important; color: #fff !important; }
 }
 /* F03: the inline campaign form must be stable from its first paint. */
 body.koala-efficiency-landing .ca-landing-hero__form,
@@ -186,4 +178,105 @@ body.koala-efficiency-landing .ca-landing-hero__form .gform_wrapper {
   transform: none !important;
   opacity: 1 !important;
   visibility: visible !important;
+}
+
+/* Cold Home follows the Figma portrait orientation and lower headline placement. */
+body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] {
+  --ca-cold-home-height: max(600px, calc(100svh - var(--ca-hero-header-height, 210px)));
+  min-height: var(--ca-cold-home-height);
+}
+@media (min-width: 1200px) {
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__inner { min-height: max(var(--ca-cold-home-height), 64vw); align-items: center; padding-top: clamp(40px, 4.13vw, 80px); }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__image { inset: auto; left: -2.37%; top: 0; width: 102.37%; height: 100%; transform: scaleX(-1); object-position: 50% 0%; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__copy { width: 100%; align-self: end; padding-top: 30vw; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__heading { font-size: clamp(40px, 4.8vw, 88px) !important; }
+}
+@media (max-width: 1199px) {
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__image { inset: 0; width: 100%; height: var(--ca-cold-home-height); transform: scaleX(-1); object-position: 75% 50%; mask-image: none; -webkit-mask-image: none; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"]::before { display: none; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__inner { padding-top: calc(var(--ca-cold-home-height) * .55); }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__copy { display: grid; grid-template-rows: calc(var(--ca-cold-home-height) * .45) auto; gap: 28px; align-self: stretch; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__heading { width: 100%; align-self: start; font-size: clamp(26px, 6.8vw, 46px) !important; color: #fff !important; }
+}
+
+/* Cold Home phone composition: portrait above the headline, rating, then form. */
+@media (max-width: 767px) {
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] { --ca-cold-mobile-top: clamp(270px, 72vw, 480px); min-height: 0; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__inner { min-height: 0; padding: var(--ca-cold-mobile-top) 20px 0; gap: 32px; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__copy { display: flex; flex-direction: column; gap: 28px; padding-top: 0; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__heading { width: 100%; font-size: clamp(28px, 8.5vw, 48px) !important; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__image { height: calc(var(--ca-cold-mobile-top) + 240px); object-position: 25% 50%; mask-image: linear-gradient(#000 0%, #000 75%, transparent 100%); -webkit-mask-image: linear-gradient(#000 0%, #000 75%, transparent 100%); }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"]::before { display: none; }
+}
+
+/* Desktop campaign heroes end at the bottom of the browser viewport. */
+@media (min-width: 1200px) {
+  body.koala-efficiency-landing .ca-landing-hero[data-hero] { height: max(0px, calc(100dvh - var(--ca-hero-header-height, 210px))); min-height: 0; padding-bottom: 0; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero] .ca-landing-hero__inner { height: 100%; min-height: 0; padding: clamp(8px, 1.5vh, 24px) 2.06%; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero] .ca-landing-hero__copy { min-height: 0; max-height: 100%; padding-top: 0; gap: clamp(16px, 3vh, 32px); }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero] .ca-landing-hero__form { max-height: 100%; overflow-y: auto; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero] .ca-landing-hero__heading { --ca-desktop-heading-size: 6.235vw; font-size: clamp(30px, min(var(--ca-desktop-heading-size), 10vh), 116px) !important; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="snowstorm"] .ca-landing-hero__heading { --ca-desktop-heading-size: 5.355vw; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="strong-winds"] .ca-landing-hero__heading { --ca-desktop-heading-size: 5.731vw; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="ice-storm"] .ca-landing-hero__heading { --ca-desktop-heading-size: 7.232vw; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__heading { --ca-desktop-heading-size: 3.8vw; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__proof { padding: 12px 20px; font-size: 24px; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__review-row { font-size: 18px; }
+}
+@media (min-width: 1200px) {
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__image { inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: 100% 0%; }
+}
+
+/* Updated Cold Home artwork already has the approved orientation. */
+body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__image { transform: none; object-position: 25% 50%; }
+@media (min-width: 1200px) {
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] { background-color: #053967; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__image { object-position: 0% 0%; }
+}
+
+@media (max-width: 767px) {
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__image { object-position: 25% 50%; }
+}
+
+/* Tablets use content height and a full-width form, including landscape iPads. */
+@media (max-width: 1199px) {
+  body.koala-efficiency-landing .ca-landing-hero[data-hero] { height: auto; min-height: 0; }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] { --ca-cold-tablet-top: clamp(320px, 38vw, 440px); }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__inner { min-height: 0; height: auto; padding: var(--ca-cold-tablet-top) 24px 0; gap: 32px; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__copy { display: flex; flex-direction: column; padding-top: 0; gap: 28px; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__heading { width: 100%; font-size: clamp(36px, 4.6vw, 54px) !important; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__image { height: calc(var(--ca-cold-tablet-top) + 300px); object-fit: cover; object-position: 25% 50%; mask-image: linear-gradient(#000 0%, #000 calc(100% - 60px), transparent 100%); -webkit-mask-image: linear-gradient(#000 0%, #000 calc(100% - 60px), transparent 100%); }
+}
+
+/* Fill the desktop hero vertically without contain-mode letterboxing. */
+@media (min-width: 1200px) {
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="cold-home"] .ca-landing-hero__image {
+    inset: 0 auto 0 0;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0% 0%;
+  }
+}
+
+/* Snowstorm: keep the exposed roof visible, using the mobile Figma composition. */
+body.koala-efficiency-landing .ca-snow-mobile { display: none; }
+@media (min-width: 1200px) {
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="snowstorm"] .ca-landing-hero__image { inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; }
+}
+@media (max-width: 767px) {
+  body.koala-efficiency-landing .ca-snow-desktop { display: none; }
+  body.koala-efficiency-landing .ca-snow-mobile { display: inline; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="snowstorm"] .ca-landing-hero__heading { font-size: clamp(27px, 8.6vw, 40px) !important; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="snowstorm"] .ca-landing-hero__copy { gap: clamp(71px, 19vw, 145px); }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="snowstorm"] .ca-landing-hero__image { inset: auto; top: 0; left: 0; width: 100%; height: auto; object-fit: contain; mask-image: linear-gradient(#000 0%, #000 calc(100% - 40px), transparent 100%); -webkit-mask-image: linear-gradient(#000 0%, #000 calc(100% - 40px), transparent 100%); }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="snowstorm"]::before { display: none; }
+}
+@media (max-width: 767px) {
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="snowstorm"] .ca-landing-hero__proof { background: rgba(20,25,12,.4); backdrop-filter: blur(16px); font-size: 26px; padding: 13px 26px; }
+  body.koala-efficiency-landing .ca-landing-hero[data-hero="snowstorm"] .ca-landing-hero__review-row { font-size: 18px; }
 }
