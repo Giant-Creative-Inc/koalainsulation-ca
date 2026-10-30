@@ -29,3 +29,6 @@ Thumbs.db
 
 # Local PHPUnit result cache
 .phpunit.result.cache
+
+# Ignore a local dependency symlink as well as installed vendor directories
+/bricks/beanstalk/vendor
