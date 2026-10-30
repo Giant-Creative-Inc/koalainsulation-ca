@@ -8,6 +8,9 @@ if (!defined('ABSPATH'))
 // 'resources-page-type' taxonomy (see koala_is_beanstalk_area_served_page()).
 require_once __DIR__ . '/beanstalk/bootstrap.php';
 
+// Dynamic JSON-LD for removal pages rendered by the shared ACF template.
+require_once __DIR__ . '/includes/koala-removal-schema.php';
+
 /** Resolve a location Google Reviews shortcode, then the site corporate feed. */
 function koala_get_google_review_shortcode($location_id = 0)
 {
@@ -1406,6 +1409,7 @@ function my_location_service_category_template_map() {
         'spray-foam-insulation-services' => 20483,
         'blown-in-insulation-services'   => 20483,
         'insulation-removal-services'    => 20483,
+        'insulation-removal-service'     => 20483, // Existing Canadian term 19.
     );
 
     // Let you override in a child theme or plugin
