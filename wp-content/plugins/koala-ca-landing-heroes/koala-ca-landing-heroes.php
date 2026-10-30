@@ -28,6 +28,9 @@ add_filter('body_class', function ($classes) {
     return $classes;
 });
 require __DIR__ . '/presets.php';
+require __DIR__ . '/navigation.php';
+require __DIR__ . '/missing-data.php';
+require __DIR__ . '/directory.php';
 function selected_key() {
     $value = $_GET['hero'] ?? '';
     return is_string($value) && array_key_exists($value, presets()) ? $value : '';

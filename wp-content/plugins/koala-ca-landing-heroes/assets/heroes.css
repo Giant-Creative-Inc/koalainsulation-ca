@@ -159,6 +159,7 @@
 
 /* This national campaign page does not display a single franchise address. */
 body.koala-efficiency-landing #footer-address { display: none; }
+body.koala-efficiency-landing #footer-number { display: none !important; }
 
 /* Efficiency QA F01: keep the lead form readable on stacked tablet layouts. */
 @media (min-width: 768px) and (max-width: 1199px) {
@@ -307,4 +308,32 @@ body.koala-efficiency-landing #brxe-ef789cc1786b { margin-bottom: 0; height: aut
 /* Snowstorm tablet crop keeps the roof anchored to the bottom of its image. */
 @media (min-width: 768px) and (max-width: 1199px) {
   body.koala-efficiency-landing .ca-landing-hero[data-hero="snowstorm"] .ca-landing-hero__image { height: 560px; object-position: 50% 100%; }
+}
+
+/* Campaign header matches the supplied Canadian location-menu reference. */
+body.koala-efficiency-landing #default-nav-box { display: none !important; }
+body.koala-efficiency-landing #location-nav-box { display: flex !important; }
+body.koala-efficiency-landing #location-nav-box,
+body.koala-efficiency-landing #location-nav-box * { visibility: visible !important; }
+body.koala-efficiency-landing #phone2-wrapper { display: none !important; }
+body.koala-efficiency-landing #brxe-ocmwwu { gap: 24px; }
+body.koala-efficiency-landing #brxe-axarbr { flex-shrink: 0; }
+body.koala-efficiency-landing #nav-top-text-us { color: #95c93d; font-weight: 700; }
+body.koala-efficiency-landing #brxe-ottxyp > li:is(:has(> #franchise-nav-link), :has(> #brxe-wsbmpz), :has(> #nav-location), :has(> #national-nav-quote), :has(> #brxe-dkkmmf)) { display: none !important; }
+body.koala-efficiency-landing #brxe-okgnpo > li:is(:has(> a[hidden]), :has(> #areas-served-navlink), :has(> #resource-container:empty)) { display: none !important; }
+body.koala-efficiency-landing #get-estimate-btn { white-space: nowrap; }
+@media (min-width: 1200px) {
+  body.koala-efficiency-landing #brxe-oelkzx { margin-left: auto; }
+  body.koala-efficiency-landing #brxe-ottxyp { gap: clamp(20px, 2vw, 36px); }
+}
+@media (max-width: 1199px) {
+  body.koala-efficiency-landing #brxe-ocmwwu { flex-wrap: wrap; gap: 8px; padding-block: 12px; }
+  body.koala-efficiency-landing #brxe-xfjevs { width: 100%; }
+  body.koala-efficiency-landing #brxe-axarbr { margin-left: auto; flex-wrap: wrap; gap: 16px; }
+}
+@media (max-width: 767px) {
+  body.koala-efficiency-landing #location-nav-box { padding-inline: 20px; }
+  body.koala-efficiency-landing #nav-top-text-us { font-size: 13px; line-height: 1.4; }
+  body.koala-efficiency-landing #brxe-axarbr { width: 100%; justify-content: space-between; gap: 8px; font-size: 13px; }
+  body.koala-efficiency-landing #phone1-wrapper { font-size: 13px; }
 }

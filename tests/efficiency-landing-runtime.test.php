@@ -4,6 +4,8 @@ namespace {
     define('ABSPATH', __DIR__);
     $GLOBALS['environment'] = 'staging'; $GLOBALS['hooks'] = []; $GLOBALS['assets'] = [];
     $GLOBALS['config'] = ['enabled' => true, 'page_id' => 901, 'page_slug' => 'preview', 'location_id' => 902, 'template_id' => 903, 'route_path' => '/ca/efficiency/landing-pages/preview', 'hero_id' => 'efhero', 'fallback_id' => 'effallback', 'element_ids' => ['caadhr' => 'efhero', 'trohhj' => 'effallback']];
+    function wp_json_encode($value) { return json_encode($value); }
+    function home_url() { return 'https://staging.example/ca'; }
     function wp_get_environment_type() { return $GLOBALS['environment']; }
     function get_option($key, $default = null) { return $key === 'koala_efficiency_landing' ? $GLOBALS['config'] : $default; }
     function get_post($id) { if ($id === 901) { return (object) ['ID' => 901, 'post_type' => 'landing-pages', 'post_name' => 'preview']; } if ($id === 902) { return (object) ['ID' => 902, 'post_type' => 'location', 'post_name' => 'efficiency']; } return $GLOBALS['review_feeds'][$id] ?? null; }
@@ -31,10 +33,18 @@ namespace {
     $GLOBALS['config']['reviews_feed_id'] = 904;
     check(selected_template() === 903, 'Efficiency selects its destination template without relying on current loop post ID');
     foreach ($GLOBALS['hooks']['wp_enqueue_scripts'] as $callback) { $callback(); }
-    check($GLOBALS['scripts'][0] === ['all-pages-js', 'window.koalaEfficiencyLanding = true;', 'before'], 'corporate navigation flag is inserted before shared script');
+    check(in_array(['all-pages-js', 'window.koalaEfficiencyLanding = true;', 'before'], $GLOBALS['scripts'], true), 'corporate navigation flag is inserted before shared script');
     check(in_array('koala-efficiency-header-estimate', $GLOBALS['assets'], true), 'Efficiency alone receives the header estimate popup handler');
     check(strpos($GLOBALS['css'], '#brxe-efhero') !== false && strpos($GLOBALS['css'], '#brxe-caadhr') === false, 'CSS references destination-specific IDs');
     check(strpos($GLOBALS['css'], 'url("https://staging.example/ca/wp-content/plugins/koala-ca-landing-heroes/assets/filson-black.woff")') !== false, 'inline stylesheet fonts keep correct absolute asset URLs');
+    foreach (['/ca/efficiency', '/ca/efficiency/services/spray-foam-insulation', '/ca/efficiency/why-koala'] as $uri) {
+        $_SERVER['REQUEST_URI'] = $uri;
+        check(\Koala\CALandingHeroes\efficiency_content_request(), 'missing-data cleanup allowed on ' . $uri);
+    }
+    foreach (['/ca/halton', '/ca/efficiency-other', '/ca/efficiency/landing-pages/other'] as $uri) {
+        $_SERVER['REQUEST_URI'] = $uri;
+        check(!\Koala\CALandingHeroes\efficiency_content_request(), 'missing-data cleanup excludes ' . $uri);
+    }
     $GLOBALS['assets'] = []; $GLOBALS['scripts'] = [];
     $_SERVER['REQUEST_URI'] = '/ca/halton/landing-pages/partners/?hero=ice-storm';
     check(\Koala\CALandingHeroes\reviews_feed() === null, 'other franchise cannot access the Efficiency review feed');

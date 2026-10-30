@@ -47,3 +47,42 @@
   new MutationObserver(syncPopupOrder).observe(document.body, { childList: true, subtree: true });
   document.addEventListener('gform/postRender', syncPopupOrder);
 })();
+
+// Reuse the shared location header, with the campaign contact details supplied for Efficiency.
+(() => {
+  const location = document.getElementById('loc-name');
+  const phone = document.getElementById('loc-phone-number');
+  const phoneLink = document.getElementById('phone1-wrapper');
+  if (location) location.textContent = 'Canada';
+  if (phone) phone.textContent = '(833)-903-5197';
+  if (phoneLink) phoneLink.setAttribute('href', 'tel:8339035197');
+  const menu = document.getElementById('brxe-cmsqdu');
+  const home = document.getElementById('nav-home');
+  if (!menu || !home) return;
+  // The logo returns to the current campaign URL; services use the location root.
+  const locationHome = new URL(home.href);
+  locationHome.pathname = locationHome.pathname.split('/landing-pages/')[0].replace(/\/$/, '');
+  locationHome.search = '';
+  locationHome.hash = '';
+  const services = [
+    ['spray-foam-insulation', 'Spray Foam Insulation'],
+    ['blown-in-attic-insulation', 'Blown-In Attic Insulation'],
+    ['insulation-removal-services', 'Insulation Removal Services'],
+    ['batt-insulation-installation', 'Batt Insulation Installation'],
+    ['solar-attic-fans', 'Solar Attic Fans'],
+    ['air-sealing-service', 'Air Sealing Service'],
+    ['crawl-space-encapsulation', 'Crawl Space Encapsulation'],
+    ['commercial-insulation-services', 'Commercial Insulation Services'],
+  ];
+  const items = services.map(([slug, title]) => {
+    const li = document.createElement('li');
+    li.className = 'menu-item';
+    const link = document.createElement('a');
+    link.className = 'brxe-text-link nav-nested-link';
+    link.href = `${locationHome.href.replace(/\/$/, '')}/services/${slug}`;
+    link.textContent = title;
+    li.append(link);
+    return li;
+  });
+  menu.replaceChildren(...items);
+})();
