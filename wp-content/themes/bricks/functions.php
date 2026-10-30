@@ -1405,6 +1405,7 @@ function my_location_service_category_template_map() {
     $map = array(
         'spray-foam-insulation-services' => 20483,
         'blown-in-insulation-services'   => 20483,
+        'insulation-removal-services'    => 20483,
     );
 
     // Let you override in a child theme or plugin
