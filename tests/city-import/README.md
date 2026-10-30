@@ -1,0 +1,17 @@
+# Canadian city-page import and editor
+
+This branch ports the complete Beanstalk Content Engine plugin and the current city-page template fixes from the US city-page feature onto Canadian `main`. It preserves Canada's Google Place ID review support and clickable phone/location placeholders. It does not port the separate US location-page rebuild.
+
+- **Tools → City Page Import:** download the header-only CSV template, upload, preview, review errors, then explicitly apply selected rows. New pages publish after setup succeeds; existing pages keep their publication status and URL. Preview does not change pages.
+- `related_location_id` accepts a published franchise's ID or slug. City slugs are sanitized. A province-suffixed slug such as `oakville-on` also checks the unsuffixed city under the same franchise. Ambiguous matches are rejected.
+- Canadian templates use `province_name` and `province_abbreviation`. Legacy `state_name` / `state_abbreviation` columns remain supported and are the internal schema/placeholder keys. Conflicting aliases are rejected. Existing Media Library images are required; production `/ca/wp-content/uploads/` URLs can resolve against the Local uploads base without downloading media.
+- **Resources Landing Pages → Add City Page:** all city content fields, optional images/alt text, template defaults and a franchise selector. Areas served is preselected. Normal WordPress controls determine editor publication status. Saving regenerates the named core blocks and context.
+- Preview validates current editor values. Draft previews generate the draft; published-page previews use private user-scoped snapshots without changing the saved page.
+- City-template activation is explicit: resources post type, Areas served term, and Content Engine city flag. Existing unconverted resources retain their legacy template.
+- The Canadian pattern uses contact form 1 (Postal Code), with configured franchise forms taking precedence. Schema defaults to country CA. Starter copy avoids US rebate/climate/pricing claims and US financing defaults. Review editable copy for the actual city before publishing.
+
+Runtime requirements: WordPress 6.9+, PHP 8+, ACF Pro, the Bricks/Beanstalk module, and Gravity Forms for quote forms. The WordPress MCP Adapter is optional for connector abilities and is not needed for the admin importer/editor. Deploy the plugin and theme changes together, activate the plugin, and back up the destination database before applying imports. Git changes do not migrate posts, relationships, media, form configuration or saved content parts.
+
+See `bricks/beanstalk/TESTING.md` for the test commands.
+
+Local QA on 2026-10-30: the importer and new-city editor loaded; province labels and Areas served selection were verified. Draft 66405 used Scarborough, Ontario/ON and East Toronto 21804. Generated blocks/context read back correctly. The editor's Preview action rendered the city template, Canadian contact form, franchise reviews/phone, loaded service images, five FAQs, footer, and one schema graph with country CA and the Canadian postal address. The normal homepage retained Bricks and loaded no Beanstalk assets. No imports were applied and no pages were published. A separate existing Local `/east-toronto` pretty URL returned 404; the draft preview and homepage checks used their working routes. Hosting deployment and production route verification remain separate.

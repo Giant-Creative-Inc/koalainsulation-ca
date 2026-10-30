@@ -19,11 +19,11 @@ $copy               = wp_parse_args(
 		'servicesLabel'      => 'Services',
 		'resourcesLabel'     => 'Resources',
 		'contactLabel'       => 'Contact Us',
-		'factOne'            => '*90% of homes are underinsulated',
-		'factTwo'            => '*44% of the homes energy is used for heating and cooling',
+		'factOne'            => '*85% of homes are underinsulated',
+		'factTwo'            => '*64% of the homes energy is used for heating and cooling',
 		'factThree'          => '*70% potential energy loss from poor insulation and air sealing',
-		'financingText'      => 'All financing is subject to credit approval. Your terms may vary. Payment options through Wisetack are provided by our lending partners. For example, a $1,200 purchase could cost $104.89 a month for 12 months, based on an 8.9% APR, or $400 a month for 3 months, based on a 0% APR. Offers range from 0-35.9% APR based on creditworthiness. State interest rate caps may apply. No other financing charges or participation fees.',
-		'financingLinkLabel' => 'See additional terms at https://www.wisetack.com/faqs.',
+		'financingText'      => '',
+		'financingLinkLabel' => '',
 		'copyrightSuffix'    => 'Koala Insulation. All rights reserved.',
 		'privacyLabel'       => 'Privacy Policy',
 		'termsLabel'         => 'Terms and Conditions',
@@ -98,9 +98,12 @@ $resources          = array(
 			</div>
 		</div>
 
+		<?php if ( $copy['financingText'] || $copy['financingLinkLabel'] ) : ?>
 		<div class="beanstalk-footer__financing" id="footnote">
-			<p><?php echo esc_html( $copy['financingText'] ); ?> <a href="https://www.wisetack.com/faqs/"><?php echo esc_html( $copy['financingLinkLabel'] ); ?></a></p>
+			<p><?php echo esc_html( trim( $copy['financingText'] . ' ' . $copy['financingLinkLabel'] ) ); ?></p>
 		</div>
+
+		<?php endif; ?>
 
 		<div class="beanstalk-footer__bottom">
 			<div class="beanstalk-footer__legal">

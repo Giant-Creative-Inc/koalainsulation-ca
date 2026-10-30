@@ -206,7 +206,7 @@ function koala_beanstalk_register_city_page_blocks(): void {
 			'attributes'      => array(
 				'formId' => array(
 					'type'    => 'integer',
-					'default' => 13,
+					'default' => 1,
 				),
 			),
 			'render_callback' => 'koala_beanstalk_render_location_gravity_form_block',
@@ -479,7 +479,7 @@ function koala_beanstalk_render_location_gravity_form_block( array $attributes, 
 	}
 
 	$location_form_id = isset( $context['gravity_form_id'] ) ? absint( $context['gravity_form_id'] ) : 0;
-	$default_form_id  = isset( $attributes['formId'] ) ? absint( $attributes['formId'] ) : 13;
+	$default_form_id  = isset( $attributes['formId'] ) ? absint( $attributes['formId'] ) : 1;
 	$form_id          = $location_form_id ? $location_form_id : $default_form_id;
 	if ( ! $form_id ) {
 		return '';
