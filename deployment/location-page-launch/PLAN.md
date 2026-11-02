@@ -1,6 +1,6 @@
 # Beanstalk location launch: database and release plan
 
-Status: Canadian runtime and migration implemented; six staging locations migrated and enabled. Production unchanged. No auto-merge or automatic migration hook.
+Status: Canadian runtime and migration implemented; six staging locations migrated and enabled. Production unchanged. No auto-merge or automatic migration hook. November 2 QA is complete with open navigation, reviews and content-review findings; see QA.md. CRM is excluded from the current QA scope at the user's request.
 
 ## Database strategy
 

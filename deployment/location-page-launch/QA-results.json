@@ -1,0 +1,110 @@
+{
+  "date": "2026-11-02",
+  "scope": "Canadian staging, six locations; CRM excluded",
+  "overall": "needs_fixes",
+  "locations": [
+    {
+      "slug": "edmonton",
+      "http": 200,
+      "h1_count": 1,
+      "core_seo": "pass",
+      "json_ld_exact_parity": true,
+      "desktop_controls": "pass",
+      "mobile_controls": "pass",
+      "empty_submission_validation": "pass",
+      "postal_lookup": "pass",
+      "maps_after_git_sync": "pass",
+      "reviews": "fail",
+      "blog_services_overviews": "fail",
+      "copy_and_open_graph": "review"
+    },
+    {
+      "slug": "durham",
+      "http": 200,
+      "h1_count": 1,
+      "core_seo": "pass",
+      "json_ld_exact_parity": true,
+      "desktop_controls": "pass",
+      "mobile_controls": "pass",
+      "empty_submission_validation": "pass",
+      "postal_lookup": "pass",
+      "maps_after_git_sync": "pass",
+      "reviews": "fail",
+      "blog_services_overviews": "fail",
+      "copy_and_open_graph": "review"
+    },
+    {
+      "slug": "winnipeg",
+      "http": 200,
+      "h1_count": 1,
+      "core_seo": "pass",
+      "json_ld_exact_parity": true,
+      "desktop_controls": "pass",
+      "mobile_controls": "pass",
+      "empty_submission_validation": "pass",
+      "postal_lookup": "pass",
+      "maps_after_git_sync": "pass",
+      "reviews": "fail",
+      "blog_services_overviews": "fail",
+      "copy_and_open_graph": "review"
+    },
+    {
+      "slug": "halton",
+      "http": 200,
+      "h1_count": 1,
+      "core_seo": "pass",
+      "json_ld_exact_parity": true,
+      "desktop_controls": "pass",
+      "mobile_controls": "pass",
+      "empty_submission_validation": "pass",
+      "postal_lookup": "pass",
+      "maps_after_git_sync": "pass",
+      "reviews": "fail",
+      "blog_services_overviews": "fail",
+      "copy_and_open_graph": "review"
+    },
+    {
+      "slug": "london",
+      "http": 200,
+      "h1_count": 1,
+      "core_seo": "pass",
+      "json_ld_exact_parity": true,
+      "desktop_controls": "pass",
+      "mobile_controls": "pass",
+      "empty_submission_validation": "pass",
+      "postal_lookup": "pass",
+      "maps_after_git_sync": "pass",
+      "reviews": "fail",
+      "blog_services_overviews": "fail",
+      "copy_and_open_graph": "review"
+    },
+    {
+      "slug": "kitchener-waterloo",
+      "http": 200,
+      "h1_count": 1,
+      "core_seo": "pass",
+      "json_ld_exact_parity": true,
+      "desktop_controls": "pass",
+      "mobile_controls": "pass",
+      "empty_submission_validation": "pass",
+      "postal_lookup": "pass",
+      "maps_after_git_sync": "pass",
+      "reviews": "fail",
+      "blog_services_overviews": "fail",
+      "copy_and_open_graph": "review"
+    }
+  ],
+  "open_findings": [
+    "CA-QA-01",
+    "CA-QA-02",
+    "CA-QA-03",
+    "CA-QA-04",
+    "CA-QA-05",
+    "CA-QA-06"
+  ],
+  "resolved_findings": [
+    "CA-QA-07"
+  ],
+  "successful_lead_submitted": false,
+  "production_changed": false
+}
