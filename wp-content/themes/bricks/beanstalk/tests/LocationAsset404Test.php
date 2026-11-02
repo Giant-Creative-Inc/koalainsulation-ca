@@ -18,7 +18,7 @@ final class LocationAsset404Test extends TestCase {
   self::assertTrue(function_exists('koala_beanstalk_location_css_exclusions'));
   $existing=array('other.css');
   self::assertSame(array('other.css','/wp-content/themes/bricks/beanstalk/assets/location-deferred.css'),koala_beanstalk_location_css_exclusions($existing));
-  self::assertSame(array('other.css','beanstalk/assets/location-quote-banner/background.webp'),koala_beanstalk_location_background_exclusions($existing));
+  self::assertSame(array('other.css','beanstalk/assets/location-quote-banner/background.webp','beanstalk/assets/location-final-cta/accent.webp'),koala_beanstalk_location_background_exclusions($existing));
   Functions\when('koala_beanstalk_sidebar_preview')->justReturn(false);
   self::assertSame($existing,koala_beanstalk_location_css_exclusions($existing));
   self::assertSame($existing,koala_beanstalk_location_background_exclusions($existing));
