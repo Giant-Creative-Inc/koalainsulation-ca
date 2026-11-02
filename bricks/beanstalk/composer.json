@@ -1,0 +1,32 @@
+{
+  "name": "koala/beanstalk-theme-module",
+  "description": "Test tooling for the Koala Beanstalk WordPress theme module.",
+  "type": "project",
+  "require-dev": {
+    "brain/monkey": "^2.7",
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+    "phpunit/phpunit": "^9.6.30",
+    "squizlabs/php_codesniffer": "^3.13",
+    "wp-coding-standards/wpcs": "^3.2"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Koala\\Beanstalk\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": [
+      "@php tools/build-city-page-css.php --check",
+      "phpunit",
+      "@php tools/test-importer.php"
+    ],
+    "lint": "phpcs",
+    "build:css": "@php tools/build-city-page-css.php"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    },
+    "sort-packages": true
+  }
+}

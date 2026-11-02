@@ -20,14 +20,16 @@ require_once __DIR__ . '/parts.php';
  * Determine whether the current request should use the Beanstalk template.
  */
 function koala_is_beanstalk_area_served_page(): bool {
-	if ( ! is_singular( 'resources-landing-pa' ) ) {
+	$post_id = get_queried_object_id();
+	if ( ! is_singular( 'resources-landing-pa' )
+		&& ( $post_id <= 0 || 'resources-landing-pa' !== get_post_type( $post_id ) ) ) {
 		return false;
 	}
 
-	$post_id = get_queried_object_id();
-
 	return $post_id > 0
-		&& has_term( 'areas-served', 'resources-page-type', $post_id );
+		&& has_term( 'areas-served', 'resources-page-type', $post_id )
+		&& function_exists( 'beanstalk_content_engine_is_city_page_enabled' )
+		&& beanstalk_content_engine_is_city_page_enabled( $post_id );
 }
 
 /**
@@ -77,6 +79,75 @@ function koala_beanstalk_restore_native_image_attributes( array $attributes, $at
 add_filter( 'wp_get_attachment_image_attributes', 'koala_beanstalk_restore_native_image_attributes', 20, 3 );
 
 /**
+ * Restore real image URLs in saved blocks while retaining native lazy loading.
+ *
+ * @param string    $html Rendered image block.
+ * @param array     $block Parsed block.
+ * @param bool|null $eligible Optional eligibility override for tests.
+ * @return string
+ */
+function koala_beanstalk_native_block_images( string $html, array $block, ?bool $eligible = null ): string {
+	if ( 'core/image' !== ( $block['blockName'] ?? '' ) ) {
+		return $html;
+	}
+	$eligible = null === $eligible ? koala_is_beanstalk_area_served_page() : $eligible;
+	if ( ! $eligible ) {
+		return $html;
+	}
+
+	$processor = new WP_HTML_Tag_Processor( $html );
+	while ( $processor->next_tag( 'IMG' ) ) {
+		foreach ( array( 'src', 'srcset', 'sizes' ) as $attribute ) {
+			$value = $processor->get_attribute( 'data-' . $attribute );
+			if ( is_string( $value ) && '' !== $value ) {
+				$processor->set_attribute( $attribute, $value );
+				$processor->remove_attribute( 'data-' . $attribute );
+			}
+		}
+		$processor->remove_class( 'bricks-lazy-hidden' );
+		$processor->remove_attribute( 'data-type' );
+		if ( null === $processor->get_attribute( 'loading' ) ) {
+			$processor->set_attribute( 'loading', 'lazy' );
+		}
+		$processor->set_attribute( 'decoding', 'async' );
+	}
+	return $processor->get_updated_html();
+}
+add_filter( 'render_block', 'koala_beanstalk_native_block_images', 100, 2 );
+
+
+/**
+ * Preserve native image lazy loading on Beanstalk pages when WP Rocket is active.
+ *
+ * @param bool $enabled WP Rocket image lazy-loading setting.
+ * @return bool
+ */
+function koala_beanstalk_disable_rocket_image_lazyload( bool $enabled ): bool {
+	return koala_is_beanstalk_area_served_page() ? false : $enabled;
+}
+add_filter( 'do_rocket_lazyload', 'koala_beanstalk_disable_rocket_image_lazyload', 100 );
+
+/**
+ * Apply native lazy loading to every server-rendered City Page image.
+ *
+ * Includes shared chrome and third-party review markup outside core image blocks.
+ * Called only by the dedicated Beanstalk template's output buffer.
+ *
+ * @param string $html Complete City Page markup.
+ * @return string
+ */
+function koala_beanstalk_lazy_page_images( string $html ): string {
+	$processor = new WP_HTML_Tag_Processor( $html );
+	while ( $processor->next_tag( 'IMG' ) ) {
+		$processor->set_attribute( 'loading', 'lazy' );
+		$processor->remove_attribute( 'fetchpriority' );
+	}
+	return $processor->get_updated_html();
+}
+
+
+
+/**
  * Route only matching Resources Landing Pages to Beanstalk.
  *
  * @param string $template Resolved template path.
@@ -104,6 +175,36 @@ function koala_beanstalk_remove_legacy_theme_output(): void {
 add_action( 'template_redirect', 'koala_beanstalk_remove_legacy_theme_output', 100 );
 
 /**
+ * Omit legacy NiceJob embeds from location scripts on Google-only City Pages.
+ *
+ * @param mixed     $value    Saved location markup.
+ * @param mixed     $post_id  ACF object ID.
+ * @param mixed     $field    ACF field definition.
+ * @param bool|null $eligible Optional eligibility override for tests.
+ * @return mixed
+ */
+function koala_beanstalk_filter_location_review_scripts( $value, $post_id = null, $field = null, ?bool $eligible = null ) {
+	unset( $post_id, $field );
+	$eligible = null === $eligible ? koala_is_beanstalk_area_served_page() : $eligible;
+	if ( ! $eligible || ! is_string( $value ) ) {
+		return $value;
+	}
+	$value = preg_replace( '~<script\b[^>]*\bsrc\s*=\s*([\'"])(?:https?:)?//(?:[a-z0-9-]+\.)*nicejob\.co/[^\'"]*\1[^>]*>.*?</script\s*>~is', '', $value );
+	return preg_replace( '~<div\b[^>]*\bclass\s*=\s*([\'"])[^\'"]*\bnj-(?:engage|badge|stories|reviews)\b[^\'"]*\1[^>]*>\s*</div\s*>~is', '', $value );
+}
+add_filter( 'acf/load_value/name=script_in_head_tag', 'koala_beanstalk_filter_location_review_scripts', 20, 3 );
+add_filter( 'acf/load_value/name=script_in_body_tag', 'koala_beanstalk_filter_location_review_scripts', 20, 3 );
+
+/** Remove the plugin SDK if another block enqueued it on a City Page. */
+function koala_beanstalk_remove_nicejob_sdk(): void {
+	if ( koala_is_beanstalk_area_served_page() ) {
+		wp_dequeue_script( 'nicejob-sdk' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'koala_beanstalk_remove_nicejob_sdk', 1002 );
+add_action( 'wp_print_footer_scripts', 'koala_beanstalk_remove_nicejob_sdk', 1 );
+
+/**
  * Use the City Page's intentionally scoped form styles instead of Gravity Forms' global theme bundle.
  *
  * @param bool $disabled Whether Gravity Forms frontend CSS is disabled.
@@ -111,7 +212,7 @@ add_action( 'template_redirect', 'koala_beanstalk_remove_legacy_theme_output', 1
 function koala_beanstalk_disable_gravity_forms_css( bool $disabled ): bool {
 	return koala_is_beanstalk_area_served_page() ? true : $disabled;
 }
-add_filter( 'gform_disable_css', 'koala_beanstalk_disable_gravity_forms_css' );
+// Gravity Forms rules remain authoritative and are inlined below.
 
 /**
  * Load below-the-fold Beanstalk CSS without blocking the initial render.
@@ -127,7 +228,8 @@ function koala_beanstalk_defer_noncritical_style( string $html, string $handle )
 	}
 
 	// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet -- Filters markup produced by wp_enqueue_style().
-	$deferred = str_replace( ' rel="stylesheet"', ' rel="stylesheet" media="print" onload="this.media=\'all\'"', $html );
+	$deferred = preg_replace( '/\smedia\s*=\s*([\'"])[^\'"]*\1/i', '', $html );
+	$deferred = preg_replace( '/<link\b/i', '<link data-no-optimize="1" media="print" onload="this.media=\'all\'"', $deferred, 1 );
 
 	// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet -- No-JavaScript fallback for the enqueued stylesheet.
 	return $deferred . '<noscript>' . $html . '</noscript>';
@@ -286,6 +388,69 @@ function koala_beanstalk_manage_review_assets(): void {
 	wp_dequeue_style( 'grw-public-main-css' );
 }
 add_action( 'wp_enqueue_scripts', 'koala_beanstalk_manage_review_assets', 1001 );
+
+/**
+ * Inline known first-paint styles without changing their rules or cascade order.
+ *
+ * @param string       $html     Original stylesheet tag.
+ * @param string       $handle   Registered style handle.
+ * @param string|false $css      Local CSS, or false when unavailable.
+ * @param string       $base_url Directory for relative CSS assets.
+ */
+function koala_beanstalk_form_css_markup( string $html, string $handle, $css, string $base_url ): string {
+	$handles = array( 'gravity_forms_theme_reset', 'gravity_forms_theme_foundation', 'gravity_forms_theme_framework', 'gravity_forms_orbital_theme', 'koala-beanstalk-header', 'koala-beanstalk-city-page-critical' );
+	if ( ! in_array( $handle, $handles, true ) || ! is_string( $css ) ) {
+		return $html;
+	}
+	$css = preg_replace_callback(
+		'~url\(\s*([\'"]?)([^\'"\)]+)\1\s*\)~i',
+		static function ( $css_match ) use ( $base_url ): string {
+			$url = trim( $css_match[2] );
+			if ( ! preg_match( '~^(?:[a-z][a-z0-9+.-]*:|/|\#)~i', $url ) ) {
+				$url = $base_url . $url;
+			}
+			return 'url("' . $url . '")';
+		},
+		$css
+	);
+	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Trusted local CSS, not user content.
+	return '<style id="' . esc_attr( $handle ) . '-css" data-no-optimize="1">' . $css . '</style>';
+}
+
+/**
+ * Keep hero/form styles in the document on City Pages; preserve other requests.
+ *
+ * @param string $html   Original stylesheet tag.
+ * @param string $handle Registered style handle.
+ */
+function koala_beanstalk_inline_critical_styles( string $html, string $handle ): string {
+	if ( ! koala_is_beanstalk_area_served_page() ) {
+		return $html;
+	}
+	$files = array(
+		'gravity_forms_theme_reset'          => 'gravity-forms-theme-reset.min.css',
+		'gravity_forms_theme_foundation'     => 'gravity-forms-theme-foundation.min.css',
+		'gravity_forms_theme_framework'      => 'gravity-forms-theme-framework.min.css',
+		'gravity_forms_orbital_theme'        => 'gravity-forms-orbital-theme.min.css',
+		'koala-beanstalk-header'             => 'header.css',
+		'koala-beanstalk-city-page-critical' => 'city-page-critical.css',
+	);
+	if ( ! isset( $files[ $handle ] ) ) {
+		return $html;
+	}
+	$is_theme = strpos( $handle, 'koala-beanstalk-' ) === 0;
+	$path     = $is_theme ? __DIR__ . '/assets/' : WP_PLUGIN_DIR . '/gravityforms/assets/css/dist/';
+	$base_url = $is_theme ? get_template_directory_uri() . '/beanstalk/assets/' : plugins_url( 'gravityforms/assets/css/dist/' );
+	$path    .= $files[ $handle ];
+	if ( ! is_readable( $path ) ) {
+		return $html;
+	}
+	// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Read trusted local plugin/theme CSS.
+	return koala_beanstalk_form_css_markup( $html, $handle, file_get_contents( $path ), $base_url );
+}
+add_filter( 'style_loader_tag', 'koala_beanstalk_inline_critical_styles', 100, 2 );
+
+
 
 /**
  * Upgrade legacy default pattern images at render time without overwriting an

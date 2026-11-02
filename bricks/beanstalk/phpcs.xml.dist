@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ruleset name="Koala Canada City Pages">
+    <file>../../wp-content/themes/bricks/beanstalk</file>
+    <arg name="extensions" value="php"/>
+    <arg value="ps"/>
+    <rule ref="WordPress-Core"/>
+    <rule ref="WordPress-Docs"/>
+    <rule ref="WordPress-Extra"/>
+</ruleset>

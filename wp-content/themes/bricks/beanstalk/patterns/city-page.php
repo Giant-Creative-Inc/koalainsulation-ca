@@ -27,24 +27,24 @@
 				<!-- /wp:paragraph -->
 
 				<!-- wp:group {"className":"koala-city-hero__benefits","layout":{"type":"default"}} -->
-				<div class="wp-block-group koala-city-hero__benefits" role="list">
+				<div class="wp-block-group koala-city-hero__benefits">
 					<!-- wp:paragraph {"className":"koala-city-hero__benefit","metadata":{"name":"koala-city-page-field-hero-benefit-1"}} -->
-					<p class="koala-city-hero__benefit" role="listitem">FREE in-home evaluation</p>
+					<p class="koala-city-hero__benefit">FREE in-home evaluation</p>
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph {"className":"koala-city-hero__benefit","metadata":{"name":"koala-city-page-field-hero-benefit-2"}} -->
-					<p class="koala-city-hero__benefit" role="listitem">Licensed &amp; insured pros</p>
+					<p class="koala-city-hero__benefit">Licensed &amp; insured pros</p>
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph {"className":"koala-city-hero__benefit","metadata":{"name":"koala-city-page-field-hero-benefit-3"}} -->
-					<p class="koala-city-hero__benefit" role="listitem">Clean, 1-day service</p>
+					<p class="koala-city-hero__benefit">Clean, 1-day service</p>
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph {"className":"koala-city-hero__benefit","metadata":{"name":"koala-city-page-field-hero-benefit-4"}} -->
-					<p class="koala-city-hero__benefit" role="listitem">Same-week installation</p>
+					<p class="koala-city-hero__benefit">Same-week installation</p>
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph {"className":"koala-city-hero__benefit","metadata":{"name":"koala-city-page-field-hero-benefit-5"}} -->
-					<p class="koala-city-hero__benefit" role="listitem">Workmanship warranty</p>
+					<p class="koala-city-hero__benefit">Workmanship warranty</p>
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph {"className":"koala-city-hero__benefit","metadata":{"name":"koala-city-page-field-hero-benefit-6"}} -->
-					<p class="koala-city-hero__benefit" role="listitem">Utility rebate assistance</p>
+					<p class="koala-city-hero__benefit">Utility rebate assistance</p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:group -->
@@ -64,7 +64,7 @@
 				<h2 class="wp-block-heading koala-city-hero__form-heading">Talk to Our {{service_area_name}} Insulation Experts Today</h2>
 				<!-- /wp:heading -->
 
-				<!-- wp:koala/location-gravity-form {"formId":13} -->
+				<!-- wp:koala/location-gravity-form {"formId":1} -->
 					<!-- wp:paragraph {"className":"koala-city-hero__submit-label-source","metadata":{"name":"koala-city-page-field-hero-form-submit-label"}} -->
 					<p class="koala-city-hero__submit-label-source">Get a FREE Quote</p>
 					<!-- /wp:paragraph -->
@@ -125,9 +125,9 @@
 				<!-- /wp:paragraph -->
 
 				<!-- wp:group {"className":"koala-city-commercial-services__benefits","layout":{"type":"default"}} -->
-				<div class="wp-block-group koala-city-commercial-services__benefits" role="list">
+				<div class="wp-block-group koala-city-commercial-services__benefits">
 					<!-- wp:group {"className":"koala-city-commercial-services__benefit","layout":{"type":"default"}} -->
-					<div class="wp-block-group koala-city-commercial-services__benefit" role="listitem">
+					<div class="wp-block-group koala-city-commercial-services__benefit">
 						<!-- wp:paragraph {"className":"koala-city-commercial-services__benefit-title","metadata":{"name":"koala-city-page-field-commercial-services-benefit-1-title"}} -->
 						<p class="koala-city-commercial-services__benefit-title">Energy Code Compliance</p>
 						<!-- /wp:paragraph -->
@@ -138,7 +138,7 @@
 					<!-- /wp:group -->
 
 					<!-- wp:group {"className":"koala-city-commercial-services__benefit","layout":{"type":"default"}} -->
-					<div class="wp-block-group koala-city-commercial-services__benefit" role="listitem">
+					<div class="wp-block-group koala-city-commercial-services__benefit">
 						<!-- wp:paragraph {"className":"koala-city-commercial-services__benefit-title","metadata":{"name":"koala-city-page-field-commercial-services-benefit-2-title"}} -->
 						<p class="koala-city-commercial-services__benefit-title">Large Project Experience</p>
 						<!-- /wp:paragraph -->
@@ -149,7 +149,7 @@
 					<!-- /wp:group -->
 
 					<!-- wp:group {"className":"koala-city-commercial-services__benefit","layout":{"type":"default"}} -->
-					<div class="wp-block-group koala-city-commercial-services__benefit" role="listitem">
+					<div class="wp-block-group koala-city-commercial-services__benefit">
 						<!-- wp:paragraph {"className":"koala-city-commercial-services__benefit-title","metadata":{"name":"koala-city-page-field-commercial-services-benefit-3-title"}} -->
 						<p class="koala-city-commercial-services__benefit-title">Inspection &amp; Code Compliance</p>
 						<!-- /wp:paragraph -->
@@ -237,21 +237,21 @@
 				<!-- /wp:group -->
 
 				<!-- wp:group {"className":"koala-city-why-koala__benefits","layout":{"type":"default"}} -->
-				<div class="wp-block-group koala-city-why-koala__benefits" role="list">
+				<div class="wp-block-group koala-city-why-koala__benefits">
 					<!-- wp:paragraph {"className":"koala-city-why-koala__benefit","metadata":{"name":"koala-city-page-field-why-koala-benefit-1"}} -->
-					<p class="koala-city-why-koala__benefit" role="listitem"><strong>Workmanship warranty</strong> on every install</p>
+					<p class="koala-city-why-koala__benefit"><strong>Workmanship warranty</strong> on every install</p>
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph {"className":"koala-city-why-koala__benefit","metadata":{"name":"koala-city-page-field-why-koala-benefit-2"}} -->
-					<p class="koala-city-why-koala__benefit" role="listitem"><strong>FREE</strong> on-site evaluations &amp; written quotes</p>
+					<p class="koala-city-why-koala__benefit"><strong>FREE</strong> on-site evaluations &amp; written quotes</p>
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph {"className":"koala-city-why-koala__benefit","metadata":{"name":"koala-city-page-field-why-koala-benefit-3"}} -->
-					<p class="koala-city-why-koala__benefit" role="listitem">NJ Clean Energy Program <strong>rebate-eligible</strong> services</p>
+					<p class="koala-city-why-koala__benefit">Ask about <strong>local rebate programs</strong></p>
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph {"className":"koala-city-why-koala__benefit","metadata":{"name":"koala-city-page-field-why-koala-benefit-4"}} -->
-					<p class="koala-city-why-koala__benefit" role="listitem">Most jobs completed in <strong>just one day</strong></p>
+					<p class="koala-city-why-koala__benefit">Most jobs completed in <strong>just one day</strong></p>
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph {"className":"koala-city-why-koala__benefit","metadata":{"name":"koala-city-page-field-why-koala-benefit-5"}} -->
-					<p class="koala-city-why-koala__benefit" role="listitem">Locally licensed, insured <strong>{{service_area_name}} team</strong></p>
+					<p class="koala-city-why-koala__benefit">Locally licensed, insured <strong>{{service_area_name}} team</strong></p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:group -->
@@ -288,8 +288,8 @@
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:group {"align":"full","className":"koala-city-testimonials","layout":{"type":"default"}} -->
-	<section class="wp-block-group alignfull koala-city-testimonials" aria-labelledby="koala-city-testimonials-heading">
+	<!-- wp:group {"tagName":"section","align":"full","className":"koala-city-testimonials","layout":{"type":"default"}} -->
+	<section class="wp-block-group alignfull koala-city-testimonials">
 		<!-- wp:group {"className":"koala-city-testimonials__content","layout":{"type":"default"}} -->
 		<div class="wp-block-group koala-city-testimonials__content">
 			<!-- wp:group {"className":"koala-city-testimonials__intro","layout":{"type":"default"}} -->
@@ -297,7 +297,7 @@
 				<!-- wp:paragraph {"className":"koala-city-testimonials__eyebrow","metadata":{"name":"koala-city-page-field-testimonials-eyebrow"}} -->
 				<p class="koala-city-testimonials__eyebrow">Your Satisfaction is</p>
 				<!-- /wp:paragraph -->
-				<!-- wp:heading {"level":2,"className":"koala-city-testimonials__heading","metadata":{"name":"koala-city-page-field-testimonials-heading"}} -->
+				<!-- wp:heading {"level":2,"anchor":"koala-city-testimonials-heading","className":"koala-city-testimonials__heading","metadata":{"name":"koala-city-page-field-testimonials-heading"}} -->
 				<h2 id="koala-city-testimonials-heading" class="wp-block-heading koala-city-testimonials__heading">Our Top Priority</h2>
 				<!-- /wp:heading -->
 				<!-- wp:paragraph {"className":"koala-city-testimonials__description","metadata":{"name":"koala-city-page-field-testimonials-description"}} -->
@@ -350,7 +350,7 @@
 				<!-- wp:details {"showContent":true,"className":"koala-city-faq__item","metadata":{"name":"koala-city-page-field-faq-1-question"}} -->
 				<details class="wp-block-details koala-city-faq__item" open><summary>How much does insulation cost in {{service_area_name}}?</summary>
 					<!-- wp:paragraph {"className":"koala-city-faq__answer","metadata":{"name":"koala-city-page-field-faq-1-answer"}} -->
-					<p class="koala-city-faq__answer">Blown-in attic insulation in the {{service_area_name}} area typically starts at $1.60 per square foot, so a standard 1,500 sq ft attic usually lands in the $2,400 to $4,000 range. Spray foam costs more per square foot but seals air leaks at the same time. Final price depends on attic size, the R-value you’re starting from, and the insulation type. Every quote is written, itemised, and free.</p>
+					<p class="koala-city-faq__answer">Insulation costs in {{service_area_name}} depend on the area being insulated, existing insulation, access and the material selected. Our local team assesses your home and provides a written quote during your free evaluation.</p>
 					<!-- /wp:paragraph -->
 				</details>
 				<!-- /wp:details -->
@@ -366,7 +366,7 @@
 				<!-- wp:details {"showContent":false,"className":"koala-city-faq__item","metadata":{"name":"koala-city-page-field-faq-3-question"}} -->
 				<details class="wp-block-details koala-city-faq__item"><summary>What R-value do I need for an attic in {{service_area_name}}?</summary>
 					<!-- wp:paragraph {"className":"koala-city-faq__answer","metadata":{"name":"koala-city-page-field-faq-3-answer"}} -->
-					<p class="koala-city-faq__answer">{{service_area_name}} sits in climate zone 4A, where the Department of Energy recommends R-49 to R-60 for attics. Many local homes built before 2000 come in around R-19 to R-30, which is well short. R-49 is also the level required for the {{state_abbreviation}} Clean Energy Program rebate. We measure your current R-value during the free evaluation and tell you exactly where you stand.</p>
+					<p class="koala-city-faq__answer">The right insulation level depends on your home, local climate and applicable requirements in {{state_name}} ({{state_abbreviation}}). We measure your existing insulation during the free evaluation and recommend a suitable upgrade. Ask our local team about current rebate eligibility.</p>
 					<!-- /wp:paragraph -->
 				</details>
 				<!-- /wp:details -->
