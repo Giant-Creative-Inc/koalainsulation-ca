@@ -26,7 +26,7 @@ function koala_beanstalk_location_assigned_links( int $location_id, array $field
 			if ( ! $id || 'publish' !== get_post_status( $id ) ) {
 				continue;
 			}
-			$owners = $settings[0] ? array_map( 'intval', (array) get_post_meta( $id, $settings[0], true ) ) : array();
+			$owners = $settings[0] ? array_filter( array_map( 'intval', (array) get_post_meta( $id, $settings[0], true ) ) ) : array();
 			if ( $owners && ! in_array( $location_id, $owners, true ) ) {
 				continue;
 			}
