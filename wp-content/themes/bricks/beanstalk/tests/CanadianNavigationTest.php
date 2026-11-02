@@ -27,4 +27,9 @@ final class CanadianNavigationTest extends TestCase {
   self::assertStringContainsString('.beanstalk-header__dropdown:last-child > .beanstalk-header__submenu',$header);
   self::assertStringContainsString('.beanstalk-footer__bottom nav[aria-label="Social media"]',$footer);
  }
+ public function test_footer_social_links_remain_readable_before_deferred_css(): void {
+  $footer=file_get_contents(dirname(__DIR__).'/location-footer.php');
+  self::assertStringContainsString('aria-label="Social media" style="display:flex;flex-wrap:wrap;gap:12px;color:#fff"',$footer);
+  self::assertSame(4,substr_count($footer,'style="color:inherit" href="https://www.'));
+ }
 }
