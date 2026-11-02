@@ -112,3 +112,8 @@ body.beanstalk-page { margin: 0; padding-top: var(--beanstalk-header-height, 170
 @media (prefers-reduced-motion: reduce) {
 	.beanstalk-header__nav, .beanstalk-header__submenu { transition: none; }
 }
+
+@media (min-width: 992px) {
+ .beanstalk-header__dropdown:last-child > .beanstalk-header__submenu { left: auto; right: 0; max-height: calc(100dvh - 180px); overflow-y: auto; }
+ .beanstalk-header__submenu a { overflow-wrap: anywhere; }
+}

@@ -31,24 +31,24 @@ $copy               = array_merge( $copy, koala_beanstalk_location_footer_facts(
 $footer             = koala_beanstalk_get_navigation_data();
 $location_preview   = function_exists( 'koala_beanstalk_sidebar_preview' ) && koala_beanstalk_sidebar_preview();
 $footer_logo        = home_url( '/wp-content/uploads/2025/07/LogoC.png' );
-$resources          = array(
+$resources          = $location_preview ? koala_beanstalk_location_assigned_links( (int) $footer['location']->ID ) : $footer['resources'];
+$why_links          = $location_preview ? koala_beanstalk_location_assigned_links(
+	(int) $footer['location']->ID,
 	array(
-		'title' => 'Blog',
-		'url'   => $footer['base'] . '/blog/',
+		'related_wk_page' => array( 'wk_related_location', $copy['whyKoalaLabel'] ),
+		'related_wr_page' => array( 'wr_related_location', $copy['whyReinsulateLabel'] ),
+	)
+) : array(
+	array(
+		'title' => $copy['whyKoalaLabel'],
+		'url'   => $footer['base'] . '/why-koala/',
 	),
 	array(
-		'title' => 'Homeowner Incentives',
-		'url'   => $footer['base'] . '/homeowner-incentives/',
-	),
-	array(
-		'title' => 'FAQ',
-		'url'   => $footer['base'] . '/faq/',
-	),
-	array(
-		'title' => 'Testimonials',
-		'url'   => $footer['base'] . '/testimonials/',
+		'title' => $copy['whyReinsulateLabel'],
+		'url'   => $footer['base'] . '/why-reinsulate/',
 	),
 );
+
 ?>
 <footer class="beanstalk-footer">
 	<div class="beanstalk-footer__inner">
@@ -56,8 +56,9 @@ $resources          = array(
 			<div class="beanstalk-footer__columns">
 				<nav class="beanstalk-footer__column" aria-label="Footer navigation">
 					<a class="beanstalk-footer__heading" href="<?php echo esc_url( $footer['base'] . '/' ); ?>"><?php echo esc_html( $copy['homeLabel'] ); ?></a>
-					<a class="beanstalk-footer__heading" href="<?php echo esc_url( $footer['base'] . '/why-koala/' ); ?>"><?php echo esc_html( $copy['whyKoalaLabel'] ); ?></a>
-					<a class="beanstalk-footer__heading" href="<?php echo esc_url( $footer['base'] . '/why-reinsulate/' ); ?>"><?php echo esc_html( $copy['whyReinsulateLabel'] ); ?></a>
+					<?php foreach ( $why_links as $why_link ) : ?>
+<a class="beanstalk-footer__heading" href="<?php echo esc_url( $why_link['url'] ); ?>"><?php echo esc_html( $why_link['title'] ); ?></a>
+<?php endforeach; ?>
 					<?php if ( $location_preview ) : ?>
 						<a class="beanstalk-footer__heading" href="https://koalainsulationfranchise.ca/">Franchise</a>
 						<a href="<?php echo esc_url( home_url( '/national-partnerships' ) ); ?>">National Partnerships</a>
@@ -65,7 +66,7 @@ $resources          = array(
 				</nav>
 
 				<nav class="beanstalk-footer__column beanstalk-footer__services" aria-label="Footer services">
-					<a class="beanstalk-footer__heading" href="<?php echo esc_url( $footer['base'] . '/services/' ); ?>"><?php echo esc_html( $copy['servicesLabel'] ); ?></a>
+					<span class="beanstalk-footer__heading"><?php echo esc_html( $copy['servicesLabel'] ); ?></span>
 					<?php foreach ( $footer['services'] as $service ) : ?>
 						<a href="<?php echo esc_url( $service['url'] ); ?>"><?php echo esc_html( $service['title'] ); ?></a>
 					<?php endforeach; ?>
@@ -106,8 +107,8 @@ $resources          = array(
 		<div class="beanstalk-footer__bottom">
 			<div class="beanstalk-footer__legal">
 				<span>© <?php echo esc_html( wp_date( 'Y' ) . ' ' . $copy['copyrightSuffix'] ); ?></span>
-				<a href="<?php echo esc_url( $location_preview ? $footer['base'] . '/privacy-policy' : home_url( '/privacy-policy/' ) ); ?>"><?php echo esc_html( $copy['privacyLabel'] ); ?></a>
-				<a href="<?php echo esc_url( $location_preview ? $footer['base'] . '/terms-and-conditions' : home_url( '/terms-and-conditions/' ) ); ?>"><?php echo esc_html( $copy['termsLabel'] ); ?></a>
+				<a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>"><?php echo esc_html( $copy['privacyLabel'] ); ?></a>
+				<a href="<?php echo esc_url( home_url( '/terms-and-conditions/' ) ); ?>"><?php echo esc_html( $copy['termsLabel'] ); ?></a>
 			</div>
 			<nav aria-label="Social media">
 				<a href="https://www.facebook.com/koalainsulationcanada">Facebook</a>
