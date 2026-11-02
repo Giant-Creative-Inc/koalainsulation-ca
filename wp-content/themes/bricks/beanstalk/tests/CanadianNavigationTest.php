@@ -45,4 +45,15 @@ final class CanadianNavigationTest extends TestCase {
    ['title'=>'Mikey on Board','url'=>'https://koalainsulation.com/ca/resources-landing-pa/mikey-on-board'],
   ],koala_beanstalk_location_resource_links(20105));
  }
+ public function test_standard_resources_use_each_locations_own_routes(): void {
+  require_once dirname(__DIR__).'/location-navigation.php';
+  $locations=[21804=>'east-toronto',21377=>'edmonton',20711=>'durham',20366=>'winnipeg',20180=>'halton',20105=>'london',4987=>'kitchener-waterloo'];
+  Functions\when('get_permalink')->alias(fn($id)=>'https://koalainsulation.com/ca/'.$locations[$id]);
+  Functions\when('get_post_meta')->justReturn([]);
+  foreach($locations as $id=>$slug){
+   $links=koala_beanstalk_location_resource_links($id);
+   self::assertSame(['Homeowner Incentives','FAQ','Testimonials'],array_column($links,'title'));
+   self::assertSame(array_map(fn($path)=>'https://koalainsulation.com/ca/'.$slug.'/'.$path,['homeowner-incentives','faq','testimonials']),array_column($links,'url'));
+  }
+ }
 }
