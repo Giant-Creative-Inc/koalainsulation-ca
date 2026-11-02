@@ -347,6 +347,8 @@
 .koala-location-customer-reviews__feed{position:relative;min-height:280px}
 .koala-location-customer-reviews__feed>.koala-location-widget__load{position:absolute;top:0;right:0;z-index:2;margin:0;background:#fff}
 
+@media(min-width:992px){.koala-location-offers__card{width:calc((100% - 48px)/3)}}
+
 /* Source: city-page-final-cta.css */
 :is(.koala-city-page,.koala-beanstalk-location) .koala-city-final-cta {
 	position: relative;
