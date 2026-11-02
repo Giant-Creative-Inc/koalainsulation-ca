@@ -44,23 +44,14 @@ function koala_beanstalk_location_assigned_links( int $location_id, array $field
 }
 
 /**
- * Return location-facing resource routes, including London's approved menu.
+ * Return the shared resource menu with each location's own routes.
  *
  * @param int $location_id Location record ID.
  * @return array Resource links in display order.
  */
 function koala_beanstalk_location_resource_links( int $location_id ): array {
-	$links = koala_beanstalk_location_assigned_links( $location_id );
-	$base  = rtrim( (string) get_permalink( $location_id ), '/' );
-	foreach ( $links as &$resource ) {
-		if ( 'Homeowner Incentives' === $resource['title'] ) {
-			$resource['url'] = $base . '/homeowner-incentives';
-		}
-	}
-	unset( $resource );
-	if ( 20105 !== $location_id ) {
-		return $links;
-	}
+	$links     = koala_beanstalk_location_assigned_links( $location_id );
+	$base      = rtrim( (string) get_permalink( $location_id ), '/' );
 	$resources = array(
 		array(
 			'title' => 'Homeowner Incentives',
