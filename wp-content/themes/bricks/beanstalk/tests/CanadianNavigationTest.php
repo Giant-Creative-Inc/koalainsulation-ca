@@ -32,4 +32,17 @@ final class CanadianNavigationTest extends TestCase {
   self::assertStringContainsString('aria-label="Social media" style="display:flex;flex-wrap:wrap;gap:12px;color:#fff"',$footer);
   self::assertSame(4,substr_count($footer,'style="color:inherit" href="https://www.'));
  }
+ public function test_london_resources_match_approved_menu_and_location_urls(): void {
+  require_once dirname(__DIR__).'/location-navigation.php';
+  Functions\when('get_permalink')->alias(fn($id)=>$id===20105?'https://koalainsulation.com/ca/london':'https://koalainsulation.com/ca/resources-landing-pa/mikey-on-board');
+  Functions\when('get_post_meta')->alias(fn($id,$key)=>$id===20105&&$key==='related_rl_page'?[19764]:[]);
+  Functions\when('get_post_status')->justReturn('publish');
+  Functions\when('get_the_title')->justReturn('Mikey on Board');
+  self::assertSame([
+   ['title'=>'Homeowner Incentives','url'=>'https://koalainsulation.com/ca/london/homeowner-incentives'],
+   ['title'=>'FAQ','url'=>'https://koalainsulation.com/ca/london/faq'],
+   ['title'=>'Testimonials','url'=>'https://koalainsulation.com/ca/london/testimonials'],
+   ['title'=>'Mikey on Board','url'=>'https://koalainsulation.com/ca/resources-landing-pa/mikey-on-board'],
+  ],koala_beanstalk_location_resource_links(20105));
+ }
 }

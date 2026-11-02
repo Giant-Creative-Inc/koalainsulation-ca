@@ -31,7 +31,7 @@ $copy               = array_merge( $copy, koala_beanstalk_location_footer_facts(
 $footer             = koala_beanstalk_get_navigation_data();
 $location_preview   = function_exists( 'koala_beanstalk_sidebar_preview' ) && koala_beanstalk_sidebar_preview();
 $footer_logo        = home_url( '/wp-content/uploads/2025/07/LogoC.png' );
-$resources          = $location_preview ? koala_beanstalk_location_assigned_links( (int) $footer['location']->ID ) : $footer['resources'];
+$resources          = $location_preview ? koala_beanstalk_location_resource_links( (int) $footer['location']->ID ) : $footer['resources'];
 $why_links          = $location_preview ? koala_beanstalk_location_assigned_links(
 	(int) $footer['location']->ID,
 	array(
@@ -60,7 +60,6 @@ $why_links          = $location_preview ? koala_beanstalk_location_assigned_link
 <a class="beanstalk-footer__heading" href="<?php echo esc_url( $why_link['url'] ); ?>"><?php echo esc_html( $why_link['title'] ); ?></a>
 <?php endforeach; ?>
 					<?php if ( $location_preview ) : ?>
-						<a class="beanstalk-footer__heading" href="https://koalainsulationfranchise.ca/">Franchise</a>
 						<a href="<?php echo esc_url( home_url( '/national-partnerships' ) ); ?>">National Partnerships</a>
 					<?php endif; ?>
 				</nav>

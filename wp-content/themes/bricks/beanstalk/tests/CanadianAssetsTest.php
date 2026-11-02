@@ -6,10 +6,10 @@ final class CanadianAssetsTest extends TestCase {
   self::assertStringContainsString('#field_3_1',$css);
   self::assertStringNotContainsString('#field_13_',$css);
  }
- public function test_canadian_location_navigation_retains_canadian_franchise_destination(): void {
+ public function test_canadian_location_navigation_omits_franchise_destination(): void {
   foreach(['location-header.php','location-footer.php'] as $file) {
    $html=file_get_contents(dirname(__DIR__).'/'.$file);
-   self::assertStringContainsString('https://koalainsulationfranchise.ca/', $html);
+   self::assertStringNotContainsString('https://koalainsulationfranchise.ca/', $html);
    self::assertStringNotContainsString('https://koalainsulationfranchise.com/', $html);
   }
  }
