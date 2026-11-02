@@ -110,11 +110,11 @@ $why_links          = $location_preview ? koala_beanstalk_location_assigned_link
 				<a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>"><?php echo esc_html( $copy['privacyLabel'] ); ?></a>
 				<a href="<?php echo esc_url( home_url( '/terms-and-conditions/' ) ); ?>"><?php echo esc_html( $copy['termsLabel'] ); ?></a>
 			</div>
-			<nav aria-label="Social media">
-				<a href="https://www.facebook.com/koalainsulationcanada">Facebook</a>
-				<a href="https://www.instagram.com/koalainsulationcanada/">Instagram</a>
-				<a href="https://www.linkedin.com/company/koala-insulation-canada/">LinkedIn</a>
-				<a href="https://www.youtube.com/channel/UCEYUbnu82sHwLIRzsY6qtPQ">YouTube</a>
+			<nav aria-label="Social media" style="display:flex;flex-wrap:wrap;gap:12px;color:#fff">
+				<a style="color:inherit" href="https://www.facebook.com/koalainsulationcanada">Facebook</a>
+				<a style="color:inherit" href="https://www.instagram.com/koalainsulationcanada/">Instagram</a>
+				<a style="color:inherit" href="https://www.linkedin.com/company/koala-insulation-canada/">LinkedIn</a>
+				<a style="color:inherit" href="https://www.youtube.com/channel/UCEYUbnu82sHwLIRzsY6qtPQ">YouTube</a>
 			</nav>
 		</div>
 	</div>
