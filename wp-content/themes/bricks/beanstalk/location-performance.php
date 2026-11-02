@@ -58,3 +58,34 @@ function koala_beanstalk_location_preload_fonts(): void {
 	}
 }
 add_action( 'wp_head', 'koala_beanstalk_location_preload_fonts', 1 );
+
+/**
+ * Keep the prebuilt deferred bundle at its original URL on Canadian subdirectory pages.
+ *
+ * WP Rocket's minify/background-cache rebasing duplicates /ca/ for this bundle.
+ * The bundle is already compressed and deferred by this module.
+ *
+ * @param array $excluded Existing optimizer exclusions.
+ * @return array
+ */
+function koala_beanstalk_location_css_exclusions( array $excluded ): array {
+	if ( koala_beanstalk_sidebar_preview() ) {
+		$excluded[] = '/wp-content/themes/bricks/beanstalk/assets/location-deferred.css';
+	}
+	return $excluded;
+}
+add_filter( 'rocket_exclude_css', 'koala_beanstalk_location_css_exclusions' );
+
+/**
+ * Leave the shared quote/financing background relative to its original stylesheet.
+ *
+ * @param array $excluded Existing background-image exclusions.
+ * @return array
+ */
+function koala_beanstalk_location_background_exclusions( array $excluded ): array {
+	if ( koala_beanstalk_sidebar_preview() ) {
+		$excluded[] = 'beanstalk/assets/location-quote-banner/background.webp';
+	}
+	return $excluded;
+}
+add_filter( 'rocket_lazyload_css_ignored_urls', 'koala_beanstalk_location_background_exclusions' );

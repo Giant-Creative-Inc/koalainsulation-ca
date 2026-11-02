@@ -280,7 +280,7 @@ document.querySelectorAll(".top-zipcode-input").forEach(function (input) {
             // document.getElementById("keySm").value = locations.sm_key;
             // document.getElementById("url").value = locations.website;
             setPopupPhoneLink("est-phone-number", locations.phone);
-            document.getElementById("tel-href").href = "tel:" + locations.phone;
+            setPopupPhoneLink("tel-href", locations.phone);
 
             const phone_el = document.getElementById("popup-location_mobile");
 
@@ -522,7 +522,7 @@ document.querySelectorAll(".find-location-btn").forEach(function (button) {
           const legacyUrlInput = document.getElementById("url");
           if (legacyUrlInput) legacyUrlInput.value = locations.website;
           setPopupPhoneLink("est-phone-number", locations.phone);
-          document.getElementById("tel-href").href = "tel:" + locations.phone;
+          setPopupPhoneLink("tel-href", locations.phone);
           document.getElementById("get-estimate-popup").style.display = "none";
 
           const phone_el = document.getElementById("popup-location_mobile");

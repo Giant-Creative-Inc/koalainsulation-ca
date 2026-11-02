@@ -44,6 +44,7 @@ function koala_beanstalk_location_prepare(): void {
 		return;
 	}
 	remove_action( 'wp_footer', 'custom_body_code' );
+	remove_action( 'wp_head', 'add_preload_lcp_image' );
 	foreach ( array( 'wp_head', 'wp_footer', 'wp_enqueue_scripts', 'wp_get_attachment_image_attributes' ) as $tag ) {
 		if ( ! isset( $wp_filter[ $tag ] ) ) {
 			continue;
