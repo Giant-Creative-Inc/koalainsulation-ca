@@ -72,4 +72,4 @@ No successful lead was submitted, no confirmation/email delivery was claimed, an
 
 Evidence is in the working workspace at output/ca-qa-20261102: saved HTML; full SEO/schema/copy comparisons; navigation/asset responses; desktop/mobile screenshots; 12 form-validation results; postal lookup results; map retests; unchanged entry counts; and Git/server hash verification. No lead details were exported.
 
-Private staging backups/journals remain outside htdocs at /var/www/staging.ca.koalainsulation.com/beanstalk-launch-20261102. map-before.php retains the replaced helper. Temporary upload and purge helpers were removed. PRs 8 (staging) and 6 (main) remain subject to manual review/merge; do not auto-merge.
+Private staging backups/journals remain outside htdocs at /var/www/staging.ca.koalainsulation.com/beanstalk-launch-20261102. map-before.php retains the replaced helper. Temporary upload and purge helpers were removed. Implementation PRs 8 (staging) and 6 (main) now show as merged on GitHub. The assistant did not merge them. This QA report is a follow-up change for manual review; do not auto-merge.
