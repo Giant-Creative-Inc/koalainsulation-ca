@@ -77,7 +77,7 @@ function koala_beanstalk_location_css_exclusions( array $excluded ): array {
 add_filter( 'rocket_exclude_css', 'koala_beanstalk_location_css_exclusions' );
 
 /**
- * Leave the shared quote/financing background relative to its original stylesheet.
+ * Leave native decorative backgrounds relative to their original stylesheet.
  *
  * @param array $excluded Existing background-image exclusions.
  * @return array
@@ -85,6 +85,7 @@ add_filter( 'rocket_exclude_css', 'koala_beanstalk_location_css_exclusions' );
 function koala_beanstalk_location_background_exclusions( array $excluded ): array {
 	if ( koala_beanstalk_sidebar_preview() ) {
 		$excluded[] = 'beanstalk/assets/location-quote-banner/background.webp';
+		$excluded[] = 'beanstalk/assets/location-final-cta/accent.webp';
 	}
 	return $excluded;
 }
