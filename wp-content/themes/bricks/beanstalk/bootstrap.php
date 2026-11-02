@@ -45,7 +45,7 @@ function koala_is_beanstalk_area_served_page(): bool {
 function koala_beanstalk_restore_native_image_attributes( array $attributes, $attachment = null, $size = null ): array {
 	unset( $attachment, $size );
 
-	if ( ! koala_is_beanstalk_area_served_page() ) {
+	if ( ! koala_is_beanstalk_area_served_page() && ! koala_beanstalk_sidebar_preview() ) {
 		return $attributes;
 	}
 
@@ -704,3 +704,20 @@ function koala_beanstalk_output_resource_schema(): void {
 	echo '<script type="application/ld+json">' . $encoded . '</script>' . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 add_action( 'wp_head', 'koala_beanstalk_output_resource_schema', 3 );
+
+require_once __DIR__ . '/location-country.php';
+require_once __DIR__ . '/location-sidebar.php';
+require_once __DIR__ . '/location-page.php';
+require_once __DIR__ . '/location-hero.php';
+require_once __DIR__ . '/location-partners.php';
+require_once __DIR__ . '/location-services.php';
+require_once __DIR__ . '/location-overview.php';
+require_once __DIR__ . '/location-quote-banner.php';
+require_once __DIR__ . '/location-features.php';
+require_once __DIR__ . '/location-financing.php';
+require_once __DIR__ . '/location-community.php';
+require_once __DIR__ . '/location-estimate-popup.php';
+require_once __DIR__ . '/location-performance.php';
+require_once __DIR__ . '/location-lazy-widgets.php';
+require_once __DIR__ . '/location-estimate-demand.php';
+require_once __DIR__ . '/location-media.php';

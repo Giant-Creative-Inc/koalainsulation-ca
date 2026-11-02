@@ -2080,15 +2080,11 @@ function output_custom_or_default_gtm_head()
             }
         };
 
-        // Delay analytics, reCAPTCHA, Hotjar, and location markup until the
-        // visitor first interacts with the page.
-        var koalaThirdPartyScriptsLoaded = false;
-
-        async function loadThirdPartyScripts() {
-            if (koalaThirdPartyScriptsLoaded) return;
-            koalaThirdPartyScriptsLoaded = true;
-            window.koalaInteractionScriptsLoaded = true;
-
+        // Share one loader between native location fallback and interaction loading.
+        var koalaLocationTrackingPromise;
+        window.koalaLoadLocationGtm = function () {
+            if (!koalaLocationTrackingPromise) {
+                koalaLocationTrackingPromise = (async function () {
             await window.koalaInjectLocationMarkup(
                 window.koalaLocationHeadMarkup,
                 document.head
@@ -2144,6 +2140,16 @@ function output_custom_or_default_gtm_head()
                     window.gtag('config', 'G-1HN84YS8QG');
                 }, { once: true });
             }
+                })();
+            }
+            return koalaLocationTrackingPromise;
+        };
+        var koalaThirdPartyScriptsLoaded = false;
+        async function loadThirdPartyScripts() {
+            if (koalaThirdPartyScriptsLoaded) return;
+            koalaThirdPartyScriptsLoaded = true;
+            window.koalaInteractionScriptsLoaded = true;
+            await window.koalaLoadLocationGtm();
         }
 
         ['click', 'keydown', 'touchstart', 'wheel'].forEach(function(eventName) {

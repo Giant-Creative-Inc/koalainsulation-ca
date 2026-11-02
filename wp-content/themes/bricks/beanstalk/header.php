@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+if ( function_exists( 'koala_beanstalk_sidebar_preview' ) && koala_beanstalk_sidebar_preview() ) {
+	include __DIR__ . '/location-header.php';
+	return;
+}
+
 $beanstalk_settings = isset( $beanstalk_settings ) && is_array( $beanstalk_settings ) ? $beanstalk_settings : array();
 $labels             = wp_parse_args(
 	$beanstalk_settings,

@@ -1,6 +1,6 @@
 # Beanstalk location launch: database and release plan
 
-Status: draft release plan. No deployment, production database change, activation, or form submission is authorized by this document. PR approval and a separately scheduled execution are required. Do not enable auto-merge. No deployment hook may run this migration automatically.
+Status: Canadian runtime and migration implemented; six staging locations migrated and enabled. Production unchanged. No auto-merge or automatic migration hook.
 
 ## Database strategy
 
@@ -16,7 +16,7 @@ Migrate the target site's current records in place. Never restore staging over p
 | `koala_beanstalk_location_media` option | Save the production attachment mapping as each import completes. | Snapshot whether the option existed and its original value; reruns must reuse completed imports. |
 | Location review feed mappings / review plugin data | Conditional repair only if a fresh parity audit proves a location would lose its existing reviews. | Separate reviewed per-location diff and rollback export. Do not copy staging feed IDs, cached reviews or a whole plugin table. Prefer production's current feed; preserve intentional corporate fallback. |
 | SEO/schema postmeta | Preserve current production values by default. A separately reviewed correction may be needed for confirmed regressions. | Compare titles, descriptions, canonical, robots, social tags, local-business/service/FAQ/breadcrumb schema and visible copy. No wholesale staging SEO import. Record exact before/after keys for any approved exception. |
-| `koala_beanstalk_locations_enabled` option | Enable only as the final release write after all content/media checks pass. | Preserve absent/false state for rollback. Production renderer support must first be implemented and tested; changing this option alone currently cannot launch the renderer. |
+| `koala_beanstalk_locations_enabled` option | Enable only as the final release write after all content/media checks pass. | Preserve absent/false state for rollback. Renderer support is implemented; enable this option with the migrated ID allowlist during rollout. |
 
 Other ACF fields, Bricks metadata, global content parts, menus, location ownership/territories, ZIP/postal coverage, form definitions and feeds, notification destinations, CRM credentials, SMTP, consent settings, lead entries and attribution settings are outside the default write set. Any necessary exception requires its own diff and validation. WordPress may create revisions/update modification timestamps and plugin hooks may update derived caches; inventory and verify those effects in the rehearsal.
 
@@ -51,7 +51,7 @@ Disable activation first and purge all HTML caches so the old Bricks renderer se
 
 ## Canada scope and outstanding work
 
-Target home URL: `https://koalainsulation.com/ca` (not merely the Canadian origin hostname). Canadian WordPress is accessed on its own host, but public links include `/ca`; validate both the instance identity and public path. Current read-only inventory: nine published production locations and seven on staging; East Toronto and Testing are absent from staging. Neither environment has native location layouts or activation enabled. This PR is documentation only; it does not contain a completed Canadian location implementation.
+Target home URL: `https://koalainsulation.com/ca` (not merely the Canadian origin hostname). Canadian WordPress is accessed on its own host, but public links include `/ca`; validate both the instance identity and public path. Current read-only inventory: nine published production locations and seven on staging; East Toronto and Testing are absent from staging. Neither environment has native location layouts or activation enabled. This PR now includes the Canadian runtime, dependency manifest, migration and regression tests.
 
 Forms are 1 (Location Contact Form) and 3 (Location Contact Form - Popup). Canadian runtime must resolve/configure those forms and validate their actual field maps and routing integration. Do not import US forms 12/13 or use US ZIP validation, US-specific campaigns/financing assumptions, or numeric US media/feed/location IDs. Confirm postal-code normalization, territories, country identity, tracking and Canadian consent copy. Rehearse provider-specific booking embeds without creating real bookings.
 
