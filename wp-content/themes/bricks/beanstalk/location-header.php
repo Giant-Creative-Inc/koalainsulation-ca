@@ -22,11 +22,8 @@ $labels             = wp_parse_args(
 );
 $header             = koala_beanstalk_get_navigation_data();
 if ( function_exists( 'koala_beanstalk_sidebar_preview' ) && koala_beanstalk_sidebar_preview() ) {
-	$header['resources']   = koala_beanstalk_location_assigned_links( (int) $header['location']->ID );
-	$header['resources'][] = array(
-		'title' => 'Franchise',
-		'url'   => 'https://koalainsulationfranchise.ca/',
-	);
+	$header['resources'] = koala_beanstalk_location_resource_links( (int) $header['location']->ID );
+
 }
 $why_links = koala_beanstalk_location_assigned_links(
 	(int) $header['location']->ID,
