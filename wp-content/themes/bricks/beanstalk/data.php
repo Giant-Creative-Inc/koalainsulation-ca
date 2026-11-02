@@ -179,7 +179,9 @@ function koala_beanstalk_get_location_context(): array {
 		return $contexts[ $page_id ];
 	}
 
-	$location = koala_beanstalk_resolve_location_post( get_post_meta( $page_id, 'rl_related_location', true ) );
+	$location = 'location' === get_post_type( $page_id )
+		? koala_beanstalk_resolve_location_post( $page_id )
+		: koala_beanstalk_resolve_location_post( get_post_meta( $page_id, 'rl_related_location', true ) );
 	if ( ! $location ) {
 		$request_path = isset( $_SERVER['REQUEST_URI'] )
 			? (string) wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH )
