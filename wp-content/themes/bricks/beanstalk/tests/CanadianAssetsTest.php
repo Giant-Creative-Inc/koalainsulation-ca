@@ -27,4 +27,9 @@ final class CanadianAssetsTest extends TestCase {
   self::assertStringContainsString('window.koalaLoadLocationGtm = function',$source);
   foreach(['G-9RQMD52K78','G-RFK3ZB6M00','G-1HN84YS8QG'] as $id) self::assertStringContainsString($id,$source);
  }
+ public function test_canadian_removal_template_preserves_pr_seven_routing(): void {
+  $source=file_get_contents(dirname(__DIR__).'/../functions.php');
+  self::assertMatchesRegularExpression("/'insulation-removal-service'\\s*=>\\s*20483/",$source);
+  self::assertStringNotContainsString("'insulation-removal-services'",$source);
+ }
 }
