@@ -16,4 +16,10 @@ final class LocationFinalCtaTest extends TestCase {
    self::assertFileExists($file);self::assertSame('image/webp',getimagesize($file)['mime']);self::assertLessThan(100000,filesize($file));
   }
  }
+ public function test_shared_layout_applies_to_native_location_body(): void {
+  $css=file_get_contents(dirname(__DIR__).'/assets/city-page-final-cta.css');
+  self::assertStringContainsString(':is(.koala-city-page,.koala-beanstalk-location) .koala-city-final-cta {',$css);
+  self::assertStringNotContainsString("\n.koala-city-page .koala-city-final-cta",$css);
+  self::assertStringContainsString('background: linear-gradient(90deg, #93c845 0%, #74abda 100%);',$css);
+ }
 }
