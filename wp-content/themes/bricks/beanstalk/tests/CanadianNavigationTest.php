@@ -6,7 +6,7 @@ final class CanadianNavigationTest extends TestCase {
   require_once dirname(__DIR__).'/location-navigation.php';
   Functions\when('get_post_meta')->alias(static function($id,$key){
    if($id===10)return ['related_blog_page'=>[20,21,22,23],'related_ho_page'=>[24],'related_rl_page'=>[25,25]][$key]??[];
-   return [20=>[10],21=>[10],22=>[99],23=>[10],24=>[10]][$id]??[];
+   return [20=>[10],21=>[10],22=>[99],23=>[10],24=>[10]][$id]??'';
   });
   Functions\when('get_post_status')->alias(fn($id)=>$id===21?'draft':'publish');
   Functions\when('get_permalink')->alias(fn($id)=>'https://example.test/'.$id);
