@@ -557,7 +557,12 @@ function enqueue_custom_scripts()
         'locations' => get_all_locations_data(),
         'map_pin' => home_url() . '/wp-content/uploads/2024/09/map-pin.svg',
     ]);
-    wp_enqueue_style('custom-service-css', get_template_directory_uri() . '/assets/css/custom-service.css');
+    wp_enqueue_style(
+        'custom-service-css',
+        get_template_directory_uri() . '/assets/css/custom-service.css',
+        array(),
+        filemtime(get_template_directory() . '/assets/css/custom-service.css')
+    );
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
 

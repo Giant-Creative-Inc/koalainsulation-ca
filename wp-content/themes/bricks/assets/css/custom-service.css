@@ -16,3 +16,10 @@
   flex-direction: column;
   gap: 24px;
 }
+
+/* Cover sibling menu items when the mobile Services submenu is expanded. */
+@media (max-width: 991px) {
+  #nav-us .brx-open #custom-service-ul {
+    width: 100%;
+  }
+}
