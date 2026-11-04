@@ -63,3 +63,8 @@
 @media (prefers-reduced-motion: reduce) {
 	.beanstalk-footer__column a { transition: none; }
 }
+
+.beanstalk-footer__bottom nav[aria-label="Social media"] { display: flex; flex-wrap: wrap; gap: 12px; }
+.beanstalk-footer__bottom nav[aria-label="Social media"] a { color: #fff; font-size: 14px; }
+.beanstalk-footer__bottom nav[aria-label="Social media"] a:hover,
+.beanstalk-footer__bottom nav[aria-label="Social media"] a:focus-visible { text-decoration: underline; }

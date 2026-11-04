@@ -21,31 +21,19 @@ $labels             = wp_parse_args(
 	)
 );
 $header             = koala_beanstalk_get_navigation_data();
-// Retain the legacy location Resources destinations without changing city menus.
 if ( function_exists( 'koala_beanstalk_sidebar_preview' ) && koala_beanstalk_sidebar_preview() ) {
-	$resource_urls = array_map(
-		static function ( $link ) {
-			return rtrim( $link['url'], '/' );
-		},
-		$header['resources']
-	);
-	foreach ( array(
-		array(
-			'title' => 'FAQ',
-			'url'   => $header['base'] . '/faq',
-		),
-		array(
-			'title' => 'Franchise',
-			'url'   => 'https://koalainsulationfranchise.ca/',
-		),
-	) as $resource ) {
-		if ( ! in_array( rtrim( $resource['url'], '/' ), $resource_urls, true ) ) {
-			$header['resources'][] = $resource;
-		}
-	}
+	$header['resources'] = koala_beanstalk_location_resource_links( (int) $header['location']->ID );
+
 }
-$logo  = home_url( '/wp-content/uploads/2025/07/LogoC.png' );
-$icons = get_template_directory_uri() . '/beanstalk/assets/icons/';
+$why_links = koala_beanstalk_location_assigned_links(
+	(int) $header['location']->ID,
+	array(
+		'related_wk_page' => array( 'wk_related_location', $labels['whyKoalaLabel'] ),
+		'related_wr_page' => array( 'wr_related_location', $labels['whyReinsulateLabel'] ),
+	)
+);
+$logo      = home_url( '/wp-content/uploads/2025/07/LogoC.png' );
+$icons     = get_template_directory_uri() . '/beanstalk/assets/icons/';
 ?>
 <header class="beanstalk-header" data-beanstalk-header>
 	<div class="beanstalk-header__utility">
@@ -80,7 +68,7 @@ $icons = get_template_directory_uri() . '/beanstalk/assets/icons/';
 				<ul class="beanstalk-header__menu">
 					<li class="beanstalk-header__dropdown">
 						<div class="beanstalk-header__menu-row">
-							<a href="<?php echo esc_url( $header['base'] . '/services/' ); ?>"><?php echo esc_html( $labels['servicesLabel'] ); ?></a>
+							<span><?php echo esc_html( $labels['servicesLabel'] ); ?></span>
 							<button type="button" aria-expanded="false" aria-label="<?php echo esc_attr( 'Toggle ' . $labels['servicesLabel'] . ' submenu' ); ?>"><img src="<?php echo esc_url( $icons . 'down-icon.svg' ); ?>" width="10" height="6" alt=""></button>
 						</div>
 						<ul class="beanstalk-header__submenu">
@@ -89,8 +77,9 @@ $icons = get_template_directory_uri() . '/beanstalk/assets/icons/';
 							<?php endforeach; ?>
 						</ul>
 					</li>
-					<li><a href="<?php echo esc_url( $header['base'] . '/why-koala/' ); ?>"><?php echo esc_html( $labels['whyKoalaLabel'] ); ?></a></li>
-					<li><a href="<?php echo esc_url( $header['base'] . '/why-reinsulate/' ); ?>"><?php echo esc_html( $labels['whyReinsulateLabel'] ); ?></a></li>
+					<?php foreach ( $why_links as $why_link ) : ?>
+<li><a href="<?php echo esc_url( $why_link['url'] ); ?>"><?php echo esc_html( $why_link['title'] ); ?></a></li>
+<?php endforeach; ?>
 					<li class="beanstalk-header__dropdown">
 						<div class="beanstalk-header__menu-row">
 							<span><?php echo esc_html( $labels['resourcesLabel'] ); ?></span>
