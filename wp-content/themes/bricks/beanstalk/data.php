@@ -300,6 +300,45 @@ function koala_beanstalk_get_location_relationship_links( int $location_id, stri
 }
 
 /**
+ * Get published city pages assigned to a location.
+ *
+ * @param int $location_id Location post ID.
+ * @return WP_Post[]
+ */
+function koala_beanstalk_get_published_city_pages( int $location_id ): array {
+	$areas_served = get_posts(
+		array(
+			'post_type'      => 'resources-landing-pa',
+			'posts_per_page' => -1,
+			'post_status'    => 'publish',
+			'meta_query'     => array(
+				array(
+					'key'     => 'rl_related_location',
+					'value'   => $location_id,
+					'compare' => 'LIKE',
+				),
+			),
+			'tax_query'      => array(
+				array(
+					'taxonomy' => 'resources-page-type',
+					'field'    => 'slug',
+					'terms'    => 'areas-served',
+				),
+			),
+		)
+	);
+	// The SQL LIKE narrows the candidates. Match the actual relationship ID
+	// so a different location with a similar ID cannot populate this list.
+	return array_filter(
+		$areas_served,
+		static function ( $area ) use ( $location_id ) {
+			$related_locations = (array) get_post_meta( $area->ID, 'rl_related_location', true );
+			return in_array( $location_id, array_map( 'intval', $related_locations ), true );
+		}
+	);
+}
+
+/**
  * Build the shared server-rendered navigation model once per request.
  *
  * @return array<string, mixed>
@@ -335,10 +374,6 @@ function koala_beanstalk_get_navigation_data(): array {
 			'url'   => $base_url . '/testimonials',
 		),
 		array(
-			'title' => 'Areas Served',
-			'url'   => $base_url . '/areas-served',
-		),
-		array(
 			'title' => 'Blog',
 			'url'   => $base_url . '/blog',
 		),
@@ -347,6 +382,20 @@ function koala_beanstalk_get_navigation_data(): array {
 			'url'   => $base_url . '/homeowner-incentives',
 		),
 	);
+
+	if ( $location && koala_beanstalk_get_published_city_pages( $location->ID ) ) {
+		array_splice(
+			$default_resources,
+			1,
+			0,
+			array(
+				array(
+					'title' => 'Areas Served',
+					'url'   => $base_url . '/areas-served',
+				),
+			)
+		);
+	}
 
 	$location_name = $location ? $context['location_name'] : get_bloginfo( 'name' );
 

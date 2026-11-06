@@ -1660,6 +1660,7 @@ function get_location_data($data)
         'wrPage' => [],
         'hoPage' => [],
         'rlPage' => [],
+        'hasAreasServed' => !empty(koala_beanstalk_get_published_city_pages((int) $location_post[0]->ID)),
         'blogPage' => [],
         'navText' => get_post_meta($location_post[0]->ID, 'location_nav_top_text', true),
         'navLink' => get_post_meta($location_post[0]->ID, 'location_nav_top_link', true),

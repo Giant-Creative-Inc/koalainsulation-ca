@@ -1,6 +1,5 @@
 <?php
 /* Template Name: Areas Served */
-get_header();
 
 // --- Drop-in replacement for robust routing + correct HTTP status ---
 
@@ -16,6 +15,7 @@ $idxAreas = array_search('areas-served', $parts, true);
 if ($idxAreas === false) {
     // Not the route this template should handle → true 404
     status_header(404);
+    get_header();
     get_template_part('404');
     get_footer();
     exit;
@@ -38,6 +38,7 @@ if ($location_slug) {
     if (!$location instanceof WP_Post) {
         // Location segment present but invalid → true 404
         status_header(404);
+        get_header();
         get_template_part('404');
         get_footer();
         exit;
@@ -68,31 +69,18 @@ if ($location_slug) {
 }
 // --- End drop-in ---
 
-if ($location) {
-    // Get the location ID
-    $location_id = $location->ID;
-
-    //$areas_served = get_field('location_area_serviced', $location_id);
-    $areas_served = get_posts(array(
-        'post_type' => 'resources-landing-pa',
-        'posts_per_page' => -1,
-        'meta_query' => array(
-            array(
-                'key' => 'rl_related_location',
-                'value' => $location_id,
-                'compare' => 'LIKE',
-            ),
-        ),
-        'tax_query' => array(
-            array(
-                'taxonomy' => 'resources-page-type',
-                'field' => 'slug',
-                'terms' => 'areas-served',
-            ),
-        ),
-    ));
+$areas_served = $location ? koala_beanstalk_get_published_city_pages((int) $location->ID) : [];
+if (!$areas_served) {
+    add_filter('wpseo_robots_array', static function (array $robots): array {
+        $robots['index'] = 'noindex';
+        return $robots;
+    });
+    add_filter('wp_robots', 'wp_robots_no_robots');
+}
+get_header();
     ?>
     <main id="brx-content">
+        <?php if ($areas_served): ?>
         <section id="brxe-cigjsz" class="brxe-section section">
             <div id="brxe-nrbpzr" class="brxe-container padding-global">
                 <div id="brxe-aukyrh" class="brxe-block padding-section-medium">
@@ -102,27 +90,24 @@ if ($location) {
                         </h1>
                         <div id="brxe-mjmuai" class="brxe-block brx-grid" data-animi="up" data-duration="0.6"
                             data-delay="0.2">
-                            <?php if ($areas_served): ?>
                                 <?php foreach ($areas_served as $area): ?>
                                     <?php
                                     $area_id = $area->ID;
                                     $area_title = get_the_title($area_id);
                                     $area_link = get_permalink($area_id);
                                     ?>
-                                    <a id="brxe-hvsime" class="brxe-block" href="<?php echo $area_link ?>">
+                                    <a id="brxe-hvsime" class="brxe-block" href="<?php echo esc_url($area_link) ?>">
                                         <div id="brxe-qwtyko" class="brxe-text-basic">
-                                            <?php echo $area_title ?>
+                                            <?php echo esc_html($area_title) ?>
                                         </div>
                                     </a>
                                 <?php endforeach; ?>
-                            <?php else: ?>
-                                <p>No serviced areas found for this location.</p>
-                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <?php endif; ?>
         <section id="cta-quote" class="brxe-section section">
             <div id="brxe-cqllpo" class="brxe-block section-component">
                 <div id="brxe-etcewf" class="brxe-block">
@@ -167,19 +152,4 @@ if ($location) {
     </main>
     <?php
 
-
-} else {
-    render_fallback_content();
-}
-
-/**
- * Renders the fallback content.
- */
-function render_fallback_content()
-{
-    ?>
-    <h1>No serviced areas found for this location.</h1>
-    <?php
-}
 get_footer();
-?>
