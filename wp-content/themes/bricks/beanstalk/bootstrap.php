@@ -12,6 +12,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Rocket captures clicks at the window level while delayed scripts load.
+// Disable that capture on requests using the native location header.
+add_action(
+	'wp',
+	static function (): void {
+		if ( koala_beanstalk_sidebar_preview() ) {
+			add_filter( 'pre_get_rocket_option_delay_js', '__return_false' );
+		}
+	}
+);
+
 require_once __DIR__ . '/data.php';
 require_once __DIR__ . '/city-page.php';
 require_once __DIR__ . '/parts.php';
