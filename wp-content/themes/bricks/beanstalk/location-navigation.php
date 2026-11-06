@@ -44,6 +44,27 @@ function koala_beanstalk_location_assigned_links( int $location_id, array $field
 }
 
 /**
+ * Add the national partnership link once to a Resources menu.
+ *
+ * @param array $resources Existing resource links.
+ * @return array Resource links including Mikey on Board.
+ */
+function koala_beanstalk_add_mikey_resource( array $resources ): array {
+	$url = home_url( '/resources-landing-pa/mikey-on-board' );
+	foreach ( $resources as $index => $resource ) {
+		if ( rtrim( $resource['url'], '/' ) === $url ) {
+			unset( $resources[ $index ] );
+		}
+	}
+
+	$resources[] = array(
+		'title' => 'Mikey on Board',
+		'url'   => $url,
+	);
+	return array_values( $resources );
+}
+
+/**
  * Return the shared resource menu with each location's own routes.
  *
  * @param int $location_id Location record ID.
@@ -85,5 +106,5 @@ function koala_beanstalk_location_resource_links( int $location_id ): array {
 			$resources[] = $resource;
 		}
 	}
-	return $resources;
+	return koala_beanstalk_add_mikey_resource( $resources );
 }

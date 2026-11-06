@@ -79,7 +79,7 @@ $icons              = get_template_directory_uri() . '/beanstalk/assets/icons/';
 							<button type="button" aria-expanded="false" aria-label="<?php echo esc_attr( 'Toggle ' . $labels['resourcesLabel'] . ' submenu' ); ?>"><img src="<?php echo esc_url( $icons . 'down-icon.svg' ); ?>" width="10" height="6" alt=""></button>
 						</div>
 						<ul class="beanstalk-header__submenu">
-							<?php foreach ( $header['resources'] as $menu_link ) : ?>
+							<?php foreach ( koala_beanstalk_add_mikey_resource( $header['resources'] ) as $menu_link ) : ?>
 								<li><a href="<?php echo esc_url( $menu_link['url'] ); ?>"><?php echo esc_html( $menu_link['title'] ); ?></a></li>
 							<?php endforeach; ?>
 						</ul>

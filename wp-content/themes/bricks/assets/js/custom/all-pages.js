@@ -914,6 +914,11 @@ document.addEventListener("DOMContentLoaded", function () {
             resourceContainer.innerHTML = "";
 
             rlPageLinks.forEach((resource) => {
+              const menu = resourceContainer.closest("ul");
+              const alreadyLinked = [...(menu?.querySelectorAll("a[href]") ?? [])]
+                .some((link) => link.href.replace(/\/$/, "") === resource.link.replace(/\/$/, ""));
+              if (alreadyLinked) return;
+
               const linkElement = document.createElement("span");
               linkElement.className = "brxe-text-link nav-nested-link";
 
