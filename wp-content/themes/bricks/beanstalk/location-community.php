@@ -214,3 +214,37 @@ function koala_beanstalk_location_education_saved( string $html, array $block ):
 	return koala_beanstalk_render_location_community( array( 'section' => 'education' ) );
 }
 add_filter( 'render_block_core/group', 'koala_beanstalk_location_education_saved', 1001, 2 );
+
+/**
+ * Render the shared community grid and Show More control.
+ *
+ * @param array $cities      City post IDs in display order.
+ * @param bool  $allow_links Use links for cities marked as linked resources.
+ */
+function koala_beanstalk_location_communities_list( array $cities, bool $allow_links = false ): string {
+	$html  = '';
+	$count = 0;
+	foreach ( $cities as $city ) {
+		if ( 'publish' !== get_post_status( $city ) ) {
+			continue;
+		}
+		$label = esc_html( koala_beanstalk_location_city_label( (string) get_the_title( $city ) ) );
+		if ( $allow_links && get_post_meta( $city, 'linked_resource', true ) ) {
+			$url = esc_url( (string) get_permalink( $city ) );
+			if ( '' !== $url ) {
+				$label = '<a href="' . $url . '">' . $label . '</a>';
+			}
+		}
+		$html .= '<li' . ( $count >= 9 ? ' hidden' : '' ) . '>' . $label . '</li>';
+		++$count;
+	}
+	if ( 0 === $count ) {
+		return '';
+	}
+
+	$html = '<ul class="koala-location-communities__list">' . $html . '</ul>';
+	if ( $count > 9 ) {
+		$html .= '<button class="koala-location-communities__more" type="button" aria-expanded="false">Show More</button>';
+	}
+	return $html;
+}

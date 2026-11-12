@@ -714,6 +714,7 @@ require_once __DIR__ . '/location-services.php';
 require_once __DIR__ . '/location-overview.php';
 require_once __DIR__ . '/location-quote-banner.php';
 require_once __DIR__ . '/location-features.php';
+require_once __DIR__ . '/service-hero.php';
 require_once __DIR__ . '/location-financing.php';
 require_once __DIR__ . '/location-community.php';
 require_once __DIR__ . '/location-estimate-popup.php';
