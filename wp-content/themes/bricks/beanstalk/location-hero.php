@@ -60,7 +60,10 @@ function koala_beanstalk_patch_location_hero( array $blocks, array $values, bool
 		if ( 'koala-location-hero-heading' === $name ) {
 			$html = '<h1 class="wp-block-heading">' . esc_html( $values['heading'] ) . '</h1>';
 		} elseif ( 'koala-location-hero-introduction' === $name ) {
-			$html = '<p class="koala-location-hero__introduction">' . nl2br( esc_html( $values['introduction'] ), false ) . '</p>';
+			$introduction = ! empty( $values['inlineIntroduction'] )
+				? wp_kses( $values['introduction'], array_fill_keys( array( 'strong', 'b', 'em', 'i', 'br' ), array() ) )
+				: esc_html( $values['introduction'] );
+			$html         = '<p class="koala-location-hero__introduction">' . nl2br( $introduction, false ) . '</p>';
 		} else {
 			$html = null;
 		}
@@ -180,6 +183,9 @@ function koala_beanstalk_render_location_hero_media( array $attributes ): string
  * @return string
  */
 function koala_beanstalk_render_location_hero_quote( array $attributes ): string {
+	if ( koala_beanstalk_service_hero_preview() && koala_beanstalk_is_national_service() ) {
+		return '<button class="koala-location-hero__quote" type="button" data-national-location-trigger aria-haspopup="dialog" aria-controls="get-estimate-popup">Find a Location</button>';
+	}
 	return '<button class="koala-location-hero__quote" type="button" data-location-quote-popup-trigger aria-haspopup="dialog" aria-controls="koala-location-estimate">' . esc_html( $attributes['label'] ?? 'Get a FREE Quote' ) . '</button>';
 }
 

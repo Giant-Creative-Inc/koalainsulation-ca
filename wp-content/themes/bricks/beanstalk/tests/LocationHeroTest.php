@@ -45,6 +45,8 @@ final class LocationHeroTest extends TestCase {
   Functions\when('esc_html')->alias('htmlspecialchars');
   Functions\when('esc_url')->alias('htmlspecialchars');
   Functions\when('get_template_directory_uri')->justReturn('https://example.test/theme');
+  Functions\when('home_url')->justReturn('https://example.test');
+  Functions\when('wp_parse_url')->alias('parse_url');
   $html=koala_beanstalk_render_location_hero_quote(['label'=>'Get a FREE Quote']);
   self::assertStringContainsString('data-location-quote-popup-trigger',$html);
   self::assertStringNotContainsString('data-sidebar-open',$html);
