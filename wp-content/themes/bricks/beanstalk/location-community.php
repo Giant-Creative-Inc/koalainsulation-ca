@@ -57,14 +57,17 @@ function koala_beanstalk_render_location_community( array $attributes, string $c
 		if ( ! get_post_meta( $id, 'show_location_areas_serviced', true ) ) {
 			return '';
 		}
-		$cities = koala_beanstalk_location_selected_ids( $id, 'local_cities' );
-		$html   = '<section class="koala-location-lower koala-location-communities"><div class="koala-location-lower__intro"><h2>' . esc_html( get_post_meta( $id, 'local_cities_title', true ) ) . '</h2>' . koala_beanstalk_location_rich_copy( $id, 'local_cities_description' ) . koala_beanstalk_render_location_hero_quote( array( 'label' => 'Get a FREE Quote' ) ) . '</div><ul class="koala-location-communities__list">';
-		$count  = 0;
-		foreach ( $cities as $city ) {
-			if ( 'publish' !== get_post_status( $city ) ) {
-				continue;
+		$cities = array();
+		foreach ( koala_beanstalk_location_selected_ids( $id, 'local_cities' ) as $city_id ) {
+			if ( 'publish' === get_post_status( $city_id ) ) {
+				$cities[] = (string) get_the_title( $city_id );
 			}
-			$html .= '<li' . ( $count >= 9 ? ' hidden' : '' ) . '>' . esc_html( get_the_title( $city ) ) . '</li>';
+		}
+		sort( $cities, SORT_NATURAL | SORT_FLAG_CASE );
+		$html  = '<section class="koala-location-lower koala-location-communities"><div class="koala-location-lower__intro"><h2>' . esc_html( get_post_meta( $id, 'local_cities_title', true ) ) . '</h2>' . koala_beanstalk_location_rich_copy( $id, 'local_cities_description' ) . koala_beanstalk_render_location_hero_quote( array( 'label' => 'Get a FREE Quote' ) ) . '</div><ul class="koala-location-communities__list">';
+		$count = 0;
+		foreach ( $cities as $city ) {
+			$html .= '<li' . ( $count >= 9 ? ' hidden' : '' ) . '>' . esc_html( $city ) . '</li>';
 			++$count;
 		}
 		$html .= '</ul>';

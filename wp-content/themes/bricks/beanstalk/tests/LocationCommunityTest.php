@@ -83,4 +83,21 @@ final class LocationCommunityTest extends TestCase {
   self::assertStringContainsString('font:700 27px/37.8px "Alegreya Sans"',$css);
   self::assertStringContainsString('font-size:32px;line-height:32px',$css);
  }
+
+	public function test_communities_display_published_cities_alphabetically(): void {
+		require_once dirname( __DIR__ ) . '/location-community.php';
+		Functions\when( 'get_the_ID' )->justReturn( 42 );
+		Functions\when( 'get_post_meta' )->alias(
+			static fn( $id, $key ) => array( 'show_location_areas_serviced' => true, 'local_cities' => array( 3, 2, 1 ) )[ $key ] ?? ''
+		);
+		Functions\when( 'get_post_status' )->alias( static fn( $id ) => 2 === $id ? 'draft' : 'publish' );
+		Functions\when( 'get_the_title' )->alias( static fn( $id ) => array( 1 => 'Ajax', 2 => 'Oshawa', 3 => 'Whitby' )[ $id ] );
+		Functions\when( 'esc_html' )->alias( 'strval' );
+		Functions\when( 'wpautop' )->alias( 'strval' );
+		Functions\when( 'wp_kses_post' )->alias( 'strval' );
+		require_once dirname( __DIR__ ) . '/location-hero.php';
+
+		$html = koala_beanstalk_render_location_community( array( 'section' => 'communities' ) );
+		self::assertStringContainsString( '<li>Ajax</li><li>Whitby</li>', $html );
+	}
 }
