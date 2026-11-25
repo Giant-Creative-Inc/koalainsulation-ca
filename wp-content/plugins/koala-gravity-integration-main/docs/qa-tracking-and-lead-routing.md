@@ -175,3 +175,25 @@ Replace `{SITE}/{location-slug}` with a real form page. Values are arbitrary tes
 | `zip` | Submit from a non-location page with a ZIP a location **owns** |
 | `default` | Non-location page + ZIP **no** location owns (default configured) |
 | `unresolved` | Non-location page + unowned ZIP, **Default Location = None** |
+
+## Cached attribution regression (0.8.3)
+
+Local automated checks from the Canadian repository root:
+
+```sh
+node --test tests/attribution-cache.test.js tests/postal-popup-phone.test.js tests/cross-border-location-switch.test.js
+```
+
+These simulate cached inputs and separate visitor cookies; they do not verify the deployed cache, Gravity Forms settings, or downstream integrations.
+
+Staging acceptance:
+
+1. Confirm the active plugin version is 0.8.3 and inspect the configured tracking mappings for each quote/popup/fixed-location form. Remove competing dynamic defaults or HandL population only for fields owned by KGI. Check that campaign and click-ID fields are actually mapped. Keep customer, consent, postal, and location mappings unchanged.
+2. Deploy to staging, purge its HTML/asset caches, and confirm the browser receives the updated attribution script. Use separate isolated browser profiles for A, B, and C; two incognito windows in the same browser can share cookies.
+3. In A, open the staging East Toronto form URL with `?utm_source=google&utm_medium=cpc&utm_campaign=CACHE_QA_A&gclid=CACHE_QA_A`. Check the mapped hidden inputs in both inline and popup forms. Navigate to another form page without parameters and confirm A's attribution persists.
+4. In B, use the same page with campaign/click ID `CACHE_QA_B`; confirm no A values. In C, load the ordinary URL without parameters or prior cookies; campaign and click-ID fields must be empty. Confirm the ordinary page is served from a warmed cache using the actual cache response headers. A tagged request may bypass the cache and alone is insufficient proof.
+5. In a staging-only browser DOM, set the mapped campaign/click-ID inputs to `STALE_CACHE`. Trigger a Gravity Forms validation re-render and verify current visitor values replace them. Repeat for the popup. Check desktop and mobile, East Toronto and at least one other location, plus any separately configured fixed-location form.
+6. Before submitting any staging test, confirm its webhook/email/CRM destinations are isolated or explicitly approved for test leads. Submit one marked test per relevant form path, including a validation failure followed by success. Verify saved GF attribution, location routing, thank-you redirect/dataLayer, and tracker payload agree. Do not count synthetic click IDs as proof of Google Ads conversion matching.
+7. After an authorized production deployment, purge the production caches and repeat isolated visitor checks on ordinary warmed URLs. Any end-to-end production test submission requires an agreed test-lead process. Historical entries are not corrected by this change.
+
+Keep the attribution cookie's existing last-captured-value policy: this fix removes cached HTML defaults, but does not reset prior attribution when the same visitor returns directly or starts a partially tagged campaign.
