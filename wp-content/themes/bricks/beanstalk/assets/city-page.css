@@ -149,7 +149,7 @@
 
 	.koala-city-page .koala-city-residential-services__title-block > .wp-block-group__inner-container {
 		align-items: flex-start;
-		gap: 8px;
+		gap: 0;
 		text-align: left;
 	}
 
@@ -166,7 +166,7 @@
 	.koala-city-page .koala-city-residential-services__grid > .wp-block-group__inner-container,
 	.koala-city-page .koala-city-residential-services__items--many {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 24px;
+		gap: 12px;
 	}
 
 	.koala-city-page .koala-city-residential-services__card {
@@ -328,7 +328,8 @@
 	gap: 24px;
 }
 
-.koala-city-page .koala-city-commercial-services__gallery-image {
+.koala-city-page .koala-city-commercial-services__gallery-image,
+.koala-city-page .koala-city-commercial-services__gallery-item .wp-block-image {
 	width: 100%;
 	height: 360px;
 	margin: 0;
@@ -336,7 +337,8 @@
 	border-radius: 12px;
 }
 
-.koala-city-page .koala-city-commercial-services__gallery-image img {
+.koala-city-page .koala-city-commercial-services__gallery-image img,
+.koala-city-page .koala-city-commercial-services__gallery-item .wp-block-image img {
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -403,11 +405,11 @@
 	}
 
 	.koala-city-page .koala-city-commercial-services__copy > .wp-block-group__inner-container {
-		gap: 32px;
+		gap: 24px;
 	}
 
 	.koala-city-page .koala-city-commercial-services__title-block > .wp-block-group__inner-container {
-		gap: 8px;
+		gap: 0;
 	}
 
 	.koala-city-page .koala-city-commercial-services__title-block::after {
@@ -426,7 +428,7 @@
 	}
 
 	.koala-city-page .koala-city-commercial-services__description {
-		color: #908e8c;
+		color: #4d545c;
 		font-size: 14px;
 		line-height: 22px;
 	}
@@ -444,7 +446,7 @@
 	}
 
 	.koala-city-page .koala-city-commercial-services__benefit-description {
-		color: #908e8c;
+		color: #4d545c;
 		font-size: 13px;
 	}
 
@@ -462,13 +464,14 @@
 		gap: 8px;
 	}
 
-	.koala-city-page .koala-city-commercial-services__gallery-image {
+	.koala-city-page .koala-city-commercial-services__gallery-image,
+	.koala-city-page .koala-city-commercial-services__gallery-item .wp-block-image {
 		height: 200px;
 		border-radius: 6px;
 	}
 
 	.koala-city-page .koala-city-commercial-services__caption {
-		width: auto;
+		width: 100%;
 		padding: 8px 12px;
 		font-size: 14px;
 	}
@@ -759,7 +762,7 @@
 
 @media (max-width: 767px) {
 	.koala-city-page .koala-city-why-koala__content {
-		padding: 48px 16px;
+		padding: 0 16px;
 	}
 
 	.koala-city-page .koala-city-why-koala__content > .wp-block-group__inner-container {
@@ -788,6 +791,7 @@
 	.koala-city-page .koala-city-why-koala__benefits {
 		order: 3;
 		padding-top: 0;
+		padding-bottom: 0;
 	}
 
 	.koala-city-page .koala-city-why-koala__features {
@@ -863,6 +867,16 @@
 	padding-inline: var(--city-page-gutter);
 }
 
+.beanstalk-page .koala-city-testimonials__content > .wp-block-group__inner-container {
+	width: 100%;
+	min-width: 0;
+}
+
+.beanstalk-page .koala-city-testimonials__widget-space .grw-content {
+	flex-shrink: 1 !important;
+	min-width: 0 !important;
+}
+
 .beanstalk-page .koala-city-testimonials__intro {
 	display: flex;
 	flex-direction: column;
@@ -907,6 +921,8 @@
 
 .beanstalk-page .koala-city-testimonials__widget {
 	width: min(100%, 1132px);
+	max-width: 100%;
+	min-width: 0;
 	margin-inline: auto;
 }
 
@@ -938,7 +954,7 @@
 
 @media (max-width: 767px) {
 	.beanstalk-page .koala-city-testimonials {
-		padding: 48px 16px;
+		padding: 48px 16px 0;
 		overflow-x: clip;
 	}
 
@@ -954,6 +970,7 @@
 		width: calc(100vw - 32px);
 		max-width: calc(100vw - 32px);
 		margin-inline: 0;
+		margin-bottom: 0;
 	}
 
 	.beanstalk-page .koala-city-testimonials__eyebrow {
@@ -1157,7 +1174,7 @@
 
 .koala-city-page .koala-city-faq__answer {
 	padding-top: 16px;
-	color: #908e8c;
+	color: #4d545c;
 	font-family: "Filson Pro", sans-serif;
 	font-size: 18px;
 	font-weight: 400;
@@ -1193,7 +1210,7 @@
 
 	.koala-city-page .koala-city-faq__introduction {
 		order: 2;
-		color: #908e8c;
+		color: #4d545c;
 		font-size: 14px;
 		line-height: 22px;
 	}
@@ -1223,7 +1240,7 @@
 	}
 
 	.koala-city-page .koala-city-faq__heading {
-		margin-top: 8px;
+		margin-top: 0;
 		font-size: 32px;
 		font-weight: 700;
 		line-height: normal;
@@ -1231,6 +1248,7 @@
 
 	.koala-city-page .koala-city-faq__item {
 		padding: 12px 0 16px;
+		margin-bottom: 0;
 		border-bottom-color: rgb(0 0 0 / 10%);
 	}
 
@@ -1247,8 +1265,19 @@
 	}
 }
 
+.koala-city-page .koala-city-faq__item[open] .koala-city-faq__answer {
+	animation: koala-city-faq-reveal .2s ease-out;
+}
+@keyframes koala-city-faq-reveal {
+	from { opacity: 0; transform: translateY(-4px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+	.koala-city-page .koala-city-faq__item[open] .koala-city-faq__answer { animation: none; }
+}
+
 /* Source: city-page-final-cta.css */
-.koala-city-page .koala-city-final-cta {
+:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta {
 	position: relative;
 	overflow: hidden;
 	padding: 128px 32px 84px;
@@ -1257,7 +1286,7 @@
 	color: #fff;
 }
 
-.koala-city-page .koala-city-final-cta::before {
+:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta::before {
 	position: absolute;
 	top: 0;
 	left: 18px;
@@ -1268,28 +1297,28 @@
 	pointer-events: none;
 }
 
-.koala-city-page .koala-city-final-cta__content {
+:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta__content {
 	position: relative;
 	z-index: 1;
 	width: min(762px, 100%);
 	margin-inline: auto;
 }
 
-.koala-city-page .koala-city-final-cta__content > .wp-block-group__inner-container {
+:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta__content > .wp-block-group__inner-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 24px;
 }
 
-.koala-city-page .koala-city-final-cta__heading,
-.koala-city-page .koala-city-final-cta__supporting-copy,
-.koala-city-page .koala-city-final-cta__button-label-source {
+:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta__heading,
+:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta__supporting-copy,
+:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta__button-label-source {
 	margin: 0;
 	text-align: center;
 }
 
-.koala-city-page .koala-city-final-cta__heading {
+:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta__heading {
 	color: #fff;
 	font-family: "Alegreya Sans", sans-serif;
 	font-size: 56px;
@@ -1297,7 +1326,7 @@
 	line-height: 1.2;
 }
 
-.koala-city-page .koala-city-final-cta__supporting-copy {
+:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta__supporting-copy {
 	color: #fff;
 	font-family: "Filson Pro", sans-serif;
 	font-size: 18px;
@@ -1305,7 +1334,7 @@
 	line-height: 36px;
 }
 
-.koala-city-page .koala-city-final-cta .koala-city-page__quote-cta {
+:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta :is(.koala-city-page__quote-cta, .koala-location-hero__quote) {
 	display: inline-flex;
 	min-height: 60px;
 	align-items: center;
@@ -1321,16 +1350,16 @@
 	text-decoration: none;
 }
 
-.koala-city-page .koala-city-final-cta .koala-city-page__quote-cta:focus-visible {
+:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta :is(.koala-city-page__quote-cta, .koala-location-hero__quote):focus-visible {
 	outline: 3px solid #fff;
 	outline-offset: 3px;
 }
 
-.koala-city-page .koala-city-final-cta__button-label-source {
+:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta__button-label-source {
 	display: none;
 }
 
-.koala-city-page .koala-city-final-cta__decoration {
+:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta__decoration {
 	position: absolute;
 	top: 79px;
 	right: -220px;
@@ -1340,7 +1369,7 @@
 	pointer-events: none;
 }
 
-.koala-city-page .koala-city-final-cta__decoration img {
+:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta__decoration img {
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -1348,31 +1377,31 @@
 }
 
 @media (max-width: 767px) {
-	.koala-city-page .koala-city-final-cta {
+	:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta {
 		padding: 64px 16px;
 		border-radius: 100px 100px 0 0;
 	}
 
-	.koala-city-page .koala-city-final-cta::before,
-	.koala-city-page .koala-city-final-cta__decoration {
+	:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta::before,
+	:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta__decoration {
 		display: none;
 	}
 
-	.koala-city-page .koala-city-final-cta__content > .wp-block-group__inner-container {
+	:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta__content > .wp-block-group__inner-container {
 		gap: 12px;
 	}
 
-	.koala-city-page .koala-city-final-cta__heading {
+	:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta__heading {
 		font-size: 28px;
 		line-height: 34px;
 	}
 
-	.koala-city-page .koala-city-final-cta__supporting-copy {
+	:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta__supporting-copy {
 		font-size: 14px;
 		line-height: 22px;
 	}
 
-	.koala-city-page .koala-city-final-cta .koala-city-page__quote-cta {
+	:is(.koala-city-page, .koala-beanstalk-location, .editor-styles-wrapper) .koala-city-final-cta :is(.koala-city-page__quote-cta, .koala-location-hero__quote) {
 		width: 100%;
 		min-height: 64px;
 		margin-top: 12px;

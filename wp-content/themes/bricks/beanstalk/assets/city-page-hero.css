@@ -3,7 +3,7 @@
 	font-style: normal;
 	font-weight: 700;
 	font-display: swap;
-	src: url("/wp-content/uploads/fonts/0e906f7812e74c80074fecaa9d86c59c/alegreya-sans--v28-normal-700.woff2") format("woff2");
+	src: url("/wp-content/uploads/fonts/0e906f7812e74c80074fecaa9d86c59c/alegreya-sans--v26-normal-700.woff2") format("woff2");
 }
 
 .koala-city-page {
@@ -43,22 +43,16 @@
 .koala-city-hero__form-body { padding: 24px; }
 .koala-city-hero__submit-label-source { display: none; }
 .koala-city-hero .gform_wrapper.gravity-theme, .koala-city-hero .gform_wrapper { margin: 0; }
-.koala-city-hero .gform_wrapper .gform_required_legend,
-.koala-city-hero .gform_wrapper .gform_validation_container,
-.koala-city-hero .gform_wrapper .gform_hidden { position: absolute !important; overflow: hidden; width: 1px; height: 1px; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; }
 .koala-city-hero .gform_wrapper form, .koala-city-hero .gform_body, .koala-city-hero .gform_fields { margin: 0; }
-.koala-city-hero .gform_wrapper form { display: block; }
 .koala-city-hero .gform_fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; }
 .koala-city-hero .gfield { grid-column: 1 / -1; margin: 0; }
 .koala-city-hero .gfield--width-half { grid-column: span 1; }
-.koala-city-hero .gfield_label { display: inline-block; margin-bottom: 8px; color: var(--city-body); font-family: "Montserrat", sans-serif; font-size: 14px; font-weight: 700; line-height: 20px; }
+.koala-city-hero .gfield_label { color: var(--city-body); }
 .koala-city-hero .ginput_container { margin: 0; }
-.koala-city-hero input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]), .koala-city-hero select, .koala-city-hero textarea { width: 100%; min-height: 48px; padding: 10px 14px; border: 1px solid #b8c0c8; border-radius: 4px; background: #fff; color: var(--city-body); font-family: "Montserrat", sans-serif; font-size: 16px; line-height: 1.5; }
+.koala-city-hero input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]), .koala-city-hero select, .koala-city-hero textarea { font-family: "Montserrat", sans-serif;}
 .koala-city-hero input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]) { margin-bottom: 5px !important; }
 .koala-city-hero input::placeholder, .koala-city-hero textarea::placeholder { color: var(--city-body); opacity: 1; }
 .koala-city-hero .gfield--type-consent { font-family: "Filson Pro", sans-serif; font-size: 12px; line-height: 20px; }
-.koala-city-hero .gfield--type-consent .ginput_container { display: flex; align-items: flex-start; gap: 8px; }
-.koala-city-hero .gfield--type-consent input { flex: 0 0 auto; margin-top: 4px; }
 .koala-city-hero .gfield_consent_label { color: var(--city-body); }
 .koala-city-hero .gform_footer { margin: 32px 0 0; padding: 0; }
 .koala-city-hero .gform_button { width: 100%; min-height: 56px; margin: 0; padding: 10px 32px; border: 0; border-radius: 999px; background: var(--city-green); color: var(--city-navy); font-family: "Montserrat", sans-serif; font-size: 18px; font-weight: 700; line-height: 36px; cursor: pointer; }
@@ -86,7 +80,7 @@
 	.koala-city-hero__content { min-height: 0; padding: 48px 20px; }
 	.koala-city-hero__content > .wp-block-group__inner-container { grid-template-columns: 1fr; }
 	.koala-city-hero__content::after { display: none; }
-	.koala-city-hero__copy > .wp-block-group__inner-container { gap: 32px; }
+	.koala-city-hero__copy > .wp-block-group__inner-container { gap: 24px; }
 	.koala-city-hero__heading { font-size: clamp(48px, 13vw, 64px); }
 	.koala-city-hero__introduction { font-size: 18px; line-height: 28px; }
 	.koala-city-hero__form { max-width: 560px; }
@@ -105,4 +99,10 @@
 @media (prefers-reduced-motion: reduce) {
 	.koala-city-hero *, .koala-city-hero *::before, .koala-city-hero *::after { scroll-behavior: auto; transition-duration: .01ms; animation-duration: .01ms; animation-iteration-count: 1; }
 	.koala-city-page .koala-city-hero__form.is-quote-attention { animation: none; }
+}
+
+.koala-city-page #city-page-quote { scroll-margin-top: calc(var(--beanstalk-header-height, 170px) + 16px); }
+.admin-bar .koala-city-page #city-page-quote { scroll-margin-top: calc(var(--beanstalk-header-height, 170px) + 48px); }
+@media (max-width: 782px) {
+	.admin-bar .koala-city-page #city-page-quote { scroll-margin-top: calc(var(--beanstalk-header-height, 170px) + 62px); }
 }
